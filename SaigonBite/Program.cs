@@ -1,4 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using SaigonBite.Models.Entities;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<SaigonBiteContext>(o =>
+    o.UseSqlServer(builder.Configuration.GetConnectionString("SaigonBite")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
