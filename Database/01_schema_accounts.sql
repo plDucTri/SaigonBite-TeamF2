@@ -1,0 +1,41 @@
+IF DB_ID('SaigonBite') IS NULL CREATE DATABASE SaigonBite;
+GO
+USE SaigonBite;
+GO
+
+IF OBJECT_ID('dbo.Hubs','U') IS NULL
+CREATE TABLE Hubs(
+  HubId INT IDENTITY PRIMARY KEY,
+  Name NVARCHAR(100) NOT NULL,
+  Address NVARCHAR(200) NOT NULL,
+  KitchenCapacity INT NOT NULL CHECK (KitchenCapacity >= 1),
+  IsActive BIT NOT NULL DEFAULT 1);
+GO
+
+IF OBJECT_ID('dbo.Users','U') IS NULL
+CREATE TABLE Users(
+  UserId INT IDENTITY PRIMARY KEY,
+  Identifier NVARCHAR(30) NOT NULL UNIQUE,
+  PasswordHash NVARCHAR(200) NOT NULL,
+  Role NVARCHAR(20) NOT NULL CHECK (Role IN ('Local','Tourist','Kitchen','Shipper','Admin')),
+  FullName NVARCHAR(100) NOT NULL,
+  IsActive BIT NOT NULL DEFAULT 1,
+  HubId INT NULL REFERENCES Hubs(HubId),
+  CreatedAt DATETIME2 NOT NULL DEFAULT SYSDATETIME());
+GO
+
+IF OBJECT_ID('dbo.LocalProfiles','U') IS NULL
+CREATE TABLE LocalProfiles(
+  UserId INT PRIMARY KEY REFERENCES Users(UserId),
+  PhoneNumber NVARCHAR(10) NOT NULL UNIQUE);
+GO
+
+IF OBJECT_ID('dbo.TouristProfiles','U') IS NULL
+CREATE TABLE TouristProfiles(
+  UserId INT PRIMARY KEY REFERENCES Users(UserId),
+  PassportNo NVARCHAR(9) NOT NULL UNIQUE,
+  Nationality NVARCHAR(60) NOT NULL,
+  Email NVARCHAR(150) NOT NULL,
+  HotelName NVARCHAR(100) NULL,
+  RoomNo NVARCHAR(20) NULL);
+GO
