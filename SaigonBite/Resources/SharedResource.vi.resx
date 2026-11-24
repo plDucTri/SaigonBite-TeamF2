@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Language" xml:space="preserve"><value>Ngôn ngữ</value></data>
+  <data name="Cloud Kitchen Delivery Platform" xml:space="preserve"><value>Nền tảng giao hàng bếp đám mây</value></data>
+  <data name="Admin portal" xml:space="preserve"><value>Cổng quản trị</value></data>
+  <data name="User Accounts" xml:space="preserve"><value>Tài khoản người dùng</value></data>
+  <data name="Revenue Report R1" xml:space="preserve"><value>Báo cáo doanh thu R1</value></data>
+  <data name="A unified platform for local diners and international guests." xml:space="preserve"><value>Nền tảng thống nhất cho thực khách trong nước và khách quốc tế.</value></data>
+  <data name="One account, many kitchen hubs." xml:space="preserve"><value>Một tài khoản, nhiều bếp.</value></data>
+  <data name="Orders are tracked from placement to delivery." xml:space="preserve"><value>Đơn hàng được theo dõi từ lúc đặt đến khi giao.</value></data>
+  <data name="Local Customer Registration" xml:space="preserve"><value>Đăng ký khách hàng trong nước</value></data>
+  <data name="Create Local Customer Account" xml:space="preserve"><value>Tạo tài khoản khách hàng trong nước</value></data>
+  <data name="Phone number, password and simulated OTP" xml:space="preserve"><value>Số điện thoại, mật khẩu và mã OTP mô phỏng</value></data>
+  <data name="Full Name" xml:space="preserve"><value>Họ và tên</value></data>
+  <data name="Vietnamese Mobile Number" xml:space="preserve"><value>Số điện thoại Việt Nam</value></data>
+  <data name="10 digits beginning with 03, 05, 07, 08 or 09. The number must be unique." xml:space="preserve"><value>10 chữ số, bắt đầu bằng 03, 05, 07, 08 hoặc 09. Số điện thoại phải chưa được đăng ký.</value></data>
+  <data name="Password (minimum 8 characters)" xml:space="preserve"><value>Mật khẩu (tối thiểu 8 ký tự)</value></data>
+  <data name="Confirm Password" xml:space="preserve"><value>Xác nhận mật khẩu</value></data>
+  <data name="Send OTP and Continue" xml:space="preserve"><value>Gửi OTP và tiếp tục</value></data>
+  <data name="Already registered?" xml:space="preserve"><value>Đã có tài khoản?</value></data>
+  <data name="Sign in" xml:space="preserve"><value>Đăng nhập</value></data>
+  <data name="Foreign tourist? Register here" xml:space="preserve"><value>Bạn là khách nước ngoài? Đăng ký tại đây</value></data>
+  <data name="Foreign Tourist Registration" xml:space="preserve"><value>Đăng ký khách du lịch nước ngoài</value></data>
+  <data name="Create Foreign Tourist Account" xml:space="preserve"><value>Tạo tài khoản khách du lịch nước ngoài</value></data>
+  <data name="Passport, nationality, email and optional hotel details" xml:space="preserve"><value>Hộ chiếu, quốc tịch, email và thông tin khách sạn (không bắt buộc)</value></data>
+  <data name="Passport (6-9 letters/digits)" xml:space="preserve"><value>Hộ chiếu (6-9 chữ cái/chữ số)</value></data>
+  <data name="Nationality" xml:space="preserve"><value>Quốc tịch</value></data>
+  <data name="Email" xml:space="preserve"><value>Email</value></data>
+  <data name="Hotel / Delivery Address" xml:space="preserve"><value>Khách sạn / địa chỉ giao hàng</value></data>
+  <data name="Hotel Room Number" xml:space="preserve"><value>Số phòng khách sạn</value></data>
+  <data name="Passport must be unique. Nationality and a valid email are required. Verification uses a simulated email code." xml:space="preserve"><value>Số hộ chiếu phải chưa được đăng ký. Cần có quốc tịch và email hợp lệ. Mã xác minh được gửi qua email mô phỏng.</value></data>
+  <data name="Send Email Code and Continue" xml:space="preserve"><value>Gửi mã qua email và tiếp tục</value></data>
+  <data name="Local customer? Register here" xml:space="preserve"><value>Bạn là khách trong nước? Đăng ký tại đây</value></data>
+  <data name="Verify Registration Code" xml:space="preserve"><value>Xác minh mã đăng ký</value></data>
+  <data name="Identity Verification" xml:space="preserve"><value>Xác minh danh tính</value></data>
+  <data name="Enter the simulated OTP or email code" xml:space="preserve"><value>Nhập mã OTP hoặc mã email mô phỏng</value></data>
+  <data name="Local: Phone OTP" xml:space="preserve"><value>Trong nước: OTP điện thoại</value></data>
+  <data name="Tourist: Email Code" xml:space="preserve"><value>Du khách: mã email</value></data>
+  <data name="Demo code (simulated delivery):" xml:space="preserve"><value>Mã demo (gửi mô phỏng):</value></data>
+  <data name="Verification Code" xml:space="preserve"><value>Mã xác minh</value></data>
+  <data name="Enter six-digit code" xml:space="preserve"><value>Nhập mã gồm sáu chữ số</value></data>
+  <data name="Verify and Create Account" xml:space="preserve"><value>Xác minh và tạo tài khoản</value></data>
+  <data name="Resend Code" xml:space="preserve"><value>Gửi lại mã</value></data>
+  <data name="On success, the account is saved with a hashed password and its role profile." xml:space="preserve"><value>Khi thành công, tài khoản được lưu với mật khẩu đã băm và hồ sơ theo vai trò.</value></data>
+  <data name="A new code has been sent." xml:space="preserve"><value>Đã gửi mã mới.</value></data>
+  <data name="Account created" xml:space="preserve"><value>Đã tạo tài khoản</value></data>
+  <data name="Your account is ready. You can now sign in." xml:space="preserve"><value>Tài khoản của bạn đã sẵn sàng. Bạn có thể đăng nhập ngay.</value></data>
+  <data name="Go to Sign in" xml:space="preserve"><value>Đến trang đăng nhập</value></data>
+  <data name="Passwords do not match." xml:space="preserve"><value>Mật khẩu không khớp.</value></data>
+  <data name="Enter the six-digit verification code." xml:space="preserve"><value>Vui lòng nhập mã xác minh gồm sáu chữ số.</value></data>
+  <data name="Please wait 30 seconds before requesting another code." xml:space="preserve"><value>Vui lòng chờ 30 giây trước khi yêu cầu mã khác.</value></data>
+  <data name="Text is too long." xml:space="preserve"><value>Nội dung quá dài.</value></data>
+  <data name="Password is too long." xml:space="preserve"><value>Mật khẩu quá dài.</value></data>
+  <data name="Phone number must have 10 digits and start with 03, 05, 07, 08 or 09." xml:space="preserve"><value>Số điện thoại phải có 10 chữ số và bắt đầu bằng 03, 05, 07, 08 hoặc 09.</value></data>
+  <data name="Passport number must have 6 to 9 letters or digits." xml:space="preserve"><value>Số hộ chiếu phải gồm 6 đến 9 chữ cái hoặc chữ số.</value></data>
+  <data name="Nationality is required." xml:space="preserve"><value>Vui lòng nhập quốc tịch.</value></data>
+  <data name="Email address is not valid." xml:space="preserve"><value>Địa chỉ email không hợp lệ.</value></data>
+  <data name="Customer type must be Local or Tourist." xml:space="preserve"><value>Loại khách hàng phải là Trong nước hoặc Du khách.</value></data>
+  <data name="Full name is required." xml:space="preserve"><value>Vui lòng nhập họ và tên.</value></data>
+  <data name="Password must have at least 8 characters." xml:space="preserve"><value>Mật khẩu phải có ít nhất 8 ký tự.</value></data>
+  <data name="This phone number is already registered." xml:space="preserve"><value>Số điện thoại này đã được đăng ký.</value></data>
+  <data name="This passport number is already registered." xml:space="preserve"><value>Số hộ chiếu này đã được đăng ký.</value></data>
+  <data name="The registration has expired. Please register again." xml:space="preserve"><value>Phiên đăng ký đã hết hạn. Vui lòng đăng ký lại.</value></data>
+  <data name="The verification code is wrong or has expired." xml:space="preserve"><value>Mã xác minh sai hoặc đã hết hạn.</value></data>
+  <data name="Sign in to SaigonBite" xml:space="preserve"><value>Đăng nhập vào SaigonBite</value></data>
+  <data name="Use your phone number, passport number or staff account." xml:space="preserve"><value>Dùng số điện thoại, số hộ chiếu hoặc tài khoản nhân viên.</value></data>
+  <data name="Phone, passport or staff ID" xml:space="preserve"><value>Số điện thoại, hộ chiếu hoặc mã nhân viên</value></data>
+  <data name="Password" xml:space="preserve"><value>Mật khẩu</value></data>
+  <data name="New to SaigonBite?" xml:space="preserve"><value>Mới dùng SaigonBite?</value></data>
+  <data name="Register as Local Customer" xml:space="preserve"><value>Đăng ký khách hàng trong nước</value></data>
+  <data name="Register as Foreign Tourist" xml:space="preserve"><value>Đăng ký khách du lịch nước ngoài</value></data>
+  <data name="Invalid identifier or password." xml:space="preserve"><value>Số điện thoại/hộ chiếu hoặc mật khẩu không đúng.</value></data>
+  <data name="Sign out" xml:space="preserve"><value>Đăng xuất</value></data>
+  <data name="Access denied" xml:space="preserve"><value>Truy cập bị từ chối</value></data>
+  <data name="Your account does not have permission to open this page." xml:space="preserve"><value>Tài khoản của bạn không có quyền mở trang này.</value></data>
+  <data name="Back to home" xml:space="preserve"><value>Về trang chủ</value></data>
+  <data name="Welcome to SaigonBite" xml:space="preserve"><value>Chào mừng đến với SaigonBite</value></data>
+  <data name="Signed in as" xml:space="preserve"><value>Đã đăng nhập:</value></data>
+</root>

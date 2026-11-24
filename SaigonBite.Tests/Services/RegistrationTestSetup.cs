@@ -5,9 +5,10 @@ using SaigonBite.Models.Entities;
 using SaigonBite.Repositories;
 using SaigonBite.Services;
 using SaigonBite.Validators;
+
 namespace SaigonBite.Tests.Services;
 
-/// <summary>A clock the tests can move forward (used for the expired code test).</summary>
+/// <summary>A clock the tests can move forward (used for the expired code and resend tests).</summary>
 public sealed class FakeClock : TimeProvider
 {
     private DateTimeOffset _now = new(2026, 11, 25, 9, 0, 0, TimeSpan.Zero);
@@ -45,7 +46,7 @@ public sealed class RegistrationTestSetup : IDisposable
         Hasher = new PasswordHasher();
         Verification = new VerificationService(Cache, Sender, Clock);
         Service = new AccountService(
-            new AccountValidator(), new UserRepository(Db), Verification, Hasher, Cache);
+            new AccountValidator(), new UserRepository(Db), Verification, Hasher, Cache, Clock);
     }
 
     public SaigonBiteContext Db { get; }

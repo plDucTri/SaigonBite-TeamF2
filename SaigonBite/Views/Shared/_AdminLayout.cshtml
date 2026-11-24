@@ -1,0 +1,69 @@
+@using System.Globalization
+@{
+    string active = ViewData["Active"] as string ?? string.Empty;
+    // Each team member adds the menu items of their own pages here.
+    (string Label, string Href)[] menu =
+    {
+        ("User Accounts", "/Admin/Accounts"),
+        ("Revenue Report R1", "/Admin/Revenue")
+    };
+}
+<!DOCTYPE html>
+<html lang="@CultureInfo.CurrentUICulture.TwoLetterISOLanguageName">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - SaigonBite</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="sb-body">
+    <header class="sb-header">
+        <div class="container-xl d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-3">
+                <a class="sb-brand" href="/">SaigonBite</a>
+                <span class="sb-tagline d-none d-md-inline">@T["Cloud Kitchen Delivery Platform"]</span>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <button class="btn btn-sm btn-outline-light d-lg-none" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#sbSideNav" aria-controls="sbSideNav">
+                    Menu
+                </button>
+                <partial name="_LanguageToggle" />
+            </div>
+        </div>
+    </header>
+
+    <div class="container-xl sb-admin">
+        <div class="row g-4">
+            <nav id="sbSideNav" class="col-lg-2 collapse d-lg-block" aria-label="Admin">
+                <div class="sb-sidebar">
+                    <div class="sb-sidebar-title">@T["Admin portal"]</div>
+                    <ul class="nav flex-column">
+                        @foreach (var item in menu)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link @(item.Label == active ? "active" : "")"
+                                   href="@item.Href">@T[item.Label]</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </nav>
+            <main class="col-lg-10">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    <footer class="sb-footer">
+        <div class="container-xl">SaigonBite | Team F2</div>
+    </footer>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

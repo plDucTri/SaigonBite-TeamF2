@@ -1,0 +1,59 @@
+@model SaigonBite.ViewModels.RegisterTouristViewModel
+@{
+    Layout = "_AuthLayout";
+    ViewData["Title"] = T["Foreign Tourist Registration"].Value;
+}
+
+<div class="sb-eyebrow">@T["Foreign Tourist Registration"]</div>
+<h1 class="h4 mb-1">@T["Create Foreign Tourist Account"]</h1>
+<p class="text-muted">@T["Passport, nationality, email and optional hotel details"]</p>
+
+<partial name="_ErrorList" />
+
+<form asp-action="RegisterTourist" method="post" novalidate>
+    <div class="row g-3 mb-3">
+        <div class="col-md-6">
+            <label asp-for="FullName" class="form-label">@T["Full Name"]</label>
+            <input asp-for="FullName" class="form-control" autocomplete="name" />
+        </div>
+        <div class="col-md-6">
+            <label asp-for="PassportNo" class="form-label">@T["Passport (6-9 letters/digits)"]</label>
+            <input asp-for="PassportNo" class="form-control" autocomplete="off" />
+        </div>
+        <div class="col-md-6">
+            <label asp-for="Nationality" class="form-label">@T["Nationality"]</label>
+            <input asp-for="Nationality" class="form-control" autocomplete="country-name" />
+        </div>
+        <div class="col-md-6">
+            <label asp-for="Email" class="form-label">@T["Email"]</label>
+            <input asp-for="Email" type="email" class="form-control" autocomplete="email" />
+        </div>
+        <div class="col-md-8">
+            <label asp-for="HotelName" class="form-label">@T["Hotel / Delivery Address"]</label>
+            <input asp-for="HotelName" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <label asp-for="RoomNo" class="form-label">@T["Hotel Room Number"]</label>
+            <input asp-for="RoomNo" class="form-control" />
+        </div>
+    </div>
+    <div class="sb-hint mb-3">
+        @T["Passport must be unique. Nationality and a valid email are required. Verification uses a simulated email code."]
+    </div>
+    <div class="row g-3 mb-4">
+        <div class="col-md-6">
+            <label asp-for="Password" class="form-label">@T["Password (minimum 8 characters)"]</label>
+            <input asp-for="Password" class="form-control" autocomplete="new-password" />
+        </div>
+        <div class="col-md-6">
+            <label asp-for="ConfirmPassword" class="form-label">@T["Confirm Password"]</label>
+            <input asp-for="ConfirmPassword" class="form-control" autocomplete="new-password" />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-sb w-100">@T["Send Email Code and Continue"]</button>
+</form>
+
+<div class="mt-3 small text-muted d-flex flex-wrap justify-content-between gap-2">
+    <span>@T["Already registered?"] <a href="/Account/Login">@T["Sign in"]</a></span>
+    <a asp-action="RegisterLocal">@T["Local customer? Register here"]</a>
+</div>

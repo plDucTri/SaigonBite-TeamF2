@@ -1,0 +1,19 @@
+@{
+    var errors = ViewData.ModelState.Values
+        .SelectMany(v => v.Errors)
+        .Select(e => e.ErrorMessage)
+        .Where(m => !string.IsNullOrEmpty(m))
+        .Distinct()
+        .ToList();
+}
+@if (errors.Count > 0)
+{
+    <div class="sb-error-box mb-3" role="alert">
+        <ul class="mb-0 ps-3">
+            @foreach (string error in errors)
+            {
+                <li>@T[error]</li>
+            }
+        </ul>
+    </div>
+}

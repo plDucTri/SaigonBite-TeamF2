@@ -1,0 +1,12 @@
+@using System.Globalization
+@{
+    string current = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+    string returnUrl = Context.Request.Path + Context.Request.QueryString;
+}
+<div class="sb-lang" role="group" aria-label="@T["Language"]">
+    <a asp-controller="Language" asp-action="Set" asp-route-culture="en" asp-route-returnUrl="@returnUrl"
+       class="@(current == "en" ? "active" : "")">EN</a>
+    <span aria-hidden="true">|</span>
+    <a asp-controller="Language" asp-action="Set" asp-route-culture="vi" asp-route-returnUrl="@returnUrl"
+       class="@(current == "vi" ? "active" : "")">VI</a>
+</div>
