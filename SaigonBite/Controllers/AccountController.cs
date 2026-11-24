@@ -1,10 +1,13 @@
-using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SaigonBite.Helpers;
 using SaigonBite.Services;
 using SaigonBite.Validators;
 using SaigonBite.ViewModels;
+using System.Security.Claims;
+using System.Text.RegularExpressions;
 
 namespace SaigonBite.Controllers;
 
@@ -144,6 +147,58 @@ public class AccountController : Controller
 
     [HttpGet]
     public IActionResult Registered() => View();
+
+    // ---------- Login / Logout ----------
+
+    [HttpGet]
+    public IActionResult Login(string? returnUrl = null)
+    {
+        if (User.Identity?.IsAuthenticated == true)
+            return RedirectToAction("Index", "Home");
+
+        return View(new LoginViewModel { ReturnUrl = returnUrl });
+    }
+
+    [HttpPost, ValidateAntiForgeryToken]
+    public async Task<IActionResult> Login(LoginViewModel vm)
+    {
+        if (!ModelState.IsValid)
+            return View(vm);
+
+        var result = _accounts.Login(vm.Identifier ?? "", vm.Password ?? "");
+        if (!result.Ok)
+        {
+            AddErrors(result.Errors);
+            return View(vm);
+        }
+
+        // The cookie keeps the user id, name and role.
+        SignedInUser user = result.Value!;
+        var claims = new List<Claim>
+    {
+        new(ClaimTypes.NameIdentifier, user.UserId.ToString()),
+        new(ClaimTypes.Name, user.FullName),
+        new(ClaimTypes.Role, user.Role)
+    };
+        var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
+
+        // Only go back to a page on this site.
+        if (Url.IsLocalUrl(vm.ReturnUrl))
+            return LocalRedirect(vm.ReturnUrl!);
+
+        return RedirectToAction("Index", "Home");
+    }
+
+    [HttpPost, ValidateAntiForgeryToken]
+    public async Task<IActionResult> Logout()
+    {
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        return RedirectToAction(nameof(Login));
+    }
+
+    [HttpGet]
+    public IActionResult AccessDenied() => View();
 
     // ---------- helpers ----------
 
