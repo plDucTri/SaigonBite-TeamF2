@@ -1,0 +1,50 @@
+@using SaigonBite.Helpers
+@model SaigonBite.ViewModels.VerifyViewModel
+@{
+    Layout = "_AuthLayout";
+    ViewData["Title"] = T["Verify Registration Code"].Value;
+    bool isLocal = Model.Type == Roles.Local;
+}
+
+<div class="sb-eyebrow">@T["Verify Registration Code"]</div>
+<h1 class="h4 mb-1">@T["Identity Verification"]</h1>
+<p class="text-muted mb-2">@T["Enter the simulated OTP or email code"]</p>
+<p class="mb-3">
+    <span class="sb-chip">@(isLocal ? T["Local: Phone OTP"] : T["Tourist: Email Code"])</span>
+    <span class="ms-2 small text-muted">@Model.Identifier</span>
+</p>
+
+@if (TempData["Notice"] is string notice)
+{
+    <div class="sb-hint mb-3" role="status">@T[notice]</div>
+}
+
+<partial name="_ErrorList" />
+
+@if (!string.IsNullOrEmpty(Model.DemoCode))
+{
+    <div class="sb-demo-code mb-3">
+        @T["Demo code (simulated delivery):"] <strong>@Model.DemoCode</strong>
+    </div>
+}
+
+<form asp-action="Verify" method="post" novalidate>
+    <input type="hidden" asp-for="Identifier" />
+    <input type="hidden" asp-for="Type" />
+    <div class="mb-3">
+        <label asp-for="Code" class="form-label">@T["Verification Code"]</label>
+        <input asp-for="Code" class="form-control" inputmode="numeric" maxlength="6"
+               autocomplete="one-time-code" placeholder="@T["Enter six-digit code"]" />
+    </div>
+    <button type="submit" class="btn btn-sb w-100">@T["Verify and Create Account"]</button>
+</form>
+
+<form asp-action="Resend" method="post" class="mt-2">
+    <input type="hidden" name="identifier" value="@Model.Identifier" />
+    <input type="hidden" name="type" value="@Model.Type" />
+    <button type="submit" class="btn btn-outline-secondary w-100">@T["Resend Code"]</button>
+</form>
+
+<p class="mt-3 small text-muted mb-0">
+    @T["On success, the account is saved with a hashed password and its role profile."]
+</p>

@@ -1,0 +1,48 @@
+@using System.Globalization
+<!DOCTYPE html>
+<html lang="@CultureInfo.CurrentUICulture.TwoLetterISOLanguageName">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - SaigonBite</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="sb-body">
+    <header class="sb-header">
+        <div class="container-xl d-flex justify-content-between align-items-center">
+            <a class="sb-brand" href="/">SaigonBite</a>
+            <partial name="_LanguageToggle" />
+        </div>
+    </header>
+
+    <main class="container-xl sb-auth">
+        <div class="row g-4 align-items-stretch">
+            <aside class="col-lg-5">
+                <div class="sb-brand-panel h-100">
+                    <h2 class="sb-brand-title">@T["A unified platform for local diners and international guests."]</h2>
+                    <ul class="sb-brand-list">
+                        <li>@T["One account, many kitchen hubs."]</li>
+                        <li>@T["Orders are tracked from placement to delivery."]</li>
+                    </ul>
+                </div>
+            </aside>
+            <section class="col-lg-7">
+                <div class="sb-card">
+                    @RenderBody()
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="sb-footer">
+        <div class="container-xl">SaigonBite | Team F2</div>
+    </footer>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
