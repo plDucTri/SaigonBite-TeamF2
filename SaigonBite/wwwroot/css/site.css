@@ -187,3 +187,33 @@ body.sb-body {
         padding: 1.1rem;
     }
 }
+
+/* A button that looks like a link (used for Deactivate in the table) and the red outline button */
+.sb-link-btn {
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    color: var(--sb-green-700);
+}
+
+    .sb-link-btn:hover {
+        text-decoration: underline;
+    }
+
+.sb-link-danger {
+    color: var(--sb-error);
+}
+
+.btn-sb-danger {
+    --bs-btn-color: var(--sb-error);
+    --bs-btn-border-color: var(--sb-error);
+    --bs-btn-bg: #fff;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--sb-error);
+    --bs-btn-hover-border-color: var(--sb-error);
+    --bs-btn-active-bg: var(--sb-error);
+    --bs-btn-active-border-color: var(--sb-error);
+    --bs-btn-active-color: #fff;
+    font-weight: 600;
+}

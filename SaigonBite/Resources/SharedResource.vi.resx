@@ -80,4 +80,126 @@
   <data name="Back to home" xml:space="preserve"><value>Về trang chủ</value></data>
   <data name="Welcome to SaigonBite" xml:space="preserve"><value>Chào mừng đến với SaigonBite</value></data>
   <data name="Signed in as" xml:space="preserve"><value>Đã đăng nhập:</value></data>
+	  <data name="Manage User Accounts" xml:space="preserve"><value>Quản lý tài khoản người dùng</value></data>
+  <data name="All User Accounts" xml:space="preserve"><value>Tất cả tài khoản người dùng</value></data>
+  <data name="Search across identifier, email, role and account status." xml:space="preserve"><value>Tìm theo mã đăng nhập, email, vai trò và trạng thái tài khoản.</value></data>
+  <data name="Search" xml:space="preserve"><value>Tìm kiếm</value></data>
+  <data name="Name, phone, passport, email" xml:space="preserve"><value>Tên, số điện thoại, hộ chiếu, email</value></data>
+  <data name="Role Filter" xml:space="preserve"><value>Lọc theo vai trò</value></data>
+  <data name="All roles" xml:space="preserve"><value>Tất cả vai trò</value></data>
+  <data name="Status" xml:space="preserve"><value>Trạng thái</value></data>
+  <data name="All statuses" xml:space="preserve"><value>Tất cả trạng thái</value></data>
+  <data name="Filter" xml:space="preserve"><value>Lọc</value></data>
+  <data name="Clear" xml:space="preserve"><value>Xóa lọc</value></data>
+  <data name="Name" xml:space="preserve"><value>Tên</value></data>
+  <data name="Role" xml:space="preserve"><value>Vai trò</value></data>
+  <data name="Identifier" xml:space="preserve"><value>Mã định danh</value></data>
+  <data name="Actions" xml:space="preserve"><value>Thao tác</value></data>
+  <data name="Active" xml:space="preserve"><value>Hoạt động</value></data>
+  <data name="Inactive" xml:space="preserve"><value>Ngừng hoạt động</value></data>
+  <data name="View" xml:space="preserve"><value>Xem</value></data>
+  <data name="Edit" xml:space="preserve"><value>Sửa</value></data>
+  <data name="Deactivate" xml:space="preserve"><value>Vô hiệu hóa</value></data>
+  <data name="Local Customer" xml:space="preserve"><value>Khách hàng trong nước</value></data>
+  <data name="Foreign Tourist" xml:space="preserve"><value>Khách du lịch nước ngoài</value></data>
+  <data name="Kitchen Staff" xml:space="preserve"><value>Nhân viên bếp</value></data>
+  <data name="Shipper" xml:space="preserve"><value>Người giao hàng</value></data>
+  <data name="Admin" xml:space="preserve"><value>Quản trị viên</value></data>
+  <data name="No accounts match the search." xml:space="preserve"><value>Không có tài khoản nào phù hợp.</value></data>
+  <data name="accounts found" xml:space="preserve"><value>tài khoản được tìm thấy</value></data>
+  <data name="Pages" xml:space="preserve"><value>Trang</value></data>
+  <data name="Account Details" xml:space="preserve"><value>Chi tiết tài khoản</value></data>
+  <data name="Account ID" xml:space="preserve"><value>Mã tài khoản</value></data>
+  <data name="Phone Number" xml:space="preserve"><value>Số điện thoại</value></data>
+  <data name="Passport Number" xml:space="preserve"><value>Số hộ chiếu</value></data>
+  <data name="Staff Identifier" xml:space="preserve"><value>Mã nhân viên</value></data>
+  <data name="Assigned Hub" xml:space="preserve"><value>Bếp được phân công</value></data>
+  <data name="Created" xml:space="preserve"><value>Ngày tạo</value></data>
+  <data name="Back to list" xml:space="preserve"><value>Về danh sách</value></data>
+  <data name="Edit User Account" xml:space="preserve"><value>Sửa tài khoản người dùng</value></data>
+  <data name="Edit Kitchen Staff Account" xml:space="preserve"><value>Sửa tài khoản nhân viên bếp</value></data>
+  <data name="Edit Staff Account" xml:space="preserve"><value>Sửa tài khoản nhân viên</value></data>
+  <data name="Edit User" xml:space="preserve"><value>Sửa người dùng</value></data>
+  <data name="Staff Profile" xml:space="preserve"><value>Hồ sơ nhân viên</value></data>
+  <data name="Role and identifier are validated before saving." xml:space="preserve"><value>Vai trò và mã định danh được kiểm tra trước khi lưu.</value></data>
+  <data name="New Password (optional)" xml:space="preserve"><value>Mật khẩu mới (không bắt buộc)</value></data>
+  <data name="Leave blank to retain current password" xml:space="preserve"><value>Để trống nếu giữ mật khẩu hiện tại</value></data>
+  <data name="Confirm New Password" xml:space="preserve"><value>Xác nhận mật khẩu mới</value></data>
+  <data name="Only required when changing password" xml:space="preserve"><value>Chỉ cần nhập khi đổi mật khẩu</value></data>
+  <data name="Account Status" xml:space="preserve"><value>Trạng thái tài khoản</value></data>
+  <data name="Deactivate Account" xml:space="preserve"><value>Vô hiệu hóa tài khoản</value></data>
+  <data name="Save Changes" xml:space="preserve"><value>Lưu thay đổi</value></data>
+  <data name="Save Staff Profile" xml:space="preserve"><value>Lưu hồ sơ nhân viên</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Hủy</value></data>
+  <data name="Select a hub" xml:space="preserve"><value>Chọn bếp</value></data>
+  <data name="Account not found." xml:space="preserve"><value>Không tìm thấy tài khoản.</value></data>
+  <data name="Account saved." xml:space="preserve"><value>Đã lưu tài khoản.</value></data>
+  <data name="Account deactivated." xml:space="preserve"><value>Đã vô hiệu hóa tài khoản.</value></data>
+  <data name="This account is already inactive." xml:space="preserve"><value>Tài khoản này đã ngừng hoạt động.</value></data>
+  <data name="You cannot deactivate your own account." xml:space="preserve"><value>Bạn không thể vô hiệu hóa tài khoản của chính mình.</value></data>
+  <data name="Staff ID must have 3 to 30 letters, digits or hyphens." xml:space="preserve"><value>Mã nhân viên gồm 3 đến 30 chữ cái, chữ số hoặc dấu gạch ngang.</value></data>
+  <data name="Choose an assigned hub for kitchen staff." xml:space="preserve"><value>Hãy chọn bếp được phân công cho nhân viên bếp.</value></data>
+  <data name="This staff ID is already in use." xml:space="preserve"><value>Mã nhân viên này đã được sử dụng.</value></data>
+  <data name="Deactivate this account? The person will no longer be able to sign in." xml:space="preserve"><value>Vô hiệu hóa tài khoản này? Người dùng sẽ không thể đăng nhập nữa.</value></data>
+	<data name="Manage User Accounts" xml:space="preserve"><value>Quản lý tài khoản người dùng</value></data>
+	<data name="All User Accounts" xml:space="preserve"><value>Tất cả tài khoản người dùng</value></data>
+	<data name="Search across identifier, email, role and account status." xml:space="preserve"><value>Tìm theo mã đăng nhập, email, vai trò và trạng thái tài khoản.</value></data>
+	<data name="Search" xml:space="preserve"><value>Tìm kiếm</value></data>
+	<data name="Name, phone, passport, email" xml:space="preserve"><value>Tên, số điện thoại, hộ chiếu, email</value></data>
+	<data name="Role Filter" xml:space="preserve"><value>Lọc theo vai trò</value></data>
+	<data name="All roles" xml:space="preserve"><value>Tất cả vai trò</value></data>
+	<data name="Status" xml:space="preserve"><value>Trạng thái</value></data>
+	<data name="All statuses" xml:space="preserve"><value>Tất cả trạng thái</value></data>
+	<data name="Filter" xml:space="preserve"><value>Lọc</value></data>
+	<data name="Clear" xml:space="preserve"><value>Xóa lọc</value></data>
+	<data name="Name" xml:space="preserve"><value>Tên</value></data>
+	<data name="Role" xml:space="preserve"><value>Vai trò</value></data>
+	<data name="Identifier" xml:space="preserve"><value>Mã định danh</value></data>
+	<data name="Actions" xml:space="preserve"><value>Thao tác</value></data>
+	<data name="Active" xml:space="preserve"><value>Hoạt động</value></data>
+	<data name="Inactive" xml:space="preserve"><value>Ngừng hoạt động</value></data>
+	<data name="View" xml:space="preserve"><value>Xem</value></data>
+	<data name="Edit" xml:space="preserve"><value>Sửa</value></data>
+	<data name="Deactivate" xml:space="preserve"><value>Vô hiệu hóa</value></data>
+	<data name="Local Customer" xml:space="preserve"><value>Khách hàng trong nước</value></data>
+	<data name="Foreign Tourist" xml:space="preserve"><value>Khách du lịch nước ngoài</value></data>
+	<data name="Kitchen Staff" xml:space="preserve"><value>Nhân viên bếp</value></data>
+	<data name="Shipper" xml:space="preserve"><value>Người giao hàng</value></data>
+	<data name="Admin" xml:space="preserve"><value>Quản trị viên</value></data>
+	<data name="No accounts match the search." xml:space="preserve"><value>Không có tài khoản nào phù hợp.</value></data>
+	<data name="accounts found" xml:space="preserve"><value>tài khoản được tìm thấy</value></data>
+	<data name="Pages" xml:space="preserve"><value>Trang</value></data>
+	<data name="Account Details" xml:space="preserve"><value>Chi tiết tài khoản</value></data>
+	<data name="Account ID" xml:space="preserve"><value>Mã tài khoản</value></data>
+	<data name="Phone Number" xml:space="preserve"><value>Số điện thoại</value></data>
+	<data name="Passport Number" xml:space="preserve"><value>Số hộ chiếu</value></data>
+	<data name="Staff Identifier" xml:space="preserve"><value>Mã nhân viên</value></data>
+	<data name="Assigned Hub" xml:space="preserve"><value>Bếp được phân công</value></data>
+	<data name="Created" xml:space="preserve"><value>Ngày tạo</value></data>
+	<data name="Back to list" xml:space="preserve"><value>Về danh sách</value></data>
+	<data name="Edit User Account" xml:space="preserve"><value>Sửa tài khoản người dùng</value></data>
+	<data name="Edit Kitchen Staff Account" xml:space="preserve"><value>Sửa tài khoản nhân viên bếp</value></data>
+	<data name="Edit Staff Account" xml:space="preserve"><value>Sửa tài khoản nhân viên</value></data>
+	<data name="Edit User" xml:space="preserve"><value>Sửa người dùng</value></data>
+	<data name="Staff Profile" xml:space="preserve"><value>Hồ sơ nhân viên</value></data>
+	<data name="Role and identifier are validated before saving." xml:space="preserve"><value>Vai trò và mã định danh được kiểm tra trước khi lưu.</value></data>
+	<data name="New Password (optional)" xml:space="preserve"><value>Mật khẩu mới (không bắt buộc)</value></data>
+	<data name="Leave blank to retain current password" xml:space="preserve"><value>Để trống nếu giữ mật khẩu hiện tại</value></data>
+	<data name="Confirm New Password" xml:space="preserve"><value>Xác nhận mật khẩu mới</value></data>
+	<data name="Only required when changing password" xml:space="preserve"><value>Chỉ cần nhập khi đổi mật khẩu</value></data>
+	<data name="Account Status" xml:space="preserve"><value>Trạng thái tài khoản</value></data>
+	<data name="Deactivate Account" xml:space="preserve"><value>Vô hiệu hóa tài khoản</value></data>
+	<data name="Save Changes" xml:space="preserve"><value>Lưu thay đổi</value></data>
+	<data name="Save Staff Profile" xml:space="preserve"><value>Lưu hồ sơ nhân viên</value></data>
+	<data name="Cancel" xml:space="preserve"><value>Hủy</value></data>
+	<data name="Select a hub" xml:space="preserve"><value>Chọn bếp</value></data>
+	<data name="Account not found." xml:space="preserve"><value>Không tìm thấy tài khoản.</value></data>
+	<data name="Account saved." xml:space="preserve"><value>Đã lưu tài khoản.</value></data>
+	<data name="Account deactivated." xml:space="preserve"><value>Đã vô hiệu hóa tài khoản.</value></data>
+	<data name="This account is already inactive." xml:space="preserve"><value>Tài khoản này đã ngừng hoạt động.</value></data>
+	<data name="You cannot deactivate your own account." xml:space="preserve"><value>Bạn không thể vô hiệu hóa tài khoản của chính mình.</value></data>
+	<data name="Staff ID must have 3 to 30 letters, digits or hyphens." xml:space="preserve"><value>Mã nhân viên gồm 3 đến 30 chữ cái, chữ số hoặc dấu gạch ngang.</value></data>
+	<data name="Choose an assigned hub for kitchen staff." xml:space="preserve"><value>Hãy chọn bếp được phân công cho nhân viên bếp.</value></data>
+	<data name="This staff ID is already in use." xml:space="preserve"><value>Mã nhân viên này đã được sử dụng.</value></data>
+	<data name="Deactivate this account? The person will no longer be able to sign in." xml:space="preserve"><value>Vô hiệu hóa tài khoản này? Người dùng sẽ không thể đăng nhập nữa.</value></data>
 </root>

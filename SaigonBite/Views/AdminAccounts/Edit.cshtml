@@ -1,0 +1,106 @@
+﻿@using SaigonBite.Helpers
+@using SaigonBite.Services
+@model SaigonBite.ViewModels.EditAccountViewModel
+@{
+    Layout = "_AdminLayout";
+    AccountInfo account = Model.Account!;
+    bool isTourist = account.Role == Roles.Tourist;
+    bool isKitchen = account.Role == Roles.Kitchen;
+    bool isStaff = account.Role != Roles.Local && !isTourist;
+
+    // Customers use the E06 wording, staff use the E08 wording.
+    string pageTitle = isKitchen ? "Edit Kitchen Staff Account" : isStaff ? "Edit Staff Account" : "Edit User Account";
+    ViewData["Title"] = T[pageTitle].Value;
+    ViewData["Active"] = "User Accounts";
+}
+
+<h1 class="h3 mb-3">@T[pageTitle]</h1>
+
+<div class="sb-card">
+    <h2 class="h5 mb-1">@(isStaff ? T["Staff Profile"] : T["Edit User"]): @account.FullName</h2>
+    <p class="text-muted small">
+        @T["Account ID"]: U-@(account.UserId). @T["Role and identifier are validated before saving."]
+    </p>
+
+    <partial name="_ErrorList" />
+
+    <form asp-action="UpdateAccount" asp-route-id="@account.UserId" method="post" novalidate>
+        <div class="row g-3 mb-3">
+            <div class="col-md-6">
+                <label asp-for="FullName" class="form-label">@T["Full Name"]</label>
+                <input asp-for="FullName" class="form-control" autocomplete="off" />
+            </div>
+            <div class="col-md-6">
+                <label for="roleShown" class="form-label">@T["Role"]</label>
+                <input id="roleShown" class="form-control" value="@T[RoleLabels.For(account.Role)]" readonly />
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Identifier" class="form-label">@T[RoleLabels.IdentifierLabel(account.Role)]</label>
+                <input asp-for="Identifier" class="form-control" autocomplete="off" />
+            </div>
+
+            @if (isKitchen)
+            {
+                <div class="col-md-6">
+                    <label asp-for="HubId" class="form-label">@T["Assigned Hub"]</label>
+                    <select asp-for="HubId" class="form-select" asp-items="@(new SelectList(Model.Hubs, "HubId", "Name"))">
+                        <option value="">@T["Select a hub"]</option>
+                    </select>
+                </div>
+            }
+
+            @if (isTourist)
+            {
+                <div class="col-md-6">
+                    <label asp-for="Nationality" class="form-label">@T["Nationality"]</label>
+                    <input asp-for="Nationality" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Email" class="form-label">@T["Email"]</label>
+                    <input asp-for="Email" type="email" class="form-control" />
+                </div>
+                <div class="col-md-8">
+                    <label asp-for="HotelName" class="form-label">@T["Hotel / Delivery Address"]</label>
+                    <input asp-for="HotelName" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="RoomNo" class="form-label">@T["Hotel Room Number"]</label>
+                    <input asp-for="RoomNo" class="form-control" />
+                </div>
+            }
+
+            <div class="col-md-6">
+                <label asp-for="NewPassword" class="form-label">@T["New Password (optional)"]</label>
+                <input asp-for="NewPassword" class="form-control" autocomplete="new-password"
+                       placeholder="@T["Leave blank to retain current password"]" />
+            </div>
+            <div class="col-md-6">
+                <label asp-for="ConfirmPassword" class="form-label">@T["Confirm New Password"]</label>
+                <input asp-for="ConfirmPassword" class="form-control" autocomplete="new-password"
+                       placeholder="@T["Only required when changing password"]" />
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <div class="form-label">@T["Account Status"]</div>
+            <div class="d-flex flex-wrap align-items-center gap-2">
+                <span class="sb-chip @(account.IsActive ? "" : "sb-chip-off")">@(account.IsActive ? T["Active"] : T["Inactive"])</span>
+                @if (account.IsActive && !Model.IsSelf)
+                {
+                    <button type="submit" form="deactivateForm" class="btn btn-sb-danger"
+                            data-confirm="@T["Deactivate this account? The person will no longer be able to sign in."]"
+                            onclick="return confirm(this.dataset.confirm)">
+                        @T["Deactivate Account"]
+                    </button>
+                }
+            </div>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2">
+            <button type="submit" class="btn btn-sb">@(isStaff ? T["Save Staff Profile"] : T["Save Changes"])</button>
+            <a class="btn btn-outline-secondary" asp-action="OpenAccountList">@T["Cancel"]</a>
+        </div>
+    </form>
+    <form id="deactivateForm" asp-action="DeactivateAccount" asp-route-id="@account.UserId" method="post"></form>
+</div>

@@ -1,0 +1,55 @@
+﻿@using SaigonBite.Helpers
+@model SaigonBite.Services.AccountInfo
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = T["Account Details"].Value;
+    ViewData["Active"] = "User Accounts";
+}
+
+<h1 class="h3 mb-3">@T["Account Details"]</h1>
+
+<partial name="_Notice" />
+
+<div class="sb-card">
+    <div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-3">
+        <div>
+            <h2 class="h5 mb-1">@Model.FullName</h2>
+            <p class="text-muted small mb-0">@T["Account ID"]: U-@(Model.UserId)</p>
+        </div>
+        <span class="sb-chip @(Model.IsActive ? "" : "sb-chip-off")">@(Model.IsActive ? T["Active"] : T["Inactive"])</span>
+    </div>
+
+    <dl class="row mb-4">
+        <dt class="col-sm-4">@T["Role"]</dt>
+        <dd class="col-sm-8">@T[RoleLabels.For(Model.Role)]</dd>
+
+        <dt class="col-sm-4">@T[RoleLabels.IdentifierLabel(Model.Role)]</dt>
+        <dd class="col-sm-8">@Model.Identifier</dd>
+
+        @if (Model.Role == Roles.Tourist)
+        {
+            <dt class="col-sm-4">@T["Nationality"]</dt>
+            <dd class="col-sm-8">@Model.Nationality</dd>
+            <dt class="col-sm-4">@T["Email"]</dt>
+            <dd class="col-sm-8">@Model.Email</dd>
+            <dt class="col-sm-4">@T["Hotel / Delivery Address"]</dt>
+            <dd class="col-sm-8">@(string.IsNullOrEmpty(Model.HotelName) ? "-" : Model.HotelName)</dd>
+            <dt class="col-sm-4">@T["Hotel Room Number"]</dt>
+            <dd class="col-sm-8">@(string.IsNullOrEmpty(Model.RoomNo) ? "-" : Model.RoomNo)</dd>
+        }
+
+        @if (Model.Role == Roles.Kitchen)
+        {
+            <dt class="col-sm-4">@T["Assigned Hub"]</dt>
+            <dd class="col-sm-8">@(Model.HubName ?? "-")</dd>
+        }
+
+        <dt class="col-sm-4">@T["Created"]</dt>
+        <dd class="col-sm-8">@Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")</dd>
+    </dl>
+
+    <div class="d-flex flex-wrap gap-2">
+        <a class="btn btn-sb" asp-action="Edit" asp-route-id="@Model.UserId">@T["Edit"]</a>
+        <a class="btn btn-outline-secondary" asp-action="OpenAccountList">@T["Back to list"]</a>
+    </div>
+</div>
