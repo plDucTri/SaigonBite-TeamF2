@@ -135,11 +135,59 @@ public class AdminAccountsController : Controller
             TempData["Error"] = result.Errors[0];
 
         // Go back to the page the admin came from (only a page on this site).
-        if (Url.IsLocalUrl(returnUrl))
-            return LocalRedirect(returnUrl!);
-
-        return RedirectToAction(nameof(OpenAccountList));
+        return BackTo(returnUrl);
     }
+
+    [HttpPost("{id:int}/Reactivate"), ValidateAntiForgeryToken]
+    public IActionResult ReactivateAccount(int id, string? returnUrl)
+    {
+        var result = _accounts.ReactivateAccount(id);
+
+        if (result.Ok)
+            TempData["Notice"] = "Account reactivated.";
+        else
+            TempData["Error"] = result.Errors[0];
+
+        return BackTo(returnUrl);
+    }
+
+    [HttpGet("New")]
+    public IActionResult Create()
+    {
+        return View(new CreateStaffViewModel { Hubs = _accounts.GetHubOptions() });
+    }
+
+    [HttpPost("New"), ValidateAntiForgeryToken]
+    public IActionResult CreateStaffAccount(CreateStaffViewModel vm)
+    {
+        if (ModelState.IsValid && (vm.Password ?? "") != (vm.ConfirmPassword ?? ""))
+            ModelState.AddModelError(string.Empty, "Passwords do not match.");
+
+        if (ModelState.IsValid)
+        {
+            var request = new NewStaffAccount
+            {
+                FullName = vm.FullName ?? "",
+                Role = vm.Role ?? "",
+                Identifier = vm.Identifier ?? "",
+                Password = vm.Password ?? "",
+                HubId = vm.HubId
+            };
+
+            var result = _accounts.CreateStaffAccount(request);
+            if (result.Ok)
+            {
+                TempData["Notice"] = "Account created";
+                return RedirectToAction(nameof(Details), new { id = result.Value!.UserId });
+            }
+
+            AddErrors(result.Errors);
+        }
+
+        vm.Hubs = _accounts.GetHubOptions();
+        return View("Create", vm);
+    }
+
     // ---------- helpers ----------
 
     // The id of the signed-in admin (stored in the cookie at login).
@@ -165,5 +213,14 @@ public class AdminAccountsController : Controller
     {
         foreach (string error in errors)
             ModelState.AddModelError(string.Empty, error);
+    }
+
+    // Go back to the page the admin came from (only a page on this site), else to the list.
+    private IActionResult BackTo(string? returnUrl)
+    {
+        if (Url.IsLocalUrl(returnUrl))
+            return LocalRedirect(returnUrl!);
+
+        return RedirectToAction(nameof(OpenAccountList));
     }
 }

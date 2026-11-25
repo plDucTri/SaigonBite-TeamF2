@@ -34,3 +34,13 @@ public class AccountChanges
     // Kitchen staff only
     public int? HubId { get; set; }
 }
+
+/// <summary>A new Kitchen, Shipper or Admin account made by an admin (customers register themselves).</summary>
+public class NewStaffAccount
+{
+    public string FullName { get; set; } = string.Empty;
+    public string Role { get; set; } = string.Empty;
+    public string Identifier { get; set; } = string.Empty;
+    public string Password { get; set; } = string.Empty;
+    public int? HubId { get; set; } // kitchen staff only
+}

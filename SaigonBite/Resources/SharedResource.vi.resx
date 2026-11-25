@@ -140,7 +140,7 @@
   <data name="Staff ID must have 3 to 30 letters, digits or hyphens." xml:space="preserve"><value>Mã nhân viên gồm 3 đến 30 chữ cái, chữ số hoặc dấu gạch ngang.</value></data>
   <data name="Choose an assigned hub for kitchen staff." xml:space="preserve"><value>Hãy chọn bếp được phân công cho nhân viên bếp.</value></data>
   <data name="This staff ID is already in use." xml:space="preserve"><value>Mã nhân viên này đã được sử dụng.</value></data>
-  <data name="Deactivate this account? The person will no longer be able to sign in." xml:space="preserve"><value>Vô hiệu hóa tài khoản này? Người dùng sẽ không thể đăng nhập nữa.</value></data>
+	<data name="Deactivate this account? The person will no longer be able to sign in." xml:space="preserve"><value>Vô hiệu hóa tài khoản này? Người dùng sẽ không thể đăng nhập nữa.</value></data>
 	<data name="Manage User Accounts" xml:space="preserve"><value>Quản lý tài khoản người dùng</value></data>
 	<data name="All User Accounts" xml:space="preserve"><value>Tất cả tài khoản người dùng</value></data>
 	<data name="Search across identifier, email, role and account status." xml:space="preserve"><value>Tìm theo mã đăng nhập, email, vai trò và trạng thái tài khoản.</value></data>
@@ -202,4 +202,19 @@
 	<data name="Choose an assigned hub for kitchen staff." xml:space="preserve"><value>Hãy chọn bếp được phân công cho nhân viên bếp.</value></data>
 	<data name="This staff ID is already in use." xml:space="preserve"><value>Mã nhân viên này đã được sử dụng.</value></data>
 	<data name="Deactivate this account? The person will no longer be able to sign in." xml:space="preserve"><value>Vô hiệu hóa tài khoản này? Người dùng sẽ không thể đăng nhập nữa.</value></data>
+	<data name="Reactivate" xml:space="preserve"><value>Kích hoạt lại</value></data>
+	<data name="Reactivate Account" xml:space="preserve"><value>Kích hoạt lại tài khoản</value></data>
+	<data name="Account reactivated." xml:space="preserve"><value>Đã kích hoạt lại tài khoản.</value></data>
+	<data name="This account is already active." xml:space="preserve"><value>Tài khoản này đang hoạt động.</value></data>
+	<data name="Add User" xml:space="preserve"><value>Thêm người dùng</value></data>
+	<data name="Add Staff, Shipper or Admin Account" xml:space="preserve"><value>Thêm tài khoản nhân viên, người giao hàng hoặc quản trị viên</value></data>
+	<data name="New Internal Account" xml:space="preserve"><value>Tài khoản nội bộ mới</value></data>
+	<data name="Staff Identifier (unique)" xml:space="preserve"><value>Mã nhân viên (không trùng)</value></data>
+	<data name="Assigned Hub (required for Kitchen Staff)" xml:space="preserve"><value>Bếp được phân công (bắt buộc với nhân viên bếp)</value></data>
+	<data name="Temporary Password (minimum 8 characters)" xml:space="preserve"><value>Mật khẩu tạm thời (tối thiểu 8 ký tự)</value></data>
+	<data name="At least 8 characters" xml:space="preserve"><value>Ít nhất 8 ký tự</value></data>
+	<data name="Re-enter password" xml:space="preserve"><value>Nhập lại mật khẩu</value></data>
+	<data name="Create Account" xml:space="preserve"><value>Tạo tài khoản</value></data>
+	<data name="Role must be Kitchen Staff, Shipper or Admin." xml:space="preserve"><value>Vai trò phải là nhân viên bếp, người giao hàng hoặc quản trị viên.</value></data>
+	<data name="Access role" xml:space="preserve"><value>Vai trò truy cập</value></data>
 </root>
