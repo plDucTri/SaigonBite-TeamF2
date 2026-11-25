@@ -4,6 +4,7 @@
 public static class RoleLabels
 {
     public static readonly string[] All = { Roles.Local, Roles.Tourist, Roles.Kitchen, Roles.Shipper, Roles.Admin };
+    public static readonly string[] Staff = { Roles.Kitchen, Roles.Shipper, Roles.Admin };
 
     public static string For(string role) => role switch
     {

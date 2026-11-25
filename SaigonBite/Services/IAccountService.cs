@@ -32,4 +32,13 @@ public interface IAccountService
 
     /// <summary>Soft delete: sets IsActive to false and keeps the row. An admin cannot deactivate their own account.</summary>
     ServiceResult<AccountInfo> DeactivateAccount(int userId, int actingAdminId);
+
+    /// <summary>Undoes a deactivation: sets IsActive back to true.</summary>
+    ServiceResult<AccountInfo> ReactivateAccount(int userId);
+
+    /// <summary>True if the account exists and is active. Used to end the session of a deactivated account.</summary>
+    bool IsAccountActive(int userId);
+
+    /// <summary>Creates a Kitchen, Shipper or Admin account with a hashed password.</summary>
+    ServiceResult<AccountCreated> CreateStaffAccount(NewStaffAccount request);
 }

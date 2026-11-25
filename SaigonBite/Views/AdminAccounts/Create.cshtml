@@ -1,0 +1,56 @@
+﻿@using SaigonBite.Helpers
+@model SaigonBite.ViewModels.CreateStaffViewModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = T["Add Staff, Shipper or Admin Account"].Value;
+    ViewData["Active"] = "User Accounts";
+}
+
+<h1 class="h3 mb-3">@T["Add Staff, Shipper or Admin Account"]</h1>
+
+<div class="sb-card">
+    <h2 class="h5 mb-3">@T["New Internal Account"]</h2>
+
+    <partial name="_ErrorList" />
+
+    <form asp-action="CreateStaffAccount" method="post" novalidate>
+        <div class="row g-3 mb-4">
+            <div class="col-md-6">
+                <label asp-for="FullName" class="form-label">@T["Full Name"]</label>
+                <input asp-for="FullName" class="form-control" autocomplete="off" />
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Role" class="form-label">@T["Role"]</label>
+                <select asp-for="Role" class="form-select">
+                    @foreach (string staffRole in RoleLabels.Staff)
+                    {
+                        <option value="@staffRole">@T[RoleLabels.For(staffRole)]</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Identifier" class="form-label">@T["Staff Identifier (unique)"]</label>
+                <input asp-for="Identifier" class="form-control" autocomplete="off" placeholder="STAFF-014" />
+            </div>
+            <div class="col-md-6">
+                <label asp-for="HubId" class="form-label">@T["Assigned Hub (required for Kitchen Staff)"]</label>
+                <select asp-for="HubId" class="form-select" asp-items="@(new SelectList(Model.Hubs, "HubId", "Name"))">
+                    <option value="">@T["Select a hub"]</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Password" class="form-label">@T["Temporary Password (minimum 8 characters)"]</label>
+                <input asp-for="Password" class="form-control" autocomplete="new-password" placeholder="@T["At least 8 characters"]" />
+            </div>
+            <div class="col-md-6">
+                <label asp-for="ConfirmPassword" class="form-label">@T["Confirm Password"]</label>
+                <input asp-for="ConfirmPassword" class="form-control" autocomplete="new-password" placeholder="@T["Re-enter password"]" />
+            </div>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2">
+            <button type="submit" class="btn btn-sb">@T["Create Account"]</button>
+            <a class="btn btn-outline-secondary" asp-action="OpenAccountList">@T["Cancel"]</a>
+        </div>
+    </form>
+</div>

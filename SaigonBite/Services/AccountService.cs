@@ -266,6 +266,59 @@ public class AccountService : IAccountService
 
         return ServiceResult<AccountInfo>.Success(ToInfo(user));
     }
+    public ServiceResult<AccountInfo> ReactivateAccount(int userId)
+    {
+        User? user = _users.GetById(userId);
+        if (user is null)
+            return ServiceResult<AccountInfo>.Fail("Account not found.");
+
+        if (user.IsActive)
+            return ServiceResult<AccountInfo>.Fail("This account is already active.");
+
+        _users.SetActive(userId, true);
+
+        return ServiceResult<AccountInfo>.Success(ToInfo(user));
+    }
+    public bool IsAccountActive(int userId)
+    {
+        return _users.GetById(userId)?.IsActive == true;
+    }
+    public ServiceResult<AccountCreated> CreateStaffAccount(NewStaffAccount request)
+    {
+        ArgumentNullException.ThrowIfNull(request);
+
+        string role = (request.Role ?? string.Empty).Trim();
+        string identifier = NormalizeIdentifier(request.Identifier);
+        string fullName = (request.FullName ?? string.Empty).Trim();
+        string password = request.Password ?? string.Empty;
+
+        // Customers register themselves, so only staff roles are allowed here.
+        if (role != Roles.Kitchen && role != Roles.Shipper && role != Roles.Admin)
+            return ServiceResult<AccountCreated>.Fail("Role must be Kitchen Staff, Shipper or Admin.");
+
+        List<string> errors = ValidateStaff(role, identifier, fullName, password, request.HubId);
+        if (password.Length == 0)
+            errors.Add($"Password must have at least {AccountValidator.MinPasswordLength} characters."); // a new account needs one
+
+        if (errors.Count > 0)
+            return ServiceResult<AccountCreated>.Fail(errors);
+
+        if (_users.ExistsByIdentifier(identifier))
+            return ServiceResult<AccountCreated>.Fail(DuplicateMessage(role));
+
+        var user = new User
+        {
+            Identifier = identifier,
+            PasswordHash = _hasher.Hash(password),
+            Role = role,
+            FullName = fullName,
+            IsActive = true,
+            HubId = role == Roles.Kitchen ? request.HubId : null // only kitchen staff have a hub
+        };
+        _users.Save(user);
+
+        return ServiceResult<AccountCreated>.Success(new AccountCreated(user.UserId));
+    }
     private static User BuildUser(AccountRequest request, string passwordHash)
     {
         var user = new User

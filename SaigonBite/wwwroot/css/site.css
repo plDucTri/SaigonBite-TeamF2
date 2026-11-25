@@ -217,3 +217,10 @@ body.sb-body {
     --bs-btn-active-color: #fff;
     font-weight: 600;
 }
+
+.sb-role-box {
+    background: var(--sb-green-50);
+    border-radius: .5rem;
+    padding: .6rem .75rem;
+    margin-top: 1rem;
+}

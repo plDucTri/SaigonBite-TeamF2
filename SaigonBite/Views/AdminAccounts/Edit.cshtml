@@ -94,6 +94,10 @@
                         @T["Deactivate Account"]
                     </button>
                 }
+                @if (!account.IsActive)
+                {
+                    <button type="submit" form="reactivateForm" class="btn btn-outline-secondary">@T["Reactivate Account"]</button>
+                }
             </div>
         </div>
 
@@ -103,4 +107,5 @@
         </div>
     </form>
     <form id="deactivateForm" asp-action="DeactivateAccount" asp-route-id="@account.UserId" method="post"></form>
+    <form id="reactivateForm" asp-action="ReactivateAccount" asp-route-id="@account.UserId" method="post"></form>
 </div>
