@@ -36,3 +36,5 @@ Use the constants in `Helpers/Roles.cs`. Every controller action needs an attrib
 The signed-in user id is `User.FindFirst(ClaimTypes.NameIdentifier)`. A person without the right role is sent to /Account/AccessDenied, and a person who is not signed in is sent to /Account/Login.
 
 Temporary check pages: /AccessCheck/Admin, /AccessCheck/Kitchen, /AccessCheck/Shipper, /AccessCheck/Customer (delete when the real pages exist).
+
+Admin accounts: /Admin/Accounts (list, view, edit, deactivate) in AdminAccountsController. Deactivate is a soft delete, so the row and its orders stay. An admin cannot deactivate their own account.

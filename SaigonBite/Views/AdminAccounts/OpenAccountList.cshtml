@@ -5,6 +5,7 @@
     Layout = "_AdminLayout";
     ViewData["Title"] = T["User Accounts"].Value;
     ViewData["Active"] = "User Accounts";
+    string returnUrl = Context.Request.Path + Context.Request.QueryString; // come back to the same page and filters
 }
 
 <h1 class="h3 mb-3">@T["Manage User Accounts"]</h1>
@@ -74,7 +75,19 @@
                         </td>
                         <td data-label="@T["Actions"]">
                             <div class="sb-actions">
-                                @* the links are added in the next steps *@
+                                <a asp-action="Details" asp-route-id="@a.UserId">@T["View"]</a>
+                                <a asp-action="Edit" asp-route-id="@a.UserId">@T["Edit"]</a>
+                                @if (a.IsActive && a.UserId != Model.CurrentUserId)
+                                {
+                                    <form asp-action="DeactivateAccount" asp-route-id="@a.UserId" method="post">
+                                        <input type="hidden" name="returnUrl" value="@returnUrl" />
+                                        <button type="submit" class="sb-link-btn sb-link-danger"
+                                                data-confirm="@T["Deactivate this account? The person will no longer be able to sign in."]"
+                                                onclick="return confirm(this.dataset.confirm)">
+                                            @T["Deactivate"]
+                                        </button>
+                                    </form>
+                                }
                             </div>
                         </td>
                     </tr>

@@ -50,9 +50,120 @@ public class AdminAccountsController : Controller
         return View(vm);
     }
 
+    [HttpGet("{id:int}")]
+    public IActionResult Details(int id)
+    {
+        var result = _accounts.GetAccount(id);
+        if (!result.Ok)
+            return AccountMissing();
+
+        return View(result.Value);
+    }
+
+    [HttpGet("{id:int}/Edit")]
+    public IActionResult Edit(int id)
+    {
+        var result = _accounts.GetAccount(id);
+        if (!result.Ok)
+            return AccountMissing();
+
+        AccountInfo info = result.Value!;
+        var vm = new EditAccountViewModel
+        {
+            FullName = info.FullName,
+            Identifier = info.Identifier,
+            Nationality = info.Nationality,
+            Email = info.Email,
+            HotelName = info.HotelName,
+            RoomNo = info.RoomNo,
+            HubId = info.HubId
+        };
+        FillDisplay(vm, info);
+
+        return View(vm);
+    }
+
+    // updateAccount(userId, changes) in the sequence diagram
+    [HttpPost("{id:int}/Edit"), ValidateAntiForgeryToken]
+    public IActionResult UpdateAccount(int id, EditAccountViewModel vm)
+    {
+        var current = _accounts.GetAccount(id);
+        if (!current.Ok)
+            return AccountMissing();
+
+        if (ModelState.IsValid && (vm.NewPassword ?? "") != (vm.ConfirmPassword ?? ""))
+            ModelState.AddModelError(string.Empty, "Passwords do not match.");
+
+        if (ModelState.IsValid)
+        {
+            var changes = new AccountChanges
+            {
+                FullName = vm.FullName ?? "",
+                Identifier = vm.Identifier ?? "",
+                NewPassword = vm.NewPassword ?? "",
+                Nationality = vm.Nationality ?? "",
+                Email = vm.Email ?? "",
+                HotelName = vm.HotelName,
+                RoomNo = vm.RoomNo,
+                HubId = vm.HubId
+            };
+
+            var result = _accounts.UpdateAccount(id, changes);
+            if (result.Ok)
+            {
+                TempData["Notice"] = "Account saved.";
+                return RedirectToAction(nameof(Details), new { id });
+            }
+
+            AddErrors(result.Errors);
+        }
+
+        // Something was wrong: show the form again with what the admin typed.
+        FillDisplay(vm, current.Value!);
+        return View("Edit", vm);
+    }
+
+    // deactivateAccount(userId) in the sequence diagram: a soft delete, the row stays in the database
+    [HttpPost("{id:int}/Deactivate"), ValidateAntiForgeryToken]
+    public IActionResult DeactivateAccount(int id, string? returnUrl)
+    {
+        var result = _accounts.DeactivateAccount(id, CurrentUserId());
+
+        if (result.Ok)
+            TempData["Notice"] = "Account deactivated.";
+        else
+            TempData["Error"] = result.Errors[0];
+
+        // Go back to the page the admin came from (only a page on this site).
+        if (Url.IsLocalUrl(returnUrl))
+            return LocalRedirect(returnUrl!);
+
+        return RedirectToAction(nameof(OpenAccountList));
+    }
     // ---------- helpers ----------
 
     // The id of the signed-in admin (stored in the cookie at login).
     private int CurrentUserId() =>
         int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out int id) ? id : 0;
+
+    // A link to an account that no longer exists: go back to the list with a message.
+    private IActionResult AccountMissing()
+    {
+        TempData["Error"] = "Account not found.";
+        return RedirectToAction(nameof(OpenAccountList));
+    }
+
+    // The read-only parts of the Edit page (title, role, status, hub list).
+    private void FillDisplay(EditAccountViewModel vm, AccountInfo info)
+    {
+        vm.Account = info;
+        vm.Hubs = _accounts.GetHubOptions();
+        vm.IsSelf = info.UserId == CurrentUserId();
+    }
+
+    private void AddErrors(IEnumerable<string> errors)
+    {
+        foreach (string error in errors)
+            ModelState.AddModelError(string.Empty, error);
+    }
 }
