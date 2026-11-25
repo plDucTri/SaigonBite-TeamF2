@@ -1,0 +1,8 @@
+@if (TempData["Notice"] is string notice)
+{
+    <div class="sb-hint mb-3" role="status">@T[notice]</div>
+}
+@if (TempData["Error"] is string error)
+{
+    <div class="sb-error-box mb-3" role="alert">@T[error]</div>
+}

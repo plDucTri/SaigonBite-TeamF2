@@ -3,6 +3,7 @@ using SaigonBite.Helpers;
 using SaigonBite.Models.Entities;
 using SaigonBite.Repositories;
 using SaigonBite.Validators;
+using System.Text.RegularExpressions;
 
 namespace SaigonBite.Services;
 
@@ -22,6 +23,8 @@ public class AccountService : IAccountService
     private readonly IPasswordHasher _hasher;
     private readonly IMemoryCache _cache;
     private readonly TimeProvider _time;
+    // Staff IDs such as ADMIN, KITCHEN1 or STAFF-001 (the text is upper-cased before this check).
+    private static readonly Regex StaffId = new(@"^[A-Z0-9-]{3,30}\z", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
     public AccountService(
         IAccountValidator validator,
@@ -44,16 +47,16 @@ public class AccountService : IAccountService
         ArgumentNullException.ThrowIfNull(request);
         AccountRequest clean = Normalize(request);
 
-        // Step 3: validate(request)
+        // validate(request)
         IReadOnlyList<string> errors = _validator.Validate(clean);
         if (errors.Count > 0)
             return ServiceResult<RegistrationStarted>.Fail(errors);
 
-        // Step 4: existsByIdentifier(identifier)
+        // existsByIdentifier(identifier)
         if (_users.ExistsByIdentifier(clean.Identifier))
             return ServiceResult<RegistrationStarted>.Fail(DuplicateMessage(clean.Type));
 
-        // Step 7: sendCode(identifier, type)
+        // sendCode(identifier, type)
         string? demoCode = _verification.SendCode(clean.Identifier, clean.Type);
         _cache.Set(PendingKey(clean.Identifier), clean, PendingLifetime);
         MarkSent(clean.Identifier);
@@ -86,7 +89,7 @@ public class AccountService : IAccountService
         if (!_cache.TryGetValue(PendingKey(id), out AccountRequest? pending) || pending is null)
             return ServiceResult<AccountCreated>.Fail("The registration has expired. Please register again.");
 
-        // Step 8: verifyCode(identifier, code)
+        // verifyCode(identifier, code)
         if (!_verification.VerifyCode(id, (code ?? string.Empty).Trim()))
             return ServiceResult<AccountCreated>.Fail("The verification code is wrong or has expired.");
 
@@ -97,10 +100,10 @@ public class AccountService : IAccountService
             return ServiceResult<AccountCreated>.Fail(DuplicateMessage(pending.Type));
         }
 
-        // Step 11: hash(password), only after the code is verified
+        // hash(password), only after the code is verified
         string hash = _hasher.Hash(pending.Password);
 
-        // Steps 12-14: save(user, profile, role, active = true) in one transaction
+        // save(user, profile, role, active = true) in one transaction
         User user = BuildUser(pending, hash);
         _users.Save(user);
 
@@ -122,6 +125,147 @@ public class AccountService : IAccountService
         return ServiceResult<SignedInUser>.Success(new SignedInUser(user.UserId, user.FullName, user.Role));
     }
 
+    public PagedResult<AccountInfo> ListAccounts(UserFilter filter)
+    {
+        ArgumentNullException.ThrowIfNull(filter);
+
+        PagedResult<User> page = _users.FindUsers(filter);
+        List<AccountInfo> rows = page.Items.Select(ToInfo).ToList();
+
+        return new PagedResult<AccountInfo>(rows, page.TotalCount, page.Page, page.PageSize);
+    }
+
+    public ServiceResult<AccountInfo> GetAccount(int userId)
+    {
+        User? user = _users.GetById(userId);
+        if (user is null)
+            return ServiceResult<AccountInfo>.Fail("Account not found.");
+
+        return ServiceResult<AccountInfo>.Success(ToInfo(user));
+    }
+
+    public IReadOnlyList<HubOption> GetHubOptions()
+    {
+        return _users.GetActiveHubs().Select(h => new HubOption(h.HubId, h.Name)).ToList();
+    }
+    // updateAccount(userId, changes)
+    public ServiceResult<AccountInfo> UpdateAccount(int userId, AccountChanges changes)
+    {
+        ArgumentNullException.ThrowIfNull(changes);
+
+        User? user = _users.GetById(userId);
+        if (user is null)
+            return ServiceResult<AccountInfo>.Fail("Account not found.");
+
+        // Tidy the text. The identifier is stored in upper case.
+        string identifier = NormalizeIdentifier(changes.Identifier);
+        string fullName = (changes.FullName ?? string.Empty).Trim();
+        string newPassword = changes.NewPassword ?? string.Empty; // spaces in a password are allowed
+        string nationality = (changes.Nationality ?? string.Empty).Trim();
+        string email = (changes.Email ?? string.Empty).Trim();
+        string? hotelName = string.IsNullOrWhiteSpace(changes.HotelName) ? null : changes.HotelName.Trim();
+        string? roomNo = string.IsNullOrWhiteSpace(changes.RoomNo) ? null : changes.RoomNo.Trim();
+
+        // Validate(changes) with the rules for this account's role
+        var errors = new List<string>();
+        if (user.Role == Roles.Local || user.Role == Roles.Tourist)
+        {
+            var request = new AccountRequest
+            {
+                Type = user.Role,
+                Identifier = identifier,
+                FullName = fullName,
+                Password = newPassword,
+                Nationality = nationality,
+                Email = email,
+                HotelName = hotelName,
+                RoomNo = roomNo
+            };
+            // passwordRequired: false, so an empty password means "keep the old one"
+            errors.AddRange(_validator.Validate(request, passwordRequired: false));
+        }
+        else
+        {
+            errors.AddRange(ValidateStaff(user.Role, identifier, fullName, newPassword, changes.HubId));
+        }
+
+        if (errors.Count > 0)
+            return ServiceResult<AccountInfo>.Fail(errors);
+
+        // The identifier must stay unique. exceptUserId lets the account keep its own identifier.
+        if (_users.ExistsByIdentifier(identifier, exceptUserId: userId))
+            return ServiceResult<AccountInfo>.Fail(DuplicateMessage(user.Role));
+
+        // Everything is valid, so now copy the changes onto the user.
+        user.Identifier = identifier;
+        user.FullName = fullName;
+
+        // hash(newPassword), only if a new password was typed
+        if (newPassword.Length > 0)
+            user.PasswordHash = _hasher.Hash(newPassword);
+
+        // Keep the profile column in step with the identifier.
+        if (user.Role == Roles.Local && user.LocalProfile is not null)
+        {
+            user.LocalProfile.PhoneNumber = identifier;
+        }
+
+        if (user.Role == Roles.Tourist && user.TouristProfile is not null)
+        {
+            user.TouristProfile.PassportNo = identifier;
+            user.TouristProfile.Nationality = nationality;
+            user.TouristProfile.Email = email;
+            user.TouristProfile.HotelName = hotelName;
+            user.TouristProfile.RoomNo = roomNo;
+        }
+
+        if (user.Role == Roles.Kitchen)
+            user.HubId = changes.HubId;
+
+        // save(user, profile). One SaveChanges updates the same rows.
+        _users.Save(user);
+
+        // Read it again so the hub name is current.
+        return ServiceResult<AccountInfo>.Success(ToInfo(_users.GetById(userId)!));
+    }
+
+    // Rules for Kitchen, Shipper and Admin accounts (BR18 only covers customers).
+    private List<string> ValidateStaff(string role, string identifier, string fullName, string newPassword, int? hubId)
+    {
+        var errors = new List<string>();
+
+        if (!StaffId.IsMatch(identifier))
+            errors.Add("Staff ID must have 3 to 30 letters, digits or hyphens.");
+
+        if (fullName.Length == 0)
+            errors.Add("Full name is required.");
+
+        if (newPassword.Length > 0 && newPassword.Length < AccountValidator.MinPasswordLength)
+            errors.Add($"Password must have at least {AccountValidator.MinPasswordLength} characters.");
+
+        // Only kitchen staff belong to a hub, and it must be one of the active hubs.
+        if (role == Roles.Kitchen && (hubId is null || !_users.GetActiveHubs().Any(h => h.HubId == hubId)))
+            errors.Add("Choose an assigned hub for kitchen staff.");
+
+        return errors;
+    }
+    // deactivateAccount(userId) -> setActive(userId, false)
+    public ServiceResult<AccountInfo> DeactivateAccount(int userId, int actingAdminId)
+    {
+        if (userId == actingAdminId)
+            return ServiceResult<AccountInfo>.Fail("You cannot deactivate your own account.");
+
+        User? user = _users.GetById(userId);
+        if (user is null)
+            return ServiceResult<AccountInfo>.Fail("Account not found.");
+
+        if (!user.IsActive)
+            return ServiceResult<AccountInfo>.Fail("This account is already inactive.");
+
+        _users.SetActive(userId, false); // the row and its orders stay
+
+        return ServiceResult<AccountInfo>.Success(ToInfo(user));
+    }
     private static User BuildUser(AccountRequest request, string passwordHash)
     {
         var user = new User
@@ -152,7 +296,12 @@ public class AccountService : IAccountService
 
         return user;
     }
-
+    // Copies only what the admin pages need. The hash is left out on purpose.
+    private static AccountInfo ToInfo(User u) => new(
+        u.UserId, u.Identifier, u.FullName, u.Role, u.IsActive, u.CreatedAt,
+        u.TouristProfile?.Email, u.TouristProfile?.Nationality,
+        u.TouristProfile?.HotelName, u.TouristProfile?.RoomNo,
+        u.HubId, u.Hub?.Name);
     private static AccountRequest Normalize(AccountRequest request) => new()
     {
         Type = (request.Type ?? string.Empty).Trim(),
@@ -169,9 +318,14 @@ public class AccountService : IAccountService
     private static string NormalizeIdentifier(string? identifier) =>
         (identifier ?? string.Empty).Trim().ToUpperInvariant();
 
-    private static string DuplicateMessage(string type) => type == Roles.Local
-        ? "This phone number is already registered."
-        : "This passport number is already registered.";
+    private static string DuplicateMessage(string type)
+    {
+        if (type == Roles.Local)
+            return "This phone number is already registered.";
+        if (type == Roles.Tourist)
+            return "This passport number is already registered.";
+        return "This staff ID is already in use.";
+    }
 
     private void MarkSent(string identifier) => _cache.Set(SentKey(identifier), _time.GetUtcNow(), PendingLifetime);
 

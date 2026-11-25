@@ -1,3 +1,4 @@
+@using SaigonBite.Helpers
 @{
     ViewData["Title"] = "Home";
 }
@@ -7,6 +8,13 @@
     @if (User.Identity?.IsAuthenticated == true)
     {
         <p>@T["Signed in as"] <strong>@User.Identity.Name</strong> (@User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value)</p>
+        @* Only admins see this link *@
+        @if (User.IsInRole(Roles.Admin))
+        {
+            <p>
+                <a class="btn btn-outline-secondary" asp-controller="AdminAccounts" asp-action="OpenAccountList">@T["User Accounts"]</a>
+            </p>
+        }
         <form asp-controller="Account" asp-action="Logout" method="post">
             <button type="submit" class="btn btn-sb">@T["Sign out"]</button>
         </form>
