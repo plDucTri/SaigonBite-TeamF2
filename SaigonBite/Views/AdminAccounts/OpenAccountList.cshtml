@@ -1,0 +1,102 @@
+﻿@using SaigonBite.Helpers
+@using SaigonBite.Services
+@model SaigonBite.ViewModels.AccountListViewModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = T["User Accounts"].Value;
+    ViewData["Active"] = "User Accounts";
+}
+
+<h1 class="h3 mb-3">@T["Manage User Accounts"]</h1>
+
+<partial name="_Notice" />
+
+<div class="sb-card">
+    <h2 class="h5 mb-1">@T["All User Accounts"]</h2>
+    <p class="text-muted small">@T["Search across identifier, email, role and account status."]</p>
+
+    @* The filters are a GET form, so the address keeps them (paging links use it too). *@
+    <form method="get" asp-action="OpenAccountList" class="row g-3 align-items-end mb-4">
+        <div class="col-12 col-md-5">
+            <label for="search" class="form-label">@T["Search"]</label>
+            <input id="search" name="search" value="@Model.Search" class="form-control"
+                   placeholder="@T["Name, phone, passport, email"]" />
+        </div>
+        <div class="col-6 col-md-3">
+            <label for="role" class="form-label">@T["Role Filter"]</label>
+            <select id="role" name="role" class="form-select">
+                <option value="">@T["All roles"]</option>
+                @foreach (string roleName in RoleLabels.All)
+                {
+                    <option value="@roleName" selected="@(Model.Role == roleName)">@T[RoleLabels.For(roleName)]</option>
+                }
+            </select>
+        </div>
+        <div class="col-6 col-md-2">
+            <label for="status" class="form-label">@T["Status"]</label>
+            <select id="status" name="status" class="form-select">
+                <option value="">@T["All statuses"]</option>
+                <option value="@AccountStatus.Active" selected="@(Model.Status == AccountStatus.Active)">@T["Active"]</option>
+                <option value="@AccountStatus.Inactive" selected="@(Model.Status == AccountStatus.Inactive)">@T["Inactive"]</option>
+            </select>
+        </div>
+        <div class="col-12 col-md-2 d-flex gap-2">
+            <button type="submit" class="btn btn-sb flex-fill">@T["Filter"]</button>
+            <a class="btn btn-outline-secondary" asp-action="OpenAccountList">@T["Clear"]</a>
+        </div>
+    </form>
+
+    @if (Model.Result.TotalCount == 0)
+    {
+        <div class="sb-hint">@T["No accounts match the search."]</div>
+    }
+    else
+    {
+        <table class="table table-striped sb-table align-middle mb-0">
+            <thead>
+                <tr>
+                    <th>@T["Name"]</th>
+                    <th>@T["Role"]</th>
+                    <th>@T["Identifier"]</th>
+                    <th>@T["Status"]</th>
+                    <th>@T["Actions"]</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (AccountInfo a in Model.Result.Items)
+                {
+                    <tr>
+                        <td data-label="@T["Name"]" class="fw-semibold">@a.FullName</td>
+                        <td data-label="@T["Role"]">@T[RoleLabels.For(a.Role)]</td>
+                        <td data-label="@T["Identifier"]">@a.Identifier</td>
+                        <td data-label="@T["Status"]">
+                            <span class="sb-chip @(a.IsActive ? "" : "sb-chip-off")">@(a.IsActive ? T["Active"] : T["Inactive"])</span>
+                        </td>
+                        <td data-label="@T["Actions"]">
+                            <div class="sb-actions">
+                                @* the links are added in the next steps *@
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <p class="small text-muted mt-3 mb-0">@Model.Result.TotalCount @T["accounts found"]</p>
+
+        @if (Model.Result.TotalPages > 1)
+        {
+            <nav class="mt-2" aria-label="@T["Pages"]">
+                <ul class="pagination pagination-sm flex-wrap mb-0">
+                    @for (int p = 1; p <= Model.Result.TotalPages; p++)
+                    {
+                        <li class="page-item @(p == Model.Result.Page ? "active" : "")">
+                            <a class="page-link" asp-action="OpenAccountList" asp-route-search="@Model.Search"
+                               asp-route-role="@Model.Role" asp-route-status="@Model.Status" asp-route-page="@p">@p</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        }
+    }
+</div>

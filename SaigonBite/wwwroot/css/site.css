@@ -99,3 +99,91 @@ body.sb-body {
 .sb-chip { display: inline-block; background: var(--sb-green-100); color: var(--sb-green-800); border-radius: 999px; padding: .2rem .7rem; font-size: .8rem; font-weight: 600; }
 .sb-demo-code { background: var(--sb-green-50); border: 1px dashed var(--sb-green-700); border-radius: .5rem; padding: .6rem 1rem; font-size: .9rem; }
 .sb-demo-code strong { font-size: 1.15rem; letter-spacing: .15em; }
+
+/* ---------- Admin: User Accounts ---------- */
+.sb-chip-off {
+    background: var(--sb-error-bg);
+    color: var(--sb-error);
+}
+
+.sb-table {
+    --bs-table-striped-bg: #f8faf9;
+    --bs-table-bg: transparent;
+}
+
+    .sb-table thead {
+        --bs-table-bg: var(--sb-green-50);
+        --bs-table-color: var(--sb-green-800);
+    }
+
+    .sb-table th {
+        font-size: .85rem;
+    }
+
+.sb-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .25rem .5rem;
+    font-size: .9rem;
+}
+
+    .sb-actions > * + *::before {
+        content: "/";
+        margin-right: .5rem;
+        color: var(--sb-muted);
+    }
+
+.pagination {
+    --bs-pagination-color: var(--sb-green-800);
+    --bs-pagination-active-bg: var(--sb-green-800);
+    --bs-pagination-active-border-color: var(--sb-green-800);
+    --bs-pagination-focus-box-shadow: 0 0 0 .2rem rgba(22, 101, 52, .2);
+}
+
+/* Phones: each table row becomes a small card. The column names come from data-label. */
+@media (max-width: 767.98px) {
+    .sb-table {
+        --bs-table-striped-bg: transparent;
+    }
+
+        .sb-table thead {
+            display: none;
+        }
+
+        .sb-table, .sb-table tbody, .sb-table tr, .sb-table td {
+            display: block;
+            width: 100%;
+        }
+
+            .sb-table tr {
+                border: 1px solid var(--sb-border);
+                border-radius: .75rem;
+                margin-bottom: .75rem;
+                padding: .4rem .75rem;
+                background: #fff;
+            }
+
+            .sb-table td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 1rem;
+                border: 0;
+                padding: .3rem 0;
+                text-align: right;
+            }
+
+                .sb-table td::before {
+                    content: attr(data-label);
+                    font-size: .8rem;
+                    font-weight: 600;
+                    color: var(--sb-muted);
+                    text-align: left;
+                }
+}
+
+@media (max-width: 575.98px) {
+    .sb-admin .sb-card {
+        padding: 1.1rem;
+    }
+}

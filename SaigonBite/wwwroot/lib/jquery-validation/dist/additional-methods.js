@@ -311,7 +311,7 @@ $.validator.addMethod( "cnhBR", function( value ) {
     return false;
   }
 
-  // Step 1 - using first Check Number:
+  // using first Check Number:
   for ( i = 0, j = 9, v = 0; i < 9; ++i, --j ) {
     sum += +( value.charAt( i ) * j );
   }
@@ -462,12 +462,12 @@ $.validator.addMethod( "cpfBR", function( value, element ) {
 		return false;
 	}
 
-	// Step 1 - using first Check Number:
+	// using first Check Number:
 	for ( i = 1; i <= 9; i++ ) {
 		sum = sum + parseInt( value.substring( i - 1, i ), 10 ) * ( 11 - i );
 	}
 
-	// If first Check Number (CN) is valid, move to Step 2 - using second Check Number:
+	// If first Check Number (CN) is valid, move to using second Check Number:
 	if ( checkResult( sum, firstCN ) ) {
 		sum = 0;
 		for ( i = 1; i <= 10; i++ ) {
