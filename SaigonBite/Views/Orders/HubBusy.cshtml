@@ -1,0 +1,36 @@
+@using SaigonBite.Helpers
+@using SaigonBite.ViewModels
+@model HubBusyViewModel
+@{
+    ViewData["Title"] = T["Hub Is Too Busy"].Value;
+    ViewData["Active"] = "Checkout";
+}
+
+<h2 class="h4 mb-3">@T["Hub Is Too Busy"]</h2>
+<div class="card card-body">
+    <h5>@T["Choose Another Hub"]</h5>
+    <span class="badge bg-danger align-self-start mb-2">@T["Order Not Created"]</span>
+    <p class="fs-5 text-danger fw-bold">@T["{0} is at {1} load and is not accepting new orders (BR8).", Model.HubName, Model.HubLoadPct.Pct()]</p>
+    <p class="text-muted">@T["Your cart is kept. Pick another hub below to continue; the order you are placing is not counted in the load."]</p>
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead><tr><th>@T["Hub"]</th><th>@T["Current load"]</th><th>@T["Benefit"]</th><th></th></tr></thead>
+            <tbody>
+            @foreach (var h in Model.OtherHubs)
+            {
+                <tr>
+                    <td>@h.Name</td>
+                    <td>@h.LoadPct.Pct()</td>
+                    <td>@(h.IsQuiet ? T["Quiet Kitchen, 10% off food (BR7)"].Value : (h.IsBusy ? T["Busy"].Value : "-"))</td>
+                    <td>
+                        @if (!h.IsBusy)
+                        {
+                            <a asp-action="Menu" asp-route-hubId="@h.HubId">@T["Switch Hub"]</a>
+                        }
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

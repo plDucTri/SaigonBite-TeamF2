@@ -1,0 +1,27 @@
+@using SaigonBite.ViewModels
+@model RejectedViewModel
+@{
+    ViewData["Title"] = T["Order Needs Changes"].Value;
+    ViewData["Active"] = "Checkout";
+}
+
+<h2 class="h4 mb-3">@T["Order Needs Changes"]</h2>
+<div class="card card-body">
+    <h5>@T["Why the Order Was Rejected"]</h5>
+    <span class="badge bg-danger align-self-start mb-2">@T["Order Not Created"]</span>
+    <div class="table-responsive">
+        <table class="table">
+            <thead><tr><th>@T["Rule"]</th><th>@T["What is wrong"]</th><th>@T["What to do"]</th></tr></thead>
+            <tbody>
+            @foreach (var v in Model.Violations)
+            {
+                <tr><td class="fw-semibold">@v.Rule</td><td>@v.Message</td><td>@v.Fix</td></tr>
+            }
+            </tbody>
+        </table>
+    </div>
+    <div class="d-flex gap-2">
+        <a class="btn btn-sb" asp-action="Cart">@T["Back to Cart"]</a>
+        <a class="btn btn-outline-secondary" asp-action="Checkout">@T["Change Address"]</a>
+    </div>
+</div>

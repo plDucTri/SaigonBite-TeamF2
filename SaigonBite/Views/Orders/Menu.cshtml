@@ -1,0 +1,87 @@
+@using SaigonBite.Helpers
+@using SaigonBite.ViewModels
+@model MenuViewModel
+@{
+    ViewData["Title"] = T["Browse Menu and Choose Hub"].Value;
+    ViewData["Active"] = "Browse Menu";
+}
+
+<h2 class="h4 mb-3">@T["Browse Menu and Choose Hub"]</h2>
+<partial name="_Flash" />
+
+@if (Model.SelectedHub == null)
+{
+    <div class="alert alert-warning">@T["No kitchen hub is open yet."]</div>
+    return;
+}
+
+<div class="row g-3 mb-3">
+    <div class="col-12 col-md-6">
+        <form method="get" asp-action="Menu" class="card card-body">
+            <label class="form-label fw-semibold" for="hubId">@T["Kitchen hub"]</label>
+            <select class="form-select" id="hubId" name="hubId" onchange="this.form.submit()">
+                @foreach (var h in Model.Hubs)
+                {
+                    <option value="@h.HubId" selected="@(h.HubId == Model.SelectedHub.HubId)">@h.Name (@h.LoadPct.Pct())</option>
+                }
+            </select>
+        </form>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="card card-body h-100">
+            <div class="text-muted small">@T["Hub load"]</div>
+            <div class="fs-4 fw-bold">@Model.SelectedHub.LoadPct.Pct()</div>
+            @if (Model.SelectedHub.IsBusy)
+            {
+                <div class="small text-danger">@T["Not accepting new orders (90%+)"]</div>
+            }
+            else if (Model.SelectedHub.IsQuiet)
+            {
+                <div class="small text-success">@T["Quiet Kitchen: 10% off the subtotal"]</div>
+            }
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="card card-body h-100">
+            <div class="text-muted small">@T["Available menu items"]</div>
+            <div class="fs-4 fw-bold">@Model.Items.Count</div>
+        </div>
+    </div>
+</div>
+
+@if (Model.SelectedHub.IsBusy)
+{
+    <div class="alert alert-danger">@T["This hub is too busy right now. Please choose another hub."]</div>
+}
+
+<div class="table-responsive">
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th>@T["Menu item"]</th><th>@T["Brand"]</th><th>@T["Category"]</th>
+                <th class="text-end">@T["Price"]</th><th style="min-width:190px"></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var i in Model.Items)
+        {
+            <tr>
+                <td class="fw-semibold">@i.Name</td>
+                <td>@i.Brand</td>
+                <td>@i.Category</td>
+                <td class="text-end">@i.Price.Vnd()</td>
+                <td>
+                    <form asp-action="AddToCart" method="post" class="d-flex gap-2">
+                        <input type="hidden" name="hubId" value="@Model.SelectedHub.HubId" />
+                        <input type="hidden" name="itemId" value="@i.ItemId" />
+                        <input type="number" name="quantity" value="1" min="1" max="20" class="form-control form-control-sm" style="width:70px" aria-label="@T["Quantity"]" />
+                        <button class="btn btn-sm btn-sb" type="submit">@T["Add to Cart"]</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<a class="btn btn-sb" asp-action="Cart">@T["View Cart"] (@Model.CartCount)</a>

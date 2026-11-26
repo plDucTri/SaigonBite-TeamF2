@@ -1,0 +1,17 @@
+@model string
+@{
+    ViewData["Title"] = T["Payment Not Completed"].Value;
+    ViewData["Active"] = "Checkout";
+}
+
+<h2 class="h4 mb-3">@T["Payment Not Completed"]</h2>
+<div class="card card-body">
+    <h5>@T["Payment Could Not Be Processed"]</h5>
+    <span class="badge bg-danger align-self-start mb-2">@T["Payment Failed"]</span>
+    <p class="fs-5 text-danger fw-bold">@T["Your order has NOT been created."]</p>
+    <p class="text-muted">@Model</p>
+    <div class="d-flex gap-2">
+        <a class="btn btn-sb" asp-action="Checkout">@T["Try Again"]</a>
+        <a class="btn btn-outline-secondary" asp-action="Checkout">@T["Change Payment Method"]</a>
+    </div>
+</div>

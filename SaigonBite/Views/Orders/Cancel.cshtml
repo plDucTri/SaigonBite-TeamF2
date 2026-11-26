@@ -1,0 +1,39 @@
+@using SaigonBite.Helpers
+@using SaigonBite.Services
+@using SaigonBite.ViewModels
+@model OrderDetailsViewModel
+@{
+    ViewData["Title"] = T["Cancel Order and Refund"].Value;
+    ViewData["Active"] = "My Orders";
+}
+
+<h2 class="h4 mb-3">@T["Cancel Order and Refund"]</h2>
+<div class="card card-body">
+    <h5>@T["Confirm Cancellation"]</h5>
+    <p class="fw-semibold">@T["Order"]: @Model.Label (@T[Model.Status])</p>
+
+    @if (!Model.NextStatuses.Contains(OrderStatus.Cancelled))
+    {
+        <div class="alert alert-danger">@T["This order can no longer be cancelled (cancellation is allowed only while Placed or Confirmed)."]</div>
+        <a class="btn btn-outline-secondary" asp-action="Details" asp-route-id="@Model.OrderId">@T["Back"]</a>
+    }
+    else
+    {
+        <div class="alert alert-light border">
+            <strong>@T["Refund Summary"]</strong><br />
+            @if (Model.IsCod)
+            {
+                <span>@T["Payment method: Cash on Delivery. Nothing was paid, so nothing is refunded."]</span>
+            }
+            else
+            {
+                <span>@T["Payment method: {0} (simulated online payment).", Model.PaymentMethod]</span><br />
+                <span class="text-success fw-bold">@T["Full simulated refund if cancellation succeeds: {0}", Model.Total.Vnd()]</span>
+            }
+        </div>
+        <form method="post" asp-action="CancelConfirmed" asp-route-id="@Model.OrderId" class="d-flex gap-2">
+            <button class="btn btn-outline-danger" type="submit">@T["Confirm Cancellation"]</button>
+            <a class="btn btn-outline-secondary" asp-action="Details" asp-route-id="@Model.OrderId">@T["Keep Order"]</a>
+        </form>
+    }
+</div>

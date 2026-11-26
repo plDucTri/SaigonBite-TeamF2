@@ -1,0 +1,16 @@
+@* The price breakdown stored with an order. Model = OrderDetailsViewModel. *@
+@using SaigonBite.Helpers
+@using SaigonBite.ViewModels
+@model OrderDetailsViewModel
+<table class="table table-sm mb-0">
+    <tbody>
+        <tr><td>@T["Item subtotal (S)"]</td><td class="text-end">@Model.Subtotal.Vnd()</td></tr>
+        <tr><td>@T["Quiet Kitchen discount (Q)"]</td><td class="text-end">-@Model.Quiet.Vnd()</td></tr>
+        <tr><td>@T["Voucher discount (V)"]@(Model.VoucherCode != null ? " " + Model.VoucherCode : "")</td><td class="text-end">-@Model.Voucher.Vnd()</td></tr>
+        <tr class="fw-semibold"><td>@T["Food total (F)"]</td><td class="text-end">@Model.Food.Vnd()</td></tr>
+        <tr><td>@T["Delivery fee (D)"]</td><td class="text-end">@Model.Delivery.Vnd()</td></tr>
+        <tr><td>@T["Rush-hour surcharge (R)"]</td><td class="text-end">@Model.Rush.Vnd()</td></tr>
+        <tr><td>@T["Heavy-rain surcharge (R2)"]</td><td class="text-end">@Model.Rain.Vnd()</td></tr>
+        <tr class="table-success fw-bold"><td>@T["Total"]</td><td class="text-end">@Model.Total.Vnd()</td></tr>
+    </tbody>
+</table>
