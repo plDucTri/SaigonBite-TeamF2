@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using SaigonBite.Helpers;
@@ -6,7 +5,6 @@ using SaigonBite.Models.Entities;
 using SaigonBite.Repositories;
 using SaigonBite.Services;
 using SaigonBite.Validators;
-using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +23,7 @@ builder.Services.AddSingleton<IVerificationService, VerificationService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<DbSeeder>();
+builder.Services.AddOrderModule();   // UC1 Place and Manage Orders: services, repositories, payment strategies, cart session
 // cookie login
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
@@ -33,19 +32,6 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.AccessDeniedPath = "/Account/AccessDenied";
         options.ExpireTimeSpan = TimeSpan.FromHours(8);
         options.Cookie.HttpOnly = true;
-        // On every request: if the account was deactivated since login, sign the person out.
-        options.Events.OnValidatePrincipal = async context =>
-        {
-            if (!int.TryParse(context.Principal?.FindFirstValue(ClaimTypes.NameIdentifier), out int userId))
-                return;
-
-            var accounts = context.HttpContext.RequestServices.GetRequiredService<IAccountService>();
-            if (!accounts.IsAccountActive(userId))
-            {
-                context.RejectPrincipal();
-                await context.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            }
-        };
     });
 
 var app = builder.Build();
@@ -67,6 +53,7 @@ app.UseRequestLocalization(new RequestLocalizationOptions()
     .AddSupportedUICultures(supportedCultures));
 
 app.UseRouting();
+app.UseSession();          // UC1: the shopping cart is kept in the session
 app.UseAuthentication();
 app.UseAuthorization();
 
