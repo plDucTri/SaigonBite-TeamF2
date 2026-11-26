@@ -1,0 +1,65 @@
+@using SaigonBite.Helpers
+@using SaigonBite.Services
+@using SaigonBite.ViewModels
+@model List<OrderRowViewModel>
+@{
+    ViewData["Title"] = T["Ready Delivery Jobs"].Value;
+    ViewData["Active"] = "Ready Delivery Jobs";
+    var mine = (List<OrderRowViewModel>)ViewBag.Mine;
+}
+
+<h2 class="h4 mb-3">@T["Ready Delivery Jobs"]</h2>
+<partial name="_Flash" />
+
+<div class="row g-3 mb-3">
+    <div class="col-6 col-lg-4"><div class="card card-body"><div class="text-muted small">@T["Ready orders available for pickup"]</div><div class="fs-3 fw-bold">@Model.Count</div></div></div>
+    <div class="col-6 col-lg-4"><div class="card card-body"><div class="text-muted small">@T["My active deliveries"]</div><div class="fs-3 fw-bold">@mine.Count</div></div></div>
+    <div class="col-12 col-lg-4"><div class="card card-body"><div class="text-muted small">@T["Automatic assignment"]</div><div class="fw-bold">@T["After 5 minutes"]</div><div class="small text-muted">@T["Least active deliveries, longest waiting breaks a tie"]</div></div></div>
+</div>
+
+<h5>@T["Available Jobs"]</h5>
+<div class="table-responsive mb-4">
+    <table class="table align-middle">
+        <thead><tr><th>@T["Order"]</th><th>@T["Pickup hub"]</th><th>@T["Payment"]</th><th class="text-end">@T["Amount"]</th><th></th></tr></thead>
+        <tbody>
+        @foreach (var o in Model)
+        {
+            <tr>
+                <td class="fw-semibold">@o.Label</td>
+                <td>@o.HubName</td>
+                <td>@(o.PaymentMethod == "COD" ? T["Cash on Delivery"].Value : o.PaymentMethod)</td>
+                <td class="text-end">@o.Total.Vnd()</td>
+                <td>
+                    <form method="post" asp-action="Accept" asp-route-id="@o.OrderId">
+                        <button class="btn btn-sm btn-sb" type="submit">@T["Accept Job"]</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        @if (Model.Count == 0)
+        {
+            <tr><td colspan="5" class="text-muted">@T["No Ready orders right now."]</td></tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<h5>@T["My Active Deliveries"]</h5>
+<div class="table-responsive">
+    <table class="table align-middle">
+        <thead><tr><th>@T["Order"]</th><th>@T["Hub"]</th><th>@T["Status"]</th><th>@T["Payment"]</th><th class="text-end">@T["Amount"]</th><th></th></tr></thead>
+        <tbody>
+        @foreach (var o in mine)
+        {
+            <tr>
+                <td class="fw-semibold">@o.Label</td>
+                <td>@o.HubName</td>
+                <td><span class="badge @OrderStatus.Badge(o.Status)">@T[o.Status]</span></td>
+                <td>@(o.PaymentMethod == "COD" ? T["Cash on Delivery"].Value : o.PaymentMethod)</td>
+                <td class="text-end">@o.Total.Vnd()</td>
+                <td><a asp-action="Details" asp-route-id="@o.OrderId">@T["Open"]</a></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

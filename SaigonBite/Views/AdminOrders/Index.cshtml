@@ -1,0 +1,74 @@
+@using SaigonBite.Helpers
+@using SaigonBite.Models.Entities
+@using SaigonBite.Services
+@using SaigonBite.ViewModels
+@model List<OrderRowViewModel>
+@{
+    ViewData["Title"] = T["Admin Order Oversight"].Value;
+    ViewData["Active"] = "Order Oversight";
+    var hubs = (List<Hub>)ViewBag.Hubs;
+}
+
+<h2 class="h4 mb-3">@T["Admin Order Oversight"]</h2>
+<partial name="_Flash" />
+
+<form method="get" asp-action="Index" class="row g-2 mb-3">
+    <div class="col-6 col-md-4">
+        <label class="form-label" for="status">@T["Status filter"]</label>
+        <select class="form-select" id="status" name="status">
+            <option value="">@T["All statuses"]</option>
+            @foreach (var s in OrderStatus.All)
+            {
+                <option value="@s" selected="@((string?)ViewBag.Status == s)">@T[s]</option>
+            }
+        </select>
+    </div>
+    <div class="col-6 col-md-4">
+        <label class="form-label" for="hubId">@T["Hub filter"]</label>
+        <select class="form-select" id="hubId" name="hubId">
+            <option value="">@T["All hubs"]</option>
+            @foreach (var h in hubs)
+            {
+                <option value="@h.HubId" selected="@((int?)ViewBag.HubId == h.HubId)">@h.Name</option>
+            }
+        </select>
+    </div>
+    <div class="col-12 col-md-4 d-flex align-items-end">
+        <button class="btn btn-outline-secondary" type="submit">@T["Filter"]</button>
+    </div>
+</form>
+
+<div class="table-responsive">
+    <table class="table align-middle">
+        <thead>
+            <tr><th>@T["Order"]</th><th>@T["Hub"]</th><th class="text-end">@T["Amount"]</th><th>@T["Status"]</th><th>@T["Action"]</th></tr>
+        </thead>
+        <tbody>
+        @foreach (var o in Model)
+        {
+            <tr>
+                <td class="fw-semibold">@o.Label</td>
+                <td>@o.HubName</td>
+                <td class="text-end">@o.Total.Vnd()</td>
+                <td><span class="badge @OrderStatus.Badge(o.Status)">@T[o.Status]</span></td>
+                <td>
+                    @if (o.Status == OrderStatus.Confirmed)
+                    {
+                        <form method="post" asp-action="Cancel" asp-route-id="@o.OrderId" class="d-inline">
+                            <button class="btn btn-sm btn-outline-danger" type="submit">@T["Cancel"]</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <span class="text-muted">@T["View only"]</span>
+                    }
+                </td>
+            </tr>
+        }
+        @if (Model.Count == 0)
+        {
+            <tr><td colspan="5" class="text-muted">@T["No orders found."]</td></tr>
+        }
+        </tbody>
+    </table>
+</div>
