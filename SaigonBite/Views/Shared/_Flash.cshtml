@@ -1,0 +1,13 @@
+@* Messages that a controller put in TempData: Info (green), Warning (yellow), Error (red). *@
+@if (TempData["Info"] is string info)
+{
+    <div class="alert alert-success">@T[info]</div>
+}
+@if (TempData["Warning"] is string warning)
+{
+    <div class="alert alert-warning">@T[warning]</div>
+}
+@if (TempData["Error"] is string error)
+{
+    <div class="alert alert-danger">@T[error]</div>
+}

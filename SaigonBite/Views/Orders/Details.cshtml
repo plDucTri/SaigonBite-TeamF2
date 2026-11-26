@@ -1,0 +1,87 @@
+@using SaigonBite.Helpers
+@using SaigonBite.Services
+@using SaigonBite.ViewModels
+@model OrderDetailsViewModel
+@{
+    ViewData["Title"] = T["Order Details and Tracking"].Value;
+    ViewData["Active"] = "My Orders";
+    // Steps of the normal path that have not happened yet (shown as pending in the history)
+    var reached = Model.History.Select(x => x.To).ToHashSet();
+    var happyPath = new[] { OrderStatus.Confirmed, OrderStatus.Preparing, OrderStatus.Ready, OrderStatus.OutForDelivery, OrderStatus.Delivered };
+}
+
+<h2 class="h4 mb-3">@T["Order Details and Tracking"]</h2>
+<partial name="_Flash" />
+
+<div class="row g-3">
+    <div class="col-12 col-lg-7">
+        <div class="card card-body">
+            <h4>@T["Order {0}", Model.Label] <span class="badge @OrderStatus.Badge(Model.Status)">@T[Model.Status]</span></h4>
+            <div class="table-responsive">
+                <table class="table table-sm">
+                    <thead>
+                        <tr><th>@T["Menu item"]</th><th>@T["Quantity"]</th><th class="text-end">@T["Unit price"]</th><th class="text-end">@T["Amount"]</th></tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var l in Model.Lines)
+                    {
+                        <tr><td>@l.Name</td><td>@l.Quantity</td><td class="text-end">@l.UnitPrice.Vnd()</td><td class="text-end">@l.Amount.Vnd()</td></tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+            <p class="mb-1">
+                <strong>@T["Total"]: @Model.Total.Vnd()</strong> -
+                @T["Payment"]: @(Model.IsCod ? T["Cash on Delivery"].Value : Model.PaymentMethod) (@Model.PaymentStatus@(Model.Refunded ? ", " + T["refunded"].Value : ""))
+            </p>
+            <p class="text-muted">@T["Delivery"]: @Model.Address | @Model.DistanceKm km | @T["Hub"]: @Model.HubName</p>
+
+            @if (Model.SnapshotAt != null)
+            {
+                <div class="alert alert-success small">
+                    <strong>@T["Pricing for this order"]</strong><br />
+                    @T["Placed at {0}", Model.SnapshotAt.Value.When()] | @T["Kitchen {0} busy", (Model.SnapshotLoadPct ?? 0m).Pct()] |
+                    @(Model.SnapshotRain == true ? T["Heavy-rain surcharge"] : T["No rain fee"]).<br />
+                    @T["Edits keep the pricing conditions from when you ordered."]
+                </div>
+            }
+
+            <h6 class="mt-2">@T["Price breakdown"]</h6>
+            <partial name="_OrderBreakdown" model="Model" />
+
+            <div class="d-flex flex-wrap gap-2 mt-3">
+                @if (Model.CanEdit)
+                {
+                    <a class="btn btn-sb" asp-action="Edit" asp-route-id="@Model.OrderId">@T["Edit Items"]</a>
+                }
+                @if (Model.NextStatuses.Contains(OrderStatus.Cancelled))
+                {
+                    <a class="btn btn-outline-danger" asp-action="Cancel" asp-route-id="@Model.OrderId">@T["Cancel Order"]</a>
+                }
+                <a class="btn btn-outline-secondary" asp-action="MyOrders">@T["My Orders"]</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-5">
+        <div class="card card-body">
+            <h5>@T["Status History and Permissions"]</h5>
+            <ul class="list-group">
+                @foreach (var h in Model.History)
+                {
+                    <li class="list-group-item">
+                        <strong>@T[h.To]</strong>
+                        <div class="small text-muted">@h.By - @h.At.When()@(string.IsNullOrEmpty(h.Reason) ? "" : " - " + h.Reason)</div>
+                    </li>
+                }
+                @if (!OrderStatus.IsTerminal(Model.Status))
+                {
+                    foreach (var s in happyPath.Where(s => !reached.Contains(s)))
+                    {
+                        <li class="list-group-item text-muted">@T[s] <span class="small">- @T["pending"]</span></li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>
