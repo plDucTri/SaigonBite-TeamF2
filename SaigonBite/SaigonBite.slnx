@@ -3,6 +3,7 @@
     <File Path="../Database/01_schema_accounts.sql" />
     <File Path="../Database/02_schema_orders.sql" />
     <File Path="../Database/03_seed_hubs_vouchers.sql" />
+    <File Path="../Database/04_alter_status_history_reason.sql" />
   </Folder>
   <Project Path="../SaigonBite.Tests/SaigonBite.Tests.csproj" Id="163a5246-1d13-462b-9d4d-0854b7bc3faa" />
   <Project Path="SaigonBite.csproj" />
