@@ -1,0 +1,63 @@
+@using SaigonBite.Helpers
+@using SaigonBite.Services
+@using SaigonBite.ViewModels
+@model OrderDetailsViewModel
+@{
+    ViewData["Title"] = T["Kitchen Order Actions"].Value;
+    ViewData["Active"] = "Orders at My Hub";
+}
+
+<h2 class="h4 mb-3">@T["Kitchen Order Actions"]</h2>
+<partial name="_Flash" />
+
+<div class="row g-3">
+    <div class="col-12 col-lg-8">
+        <div class="card card-body">
+            <h5>@T["Review Order {0}", Model.Label] <span class="badge @OrderStatus.Badge(Model.Status)">@T[Model.Status]</span></h5>
+            <p class="text-muted small">@T["Hub"]: @Model.HubName</p>
+            <table class="table table-sm">
+                <thead><tr><th>@T["Item"]</th><th>@T["Qty"]</th><th class="text-end">@T["Line total"]</th></tr></thead>
+                <tbody>
+                @foreach (var l in Model.Lines)
+                {
+                    <tr><td>@l.Name</td><td>@l.Quantity</td><td class="text-end">@l.Amount.Vnd()</td></tr>
+                }
+                </tbody>
+            </table>
+            <p>
+                <strong>@T["Payment"]: @(Model.IsCod ? T["Cash on Delivery"].Value : Model.PaymentMethod) | @T["Final total"]: @Model.Total.Vnd()</strong><br />
+                @T["Customer address"]: @Model.Address
+            </p>
+
+            <div class="d-flex flex-wrap gap-2">
+                @foreach (var next in Model.NextStatuses.Where(n => n != OrderStatus.Cancelled))
+                {
+                    <form method="post" asp-action="Advance">
+                        <input type="hidden" name="id" value="@Model.OrderId" />
+                        <input type="hidden" name="to" value="@next" />
+                        <button class="btn btn-sb" type="submit">
+                            @(next == OrderStatus.Confirmed ? T["Confirm Order"] : next == OrderStatus.Preparing ? T["Start Preparing"] : T["Mark Ready"])
+                        </button>
+                    </form>
+                }
+                <a class="btn btn-outline-secondary" asp-action="Index">@T["Back"]</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-4">
+        @if (Model.NextStatuses.Contains(OrderStatus.Cancelled))
+        {
+            <div class="card card-body">
+                <h5>@T["Reject Reason"]</h5>
+                <form method="post" asp-action="Advance">
+                    <input type="hidden" name="id" value="@Model.OrderId" />
+                    <input type="hidden" name="to" value="@OrderStatus.Cancelled" />
+                    <label class="form-label" for="reason">@T["Reason (required)"]</label>
+                    <textarea class="form-control mb-2" id="reason" name="reason" rows="3" required maxlength="300"
+                              placeholder="@T["Selected ingredients are unavailable"]"></textarea>
+                    <button class="btn btn-outline-danger w-100" type="submit">@T["Reject Order with Reason"]</button>
+                </form>
+            </div>
+        }
+    </div>
+</div>
