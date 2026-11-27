@@ -176,4 +176,18 @@
 	<data name="orders counted" xml:space="preserve"><value>đơn được tính</value></data>
 	<data name="The end date must not be before the start date." xml:space="preserve"><value>Ngày kết thúc không được trước ngày bắt đầu.</value></data>
 	<data name="Choose a valid start date and end date." xml:space="preserve"><value>Hãy chọn ngày bắt đầu và ngày kết thúc hợp lệ.</value></data>
+	<data name="Dashboard" xml:space="preserve"><value>Bảng điều khiển</value></data>
+	<data name="Welcome back" xml:space="preserve"><value>Chào mừng trở lại</value></data>
+	<data name="Active accounts" xml:space="preserve"><value>Tài khoản đang hoạt động</value></data>
+	<data name="Inactive accounts" xml:space="preserve"><value>Tài khoản đã vô hiệu hóa</value></data>
+	<data name="Orders this month" xml:space="preserve"><value>Đơn hàng tháng này</value></data>
+	<data name="Revenue this month" xml:space="preserve"><value>Doanh thu tháng này</value></data>
+	<data name="View, edit and deactivate customer and staff accounts." xml:space="preserve"><value>Xem, sửa và vô hiệu hóa tài khoản khách hàng và nhân viên.</value></data>
+	<data name="Revenue by brand category and payment method." xml:space="preserve"><value>Doanh thu theo nhóm món và phương thức thanh toán.</value></data>
+	<data name="Follow every order and its status history." xml:space="preserve"><value>Theo dõi mọi đơn hàng và lịch sử trạng thái.</value></data>
+	<data name="Switch the heavy-rain surcharge on or off." xml:space="preserve"><value>Bật hoặc tắt phụ phí mưa lớn.</value></data>
+	<data name="Confirm, prepare and hand over the orders of your hub." xml:space="preserve"><value>Xác nhận, chuẩn bị và bàn giao đơn của bếp bạn.</value></data>
+	<data name="Accept ready orders and deliver them." xml:space="preserve"><value>Nhận đơn đã sẵn sàng và giao hàng.</value></data>
+	<data name="Pick a hub and build your order." xml:space="preserve"><value>Chọn bếp và tạo đơn hàng của bạn.</value></data>
+	<data name="Track your orders and their status." xml:space="preserve"><value>Theo dõi đơn hàng và trạng thái của bạn.</value></data>
 </root>
