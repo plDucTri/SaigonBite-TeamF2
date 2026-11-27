@@ -4,6 +4,7 @@
     // Each team member adds the menu items of their own pages here.
     (string Label, string Href)[] menu =
     {
+        ("Dashboard", "/"),
         ("User Accounts", "/Admin/Accounts"),
         ("Revenue Report R1", "/Admin/Revenue"),
         ("Order Oversight", "/AdminOrders"),
@@ -53,6 +54,12 @@
                             </li>
                         }
                     </ul>
+                    <div class="small text-muted mt-3">
+                        <div>@T["Signed in as"] <strong>@User.Identity?.Name</strong></div>
+                        <form asp-controller="Account" asp-action="Logout" method="post" class="mt-2">
+                            <button type="submit" class="btn btn-sm btn-outline-secondary">@T["Sign out"]</button>
+                        </form>
+                    </div>
                 </div>
             </nav>
             <main class="col-lg-10">

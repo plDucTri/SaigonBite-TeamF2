@@ -1,44 +1,105 @@
+@model SaigonBite.ViewModels.HomeViewModel
 @using SaigonBite.Helpers
 @{
     ViewData["Title"] = "Home";
+    bool signedIn = User.Identity?.IsAuthenticated == true;
     string role = User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value ?? "";
-}
-<div class="py-4">
-    <h1 class="h3 mb-3">@T["Welcome to SaigonBite"]</h1>
 
-    @if (User.Identity?.IsAuthenticated == true)
+    // Each role gets its own layout, so the side menu and the Sign out button are there.
+    // A visitor who is not signed in gets the same card layout as the login page.
+    Layout = !signedIn ? "_AuthLayout" : role == Roles.Admin ? "_AdminLayout" : "_PortalLayout";
+    ViewData["Active"] = "Dashboard";
+
+    // The shortcut cards of each role: title, one-line text, address.
+    (string Title, string Text, string Href)[] tiles;
+    if (role == Roles.Admin)
     {
-        <p>@T["Signed in as"] <strong>@User.Identity.Name</strong> (@role)</p>
-
-        @* Link to the pages of the logged-in role (UC1 Place and Manage Orders) *@
-        <div class="mb-3">
-            @if (role == Roles.Local || role == Roles.Tourist)
-            {
-                <a class="btn btn-sb me-2" asp-controller="Orders" asp-action="Menu">@T["Order food"]</a>
-                <a class="btn btn-outline-secondary" asp-controller="Orders" asp-action="MyOrders">@T["My Orders"]</a>
-            }
-            else if (role == Roles.Kitchen)
-            {
-                <a class="btn btn-sb" asp-controller="KitchenOrders" asp-action="Index">@T["Orders at My Hub"]</a>
-            }
-            else if (role == Roles.Shipper)
-            {
-                <a class="btn btn-sb" asp-controller="ShipperOrders" asp-action="Jobs">@T["Ready Delivery Jobs"]</a>
-            }
-            else if (role == Roles.Admin)
-            {
-                <a class="btn btn-sb" asp-controller="AdminOrders" asp-action="Index">@T["Order Oversight"]</a>
-            }
-        </div>
-
-        <form asp-controller="Account" asp-action="Logout" method="post">
-            <button type="submit" class="btn btn-sb">@T["Sign out"]</button>
-        </form>
+        tiles = new[]
+        {
+            ("User Accounts", "View, edit and deactivate customer and staff accounts.", "/Admin/Accounts"),
+            ("Revenue Report R1", "Revenue by brand category and payment method.", "/Admin/Revenue"),
+            ("Order Oversight", "Follow every order and its status history.", "/AdminOrders"),
+            ("Heavy Rain Flag", "Switch the heavy-rain surcharge on or off.", "/AdminOrders/Simulation")
+        };
+    }
+    else if (role == Roles.Kitchen)
+    {
+        tiles = new[] { ("Orders at My Hub", "Confirm, prepare and hand over the orders of your hub.", "/KitchenOrders") };
+    }
+    else if (role == Roles.Shipper)
+    {
+        tiles = new[] { ("Ready Delivery Jobs", "Accept ready orders and deliver them.", "/ShipperOrders/Jobs") };
     }
     else
     {
-        <a class="btn btn-sb me-2" asp-controller="Account" asp-action="Login">@T["Sign in"]</a>
-        <a asp-controller="Account" asp-action="RegisterLocal">@T["Register as Local Customer"]</a> 
-        <a asp-controller="Account" asp-action="RegisterTourist">@T["Register as Foreign Tourist"]</a>
+        tiles = new[]
+        {
+            ("Order food", "Pick a hub and build your order.", "/Orders/Menu"),
+            ("My Orders", "Track your orders and their status.", "/Orders/MyOrders")
+        };
     }
-</div>
+}
+
+@if (signedIn)
+{
+    <div class="mb-4">
+        <div class="sb-eyebrow">@T["Dashboard"]</div>
+        <h1 class="h3 mb-2">@T["Welcome back"], @User.Identity?.Name</h1>
+        <span class="sb-chip">@T[RoleLabels.For(role)]</span>
+    </div>
+
+    @if (role == Roles.Admin)
+    {
+        @* Numbers of this month, from the account and report services *@
+        <div class="row g-3 mb-4">
+            <div class="col-6 col-xl-3">
+                <div class="sb-card sb-stat h-100">
+                    <div class="sb-stat-label">@T["Active accounts"]</div>
+                    <div class="sb-stat-value">@Model.ActiveAccounts</div>
+                </div>
+            </div>
+            <div class="col-6 col-xl-3">
+                <div class="sb-card sb-stat h-100">
+                    <div class="sb-stat-label">@T["Inactive accounts"]</div>
+                    <div class="sb-stat-value">@Model.InactiveAccounts</div>
+                </div>
+            </div>
+            <div class="col-6 col-xl-3">
+                <div class="sb-card sb-stat h-100">
+                    <div class="sb-stat-label">@T["Orders this month"]</div>
+                    <div class="sb-stat-value">@Model.OrdersThisMonth</div>
+                </div>
+            </div>
+            <div class="col-6 col-xl-3">
+                <div class="sb-card sb-stat h-100">
+                    <div class="sb-stat-label">@T["Revenue this month"]</div>
+                    <div class="sb-stat-value">@Model.RevenueThisMonth.Vnd()</div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row g-3">
+        @foreach (var tile in tiles)
+        {
+            <div class="col-sm-6">
+                <a class="sb-tile" href="@tile.Href">
+                    <span class="sb-tile-title">@T[tile.Title]</span>
+                    <span class="sb-tile-text">@T[tile.Text]</span>
+                    <span class="sb-tile-go" aria-hidden="true">&rarr;</span>
+                </a>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="sb-eyebrow">SaigonBite</div>
+    <h1 class="h4 mb-4">@T["Welcome to SaigonBite"]</h1>
+
+    <div class="d-grid gap-2">
+        <a class="btn btn-sb btn-lg" asp-controller="Account" asp-action="Login">@T["Sign in"]</a>
+        <a class="btn btn-outline-sb" asp-controller="Account" asp-action="RegisterLocal">@T["Register as Local Customer"]</a>
+        <a class="btn btn-outline-sb" asp-controller="Account" asp-action="RegisterTourist">@T["Register as Foreign Tourist"]</a>
+    </div>
+}
