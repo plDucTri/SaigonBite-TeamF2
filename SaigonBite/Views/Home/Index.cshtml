@@ -1,20 +1,36 @@
 @using SaigonBite.Helpers
 @{
     ViewData["Title"] = "Home";
+    string role = User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value ?? "";
 }
 <div class="py-4">
     <h1 class="h3 mb-3">@T["Welcome to SaigonBite"]</h1>
 
     @if (User.Identity?.IsAuthenticated == true)
     {
-        <p>@T["Signed in as"] <strong>@User.Identity.Name</strong> (@User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value)</p>
-        @* Only admins see this link *@
-        @if (User.IsInRole(Roles.Admin))
-        {
-            <p>
-                <a class="btn btn-outline-secondary" asp-controller="AdminAccounts" asp-action="OpenAccountList">@T["User Accounts"]</a>
-            </p>
-        }
+        <p>@T["Signed in as"] <strong>@User.Identity.Name</strong> (@role)</p>
+
+        @* Link to the pages of the logged-in role (UC1 Place and Manage Orders) *@
+        <div class="mb-3">
+            @if (role == Roles.Local || role == Roles.Tourist)
+            {
+                <a class="btn btn-sb me-2" asp-controller="Orders" asp-action="Menu">@T["Order food"]</a>
+                <a class="btn btn-outline-secondary" asp-controller="Orders" asp-action="MyOrders">@T["My Orders"]</a>
+            }
+            else if (role == Roles.Kitchen)
+            {
+                <a class="btn btn-sb" asp-controller="KitchenOrders" asp-action="Index">@T["Orders at My Hub"]</a>
+            }
+            else if (role == Roles.Shipper)
+            {
+                <a class="btn btn-sb" asp-controller="ShipperOrders" asp-action="Jobs">@T["Ready Delivery Jobs"]</a>
+            }
+            else if (role == Roles.Admin)
+            {
+                <a class="btn btn-sb" asp-controller="AdminOrders" asp-action="Index">@T["Order Oversight"]</a>
+            }
+        </div>
+
         <form asp-controller="Account" asp-action="Logout" method="post">
             <button type="submit" class="btn btn-sb">@T["Sign out"]</button>
         </form>

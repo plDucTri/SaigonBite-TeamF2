@@ -1,0 +1,83 @@
+@using SaigonBite.Helpers
+@using SaigonBite.ViewModels
+@model EditOrderViewModel
+@{
+    ViewData["Title"] = T["Edit Order Items (Placed Only)"].Value;
+    ViewData["Active"] = "My Orders";
+}
+
+<h2 class="h4 mb-3">@T["Edit Order Items (Placed Only)"]</h2>
+
+@foreach (var e in Model.Errors)
+{
+    <div class="alert alert-danger">@e</div>
+}
+@foreach (var w in Model.Warnings)
+{
+    <div class="alert alert-info">@w</div>
+}
+
+<form method="post" asp-action="Edit" asp-route-id="@Model.OrderId">
+    <div class="row g-3">
+        <div class="col-12 col-lg-8">
+            <div class="card card-body">
+                <h5>@T["Edit Items for {0}", Model.Label]</h5>
+                <p class="text-muted small">@T["Editing is allowed because this order is still Placed."]</p>
+                <div class="table-responsive">
+                    <table class="table align-middle">
+                        <thead>
+                            <tr>
+                                <th>@T["Menu item"]</th><th style="width:110px">@T["Quantity"]</th>
+                                <th class="text-end">@T["Unit price"]</th><th class="text-end">@T["Amount"]</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var l in Model.Lines)
+                        {
+                            <tr>
+                                <td>@l.Name</td>
+                                <td><input type="number" name="qty[@l.ItemId]" value="@l.Quantity" min="0" max="20" class="form-control form-control-sm" /></td>
+                                <td class="text-end">@l.UnitPrice.Vnd()</td>
+                                <td class="text-end">@l.Amount.Vnd()</td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+                <p class="small text-muted">@T["Quantity 0 removes the item."]</p>
+
+                @if (Model.AddableItems.Count > 0)
+                {
+                    <div class="mb-3">
+                        <label class="form-label" for="addItemId">@T["Add Available Item"]</label>
+                        <select class="form-select" id="addItemId" name="addItemId">
+                            <option value="">-</option>
+                            @foreach (var a in Model.AddableItems)
+                            {
+                                <option value="@a.ItemId">@a.Name (@a.Brand) - @a.Price.Vnd()</option>
+                            }
+                        </select>
+                    </div>
+                }
+
+                <div class="alert alert-success small">
+                    <strong>@T["Your original pricing"]</strong><br />
+                    @Model.SnapshotAt.When() | @T["Kitchen {0} busy", Model.SnapshotLoadPct.Pct()] | @(Model.SnapshotRain ? T["Rain fee ON"] : T["No rain fee"]).<br />
+                    @T["Price changes use the conditions from when you ordered."]
+                </div>
+
+                <div class="d-flex flex-wrap gap-2">
+                    <button class="btn btn-outline-secondary" type="submit" name="submit" value="recalc">@T["Recalculate"]</button>
+                    <button class="btn btn-sb" type="submit" name="submit" value="save">@T["Save Changes and Recalculate"]</button>
+                    <a class="btn btn-outline-secondary" asp-action="Details" asp-route-id="@Model.OrderId">@T["Discard Changes"]</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4">
+            <div class="card card-body">
+                <h5>@T["Recalculated Amount"]</h5>
+                <partial name="_PriceBreakdown" model="Model.Pricing" />
+            </div>
+        </div>
+    </div>
+</form>

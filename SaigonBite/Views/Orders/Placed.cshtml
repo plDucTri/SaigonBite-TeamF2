@@ -1,0 +1,45 @@
+@using SaigonBite.Helpers
+@using SaigonBite.ViewModels
+@model OrderDetailsViewModel
+@{
+    ViewData["Title"] = T["Order Placed Successfully"].Value;
+    ViewData["Active"] = "My Orders";
+}
+
+<h2 class="h4 mb-3">@T["Order Placed Successfully"]</h2>
+<partial name="_Flash" />
+
+<div class="card card-body">
+    <span class="badge @SaigonBite.Services.OrderStatus.Badge(Model.Status) align-self-start mb-2">@T[Model.Status]</span>
+    <h3>@T["Order {0}", Model.Label]</h3>
+    <p class="text-muted">@T["Placed at {0} (Vietnam local time). Kitchen staff may confirm or reject it.", Model.PlacedAt.When()]</p>
+    <div class="row g-3 mb-3">
+        <div class="col-12 col-md-4">
+            <div class="card card-body h-100">
+                <div class="text-muted small">@(Model.IsCod ? T["Amount to pay on delivery"] : T["Amount paid"])</div>
+                <div class="fs-3 fw-bold">@Model.Total.Vnd()</div>
+                <div class="small text-muted">@T["Payment"]: @(Model.PaymentMethod == "COD" ? T["Cash on Delivery"].Value : Model.PaymentMethod)</div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="card card-body h-100">
+                <div class="text-muted small">@T["Hub"]</div>
+                <div class="fs-4 fw-bold">@Model.HubName</div>
+                @if (Model.SnapshotLoadPct != null)
+                {
+                    <div class="small text-muted">@Model.SnapshotLoadPct.Value.Pct() | @Model.DistanceKm km | @(Model.SnapshotRain == true ? T["Rain flag ON"] : T["Rain flag OFF"])</div>
+                }
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="card card-body h-100">
+                <div class="text-muted small mb-1">@T["Price breakdown"]</div>
+                <partial name="_OrderBreakdown" model="Model" />
+            </div>
+        </div>
+    </div>
+    <div class="d-flex gap-2">
+        <a class="btn btn-sb" asp-action="Details" asp-route-id="@Model.OrderId">@T["View Order Details"]</a>
+        <a class="btn btn-outline-secondary" asp-action="Menu">@T["Back to Menu"]</a>
+    </div>
+</div>

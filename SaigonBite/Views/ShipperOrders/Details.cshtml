@@ -1,0 +1,76 @@
+@using SaigonBite.Helpers
+@using SaigonBite.Services
+@using SaigonBite.ViewModels
+@model OrderDetailsViewModel
+@{
+    ViewData["Title"] = T["Delivery Details"].Value;
+    ViewData["Active"] = "Ready Delivery Jobs";
+    bool cashPending = Model.IsCod && Model.PaymentStatus != PaymentStatus.CashCollected;
+}
+
+<h2 class="h4 mb-3">@T["Delivery Details"]</h2>
+<partial name="_Flash" />
+
+<div class="row g-3">
+    <div class="col-12 col-lg-7">
+        <div class="card card-body">
+            <h5>@T["Delivery Assignment"] <span class="badge @OrderStatus.Badge(Model.Status)">@T[Model.Status]</span></h5>
+            <p class="mb-1"><strong>@T["Order {0}", Model.Label]</strong> - @T["Pickup hub"]: @Model.HubName</p>
+            <p class="mb-1">@T["Customer"]: @Model.CustomerName</p>
+            <p class="mb-1">@T["Delivery address"]: @Model.Address (@Model.DistanceKm km)</p>
+            <p class="mb-3">@T["Payment"]: @(Model.IsCod ? T["Cash on Delivery"].Value : Model.PaymentMethod) (@Model.PaymentStatus)</p>
+
+            @if (Model.IsCod)
+            {
+                <p class="fs-5 fw-bold">@T["Amount to collect"]: @Model.Total.Vnd()</p>
+                <span class="badge @(cashPending ? "bg-danger" : "bg-success") align-self-start mb-3">
+                    @(cashPending ? T["Cash Not Confirmed"] : T["Cash Confirmed"])
+                </span>
+            }
+
+            <div class="d-flex flex-wrap gap-2">
+                @if (Model.Status == OrderStatus.Ready)
+                {
+                    if (Model.ShipperId == null)
+                    {
+                        <form method="post" asp-action="Accept" asp-route-id="@Model.OrderId"><button class="btn btn-sb" type="submit">@T["Accept Job"]</button></form>
+                    }
+                    else
+                    {
+                        <form method="post" asp-action="PickUp" asp-route-id="@Model.OrderId"><button class="btn btn-sb" type="submit">@T["Confirm Pick Up"]</button></form>
+                    }
+                }
+                @if (Model.Status == OrderStatus.OutForDelivery)
+                {
+                    if (cashPending)
+                    {
+                        <form method="post" asp-action="ConfirmCash" asp-route-id="@Model.OrderId"><button class="btn btn-success" type="submit">@T["Confirm Cash Collected"]</button></form>
+                    }
+                    <form method="post" asp-action="Deliver" asp-route-id="@Model.OrderId">
+                        <button class="btn btn-sb" type="submit" disabled="@cashPending">@T["Mark Delivered"]</button>
+                    </form>
+                }
+                <a class="btn btn-outline-secondary" asp-action="Jobs">@T["Back to Jobs"]</a>
+            </div>
+            @if (cashPending && Model.Status == OrderStatus.OutForDelivery)
+            {
+                <div class="form-text mt-2">@T["Mark Delivered is available after the cash is confirmed."]</div>
+            }
+        </div>
+    </div>
+
+    @if (Model.Status == OrderStatus.OutForDelivery)
+    {
+        <div class="col-12 col-lg-5">
+            <div class="card card-body">
+                <h5>@T["Delivery Failure Handling"]</h5>
+                <form method="post" asp-action="Fail" asp-route-id="@Model.OrderId">
+                    <label class="form-label" for="reason">@T["Failure reason (if customer unreachable)"]</label>
+                    <textarea class="form-control mb-2" id="reason" name="reason" rows="3" maxlength="300"
+                              placeholder="@T["Customer could not be contacted"]"></textarea>
+                    <button class="btn btn-outline-danger w-100" type="submit">@T["Report Failed Delivery"]</button>
+                </form>
+            </div>
+        </div>
+    }
+</div>

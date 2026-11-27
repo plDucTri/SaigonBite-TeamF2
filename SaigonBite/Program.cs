@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using SaigonBite.Helpers;
@@ -6,7 +5,6 @@ using SaigonBite.Models.Entities;
 using SaigonBite.Repositories;
 using SaigonBite.Services;
 using SaigonBite.Validators;
-using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +23,7 @@ builder.Services.AddSingleton<IVerificationService, VerificationService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<DbSeeder>();
+builder.Services.AddOrderModule();   // UC1 Place and Manage Orders: services, repositories, payment strategies, cart session
 // cookie login
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
@@ -68,6 +67,7 @@ app.UseRequestLocalization(new RequestLocalizationOptions()
     .AddSupportedUICultures(supportedCultures));
 
 app.UseRouting();
+app.UseSession();          // UC1: the shopping cart is kept in the session
 app.UseAuthentication();
 app.UseAuthorization();
 

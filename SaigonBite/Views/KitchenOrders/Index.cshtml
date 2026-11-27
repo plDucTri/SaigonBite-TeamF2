@@ -1,0 +1,70 @@
+@using SaigonBite.Helpers
+@using SaigonBite.Services
+@using SaigonBite.ViewModels
+@model List<OrderRowViewModel>
+@{
+    ViewData["Title"] = T["Kitchen Orders at My Hub"].Value;
+    ViewData["Active"] = "Orders at My Hub";
+}
+
+<h2 class="h4 mb-3">@T["Kitchen Orders at My Hub"]</h2>
+<partial name="_Flash" />
+
+<div class="row g-3 mb-3">
+    <div class="col-4"><div class="card card-body"><div class="text-muted small">@T["Placed - awaiting confirmation"]</div><div class="fs-3 fw-bold">@Model.Count(o => o.Status == OrderStatus.Placed)</div></div></div>
+    <div class="col-4"><div class="card card-body"><div class="text-muted small">@T["Confirmed"]</div><div class="fs-3 fw-bold">@Model.Count(o => o.Status == OrderStatus.Confirmed)</div></div></div>
+    <div class="col-4"><div class="card card-body"><div class="text-muted small">@T["Preparing"]</div><div class="fs-3 fw-bold">@Model.Count(o => o.Status == OrderStatus.Preparing)</div></div></div>
+</div>
+<p class="text-muted small">@T["Confirmed and Preparing orders count toward the hub load (BR8)."]</p>
+
+<div class="table-responsive">
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th>@T["Order ID"]</th><th>@T["Placed at"]</th><th class="text-end">@T["Amount"]</th>
+                <th>@T["Status"]</th><th>@T["Allowed action"]</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var o in Model)
+        {
+            <tr>
+                <td class="fw-semibold">@o.Label</td>
+                <td>@o.PlacedAt.When()</td>
+                <td class="text-end">@o.Total.Vnd()</td>
+                <td><span class="badge @OrderStatus.Badge(o.Status)">@T[o.Status]</span></td>
+                <td>
+                    @if (o.Status == OrderStatus.Placed)
+                    {
+                        <a asp-action="Details" asp-route-id="@o.OrderId">@T["Confirm / Reject"]</a>
+                    }
+                    else if (o.Status == OrderStatus.Confirmed)
+                    {
+                        <form method="post" asp-action="Advance" class="d-inline">
+                            <input type="hidden" name="id" value="@o.OrderId" />
+                            <input type="hidden" name="to" value="@OrderStatus.Preparing" />
+                            <button class="btn btn-sm btn-sb" type="submit">@T["Start Preparing"]</button>
+                        </form>
+                    }
+                    else if (o.Status == OrderStatus.Preparing)
+                    {
+                        <form method="post" asp-action="Advance" class="d-inline">
+                            <input type="hidden" name="id" value="@o.OrderId" />
+                            <input type="hidden" name="to" value="@OrderStatus.Ready" />
+                            <button class="btn btn-sm btn-sb" type="submit">@T["Mark Ready"]</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <a asp-action="Details" asp-route-id="@o.OrderId">@T["View only"]</a>
+                    }
+                </td>
+            </tr>
+        }
+        @if (Model.Count == 0)
+        {
+            <tr><td colspan="5" class="text-muted">@T["No orders found."]</td></tr>
+        }
+        </tbody>
+    </table>
+</div>

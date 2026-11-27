@@ -1,13 +1,13 @@
 @using System.Globalization
-@using SaigonBite.Helpers
-@using System.Security.Claims
 @{
     string active = ViewData["Active"] as string ?? string.Empty;
     // Each team member adds the menu items of their own pages here.
     (string Label, string Href)[] menu =
     {
         ("User Accounts", "/Admin/Accounts"),
-        ("Revenue Report R1", "/Admin/Revenue")
+        ("Revenue Report R1", "/Admin/Revenue"),
+        ("Order Oversight", "/AdminOrders"),
+        ("Heavy Rain Flag", "/AdminOrders/Simulation")
     };
 }
 <!DOCTYPE html>
@@ -53,10 +53,6 @@
                             </li>
                         }
                     </ul>
-                    <div class="sb-role-box">
-                        <div class="small text-muted">@T["Access role"]</div>
-                        <strong>@T[RoleLabels.For(User.FindFirstValue(ClaimTypes.Role) ?? "Admin")]</strong>
-                    </div>
                 </div>
             </nav>
             <main class="col-lg-10">
