@@ -5,6 +5,8 @@ using SaigonBite.Models.Entities;
 using SaigonBite.Repositories;
 using SaigonBite.Services;
 using SaigonBite.Validators;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 

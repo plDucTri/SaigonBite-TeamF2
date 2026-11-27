@@ -1,4 +1,8 @@
 @using System.Globalization
+@{
+    // The register pages have a two-column form, so they set ViewData["Wide"] = true.
+    bool wide = ViewData["Wide"] is true;
+}
 <!DOCTYPE html>
 <html lang="@CultureInfo.CurrentUICulture.TwoLetterISOLanguageName">
 <head>
@@ -19,22 +23,12 @@
         </div>
     </header>
 
-    <main class="container-xl sb-auth">
-        <div class="row g-4 align-items-stretch">
-            <aside class="col-lg-5">
-                <div class="sb-brand-panel h-100">
-                    <h2 class="sb-brand-title">@T["A unified platform for local diners and international guests."]</h2>
-                    <ul class="sb-brand-list">
-                        <li>@T["One account, many kitchen hubs."]</li>
-                        <li>@T["Orders are tracked from placement to delivery."]</li>
-                    </ul>
-                </div>
-            </aside>
-            <section class="col-lg-7">
-                <div class="sb-card">
-                    @RenderBody()
-                </div>
-            </section>
+    <main class="sb-auth">
+        <div class="sb-auth-wrap @(wide ? "sb-auth-wide" : "")">
+            <div class="sb-card sb-auth-card">
+                @RenderBody()
+            </div>
+            <p class="sb-auth-note">@T["A unified platform for local diners and international guests."]</p>
         </div>
     </main>
 
