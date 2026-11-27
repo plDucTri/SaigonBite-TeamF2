@@ -1,0 +1,132 @@
+@using System.Globalization
+@using SaigonBite.Services
+@model SaigonBite.ViewModels.RevenueReportViewModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = T["Revenue Report (R1)"].Value;
+    ViewData["Active"] = "Revenue Report R1";
+
+    RevenueReportData? report = Model.Report;
+
+    // 19,200,000 style numbers, the same on every language (as in the Figma screen).
+    string Vnd(decimal amount) => amount.ToString("N0", CultureInfo.InvariantCulture);
+    string DateText(DateOnly date) => date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+}
+
+<h1 class="h3 mb-3">@T["Revenue Report (R1)"]</h1>
+
+<partial name="_ErrorList" />
+
+@* The dates are a GET form, so the address keeps them and the report can be reloaded. *@
+<form method="get" asp-action="RevenueReport" class="mb-4">
+    <div class="form-label mb-1">@T["Date Range"]</div>
+    <div class="row g-2 align-items-end">
+        <div class="col-6 col-md-3">
+            <label for="fromDate" class="form-label small text-muted mb-1">@T["From"]</label>
+            <input type="date" id="fromDate" name="fromDate" class="form-control" value="@DateText(Model.FromDate)" required />
+        </div>
+        <div class="col-6 col-md-3">
+            <label for="toDate" class="form-label small text-muted mb-1">@T["To"]</label>
+            <input type="date" id="toDate" name="toDate" class="form-control" value="@DateText(Model.ToDate)" required />
+        </div>
+        <div class="col-12 col-md-auto">
+            <button type="submit" class="btn btn-sb-accent w-100">@T["Generate Report"]</button>
+        </div>
+    </div>
+</form>
+
+@if (report != null)
+{
+    var usedCategories = report.ByCategory.Where(r => r.Revenue > 0).ToList();
+    var usedMethods = report.ByPaymentMethod.Where(r => r.Revenue > 0).ToList();
+
+    @* Summary cards. On a phone only "Included revenue" is shown (Figma M06). *@
+    <div class="row g-3 mb-3">
+        <div class="col-12 col-md-4">
+            <div class="sb-card sb-stat h-100">
+                <div class="sb-stat-label">@T["Included revenue"]</div>
+                <div class="sb-stat-value">@Vnd(report.IncludedRevenue) VND</div>
+                <div class="sb-stat-note d-none d-md-block">@T["Excludes Cancelled and Failed orders"]</div>
+            </div>
+        </div>
+        <div class="col-md-4 d-none d-md-block">
+            <div class="sb-card sb-stat h-100">
+                <div class="sb-stat-label">@T["Revenue categories"]</div>
+                <div class="sb-stat-value">@usedCategories.Count</div>
+                <div class="sb-stat-note">@(usedCategories.Count == 0 ? "-" : string.Join(", ", usedCategories.Select(r => r.Name)))</div>
+            </div>
+        </div>
+        <div class="col-md-4 d-none d-md-block">
+            <div class="sb-card sb-stat h-100">
+                <div class="sb-stat-label">@T["Payment methods"]</div>
+                <div class="sb-stat-value">@usedMethods.Count</div>
+                <div class="sb-stat-note">@(usedMethods.Count == 0 ? "-" : string.Join(", ", usedMethods.Select(r => r.Name)))</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3">
+        <div class="col-12 col-lg-6">
+            <div class="sb-card h-100">
+                <h2 class="h5 mb-3">
+                    <span class="d-none d-md-inline">@T["Revenue by brand category"]</span>
+                    <span class="d-md-none">@T["By brand category"]</span>
+                </h2>
+                @if (report.ByCategory.Count == 0)
+                {
+                    <div class="sb-hint">@T["No orders in this date range."]</div>
+                }
+                else
+                {
+                    <table class="table sb-report-table mb-0">
+                        <thead>
+                            <tr>
+                                <th>@T["Category"]</th>
+                                <th class="text-end">@T["Revenue VND"]</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (RevenueRow row in report.ByCategory)
+                            {
+                                <tr>
+                                    <td>@row.Name</td>
+                                    <td class="text-end">@Vnd(row.Revenue)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-6">
+            <div class="sb-card h-100">
+                <h2 class="h5 mb-3">
+                    <span class="d-none d-md-inline">@T["Revenue by payment method"]</span>
+                    <span class="d-md-none">@T["By payment method"]</span>
+                </h2>
+                <table class="table sb-report-table mb-0">
+                    <thead>
+                        <tr>
+                            <th>@T["Method"]</th>
+                            <th class="text-end">@T["Revenue VND"]</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (RevenueRow row in report.ByPaymentMethod)
+                        {
+                            <tr>
+                                <td>@row.Name</td>
+                                <td class="text-end">@Vnd(row.Revenue)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <p class="small text-muted mt-3 mb-0">
+        @report.OrderCount @T["orders counted"]: @DateText(report.FromDate) - @DateText(report.ToDate)
+    </p>
+}

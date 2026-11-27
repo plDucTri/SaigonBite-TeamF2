@@ -33,13 +33,13 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.AccessDeniedPath = "/Account/AccessDenied";
         options.ExpireTimeSpan = TimeSpan.FromHours(8);
         options.Cookie.HttpOnly = true;
-        // On every request: if the account was deactivated since login, sign the person out.
+        // check on every request that the account is still active
         options.Events.OnValidatePrincipal = async context =>
         {
-            if (!int.TryParse(context.Principal?.FindFirstValue(ClaimTypes.NameIdentifier), out int userId))
-                return;
-
             var accounts = context.HttpContext.RequestServices.GetRequiredService<IAccountService>();
+            int.TryParse(context.Principal?.FindFirst(ClaimTypes.NameIdentifier)?.Value, out int userId);
+
+            // deactivated (or deleted) account: reject the cookie and sign out
             if (!accounts.IsAccountActive(userId))
             {
                 context.RejectPrincipal();
@@ -47,6 +47,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
             }
         };
     });
+builder.Services.AddScoped<IReportService, ReportService>();
 
 var app = builder.Build();
 
