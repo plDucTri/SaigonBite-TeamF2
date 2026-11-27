@@ -32,4 +32,6 @@ public interface IOrderRepository
     void RemoveLine(OrderLine line);
 
     Task SaveAsync();
+
+    IReadOnlyList<Order> GetOrdersForRevenue(DateTime start, DateTime end);
 }

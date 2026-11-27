@@ -1,1302 +1,179 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <data name="Language" xml:space="preserve">
-    <value>Ngôn ngữ</value>
-  </data>
-  <data name="Cloud Kitchen Delivery Platform" xml:space="preserve">
-    <value>Nền tảng giao hàng bếp đám mây</value>
-  </data>
-  <data name="Admin portal" xml:space="preserve">
-    <value>Cổng quản trị</value>
-  </data>
-  <data name="User Accounts" xml:space="preserve">
-    <value>Tài khoản người dùng</value>
-  </data>
-  <data name="Revenue Report R1" xml:space="preserve">
-    <value>Báo cáo doanh thu R1</value>
-  </data>
-  <data name="A unified platform for local diners and international guests." xml:space="preserve">
-    <value>Nền tảng thống nhất cho thực khách trong nước và khách quốc tế.</value>
-  </data>
-  <data name="One account, many kitchen hubs." xml:space="preserve">
-    <value>Một tài khoản, nhiều bếp.</value>
-  </data>
-  <data name="Orders are tracked from placement to delivery." xml:space="preserve">
-    <value>Đơn hàng được theo dõi từ lúc đặt đến khi giao.</value>
-  </data>
-  <data name="Local Customer Registration" xml:space="preserve">
-    <value>Đăng ký khách hàng trong nước</value>
-  </data>
-  <data name="Create Local Customer Account" xml:space="preserve">
-    <value>Tạo tài khoản khách hàng trong nước</value>
-  </data>
-  <data name="Phone number, password and simulated OTP" xml:space="preserve">
-    <value>Số điện thoại, mật khẩu và mã OTP mô phỏng</value>
-  </data>
-  <data name="Full Name" xml:space="preserve">
-    <value>Họ và tên</value>
-  </data>
-  <data name="Vietnamese Mobile Number" xml:space="preserve">
-    <value>Số điện thoại Việt Nam</value>
-  </data>
-  <data name="10 digits beginning with 03, 05, 07, 08 or 09. The number must be unique." xml:space="preserve">
-    <value>10 chữ số, bắt đầu bằng 03, 05, 07, 08 hoặc 09. Số điện thoại phải chưa được đăng ký.</value>
-  </data>
-  <data name="Password (minimum 8 characters)" xml:space="preserve">
-    <value>Mật khẩu (tối thiểu 8 ký tự)</value>
-  </data>
-  <data name="Confirm Password" xml:space="preserve">
-    <value>Xác nhận mật khẩu</value>
-  </data>
-  <data name="Send OTP and Continue" xml:space="preserve">
-    <value>Gửi OTP và tiếp tục</value>
-  </data>
-  <data name="Already registered?" xml:space="preserve">
-    <value>Đã có tài khoản?</value>
-  </data>
-  <data name="Sign in" xml:space="preserve">
-    <value>Đăng nhập</value>
-  </data>
-  <data name="Foreign tourist? Register here" xml:space="preserve">
-    <value>Bạn là khách nước ngoài? Đăng ký tại đây</value>
-  </data>
-  <data name="Foreign Tourist Registration" xml:space="preserve">
-    <value>Đăng ký khách du lịch nước ngoài</value>
-  </data>
-  <data name="Create Foreign Tourist Account" xml:space="preserve">
-    <value>Tạo tài khoản khách du lịch nước ngoài</value>
-  </data>
-  <data name="Passport, nationality, email and optional hotel details" xml:space="preserve">
-    <value>Hộ chiếu, quốc tịch, email và thông tin khách sạn (không bắt buộc)</value>
-  </data>
-  <data name="Passport (6-9 letters/digits)" xml:space="preserve">
-    <value>Hộ chiếu (6-9 chữ cái/chữ số)</value>
-  </data>
-  <data name="Nationality" xml:space="preserve">
-    <value>Quốc tịch</value>
-  </data>
-  <data name="Email" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="Hotel / Delivery Address" xml:space="preserve">
-    <value>Khách sạn / địa chỉ giao hàng</value>
-  </data>
-  <data name="Hotel Room Number" xml:space="preserve">
-    <value>Số phòng khách sạn</value>
-  </data>
-  <data name="Passport must be unique. Nationality and a valid email are required. Verification uses a simulated email code." xml:space="preserve">
-    <value>Số hộ chiếu phải chưa được đăng ký. Cần có quốc tịch và email hợp lệ. Mã xác minh được gửi qua email mô phỏng.</value>
-  </data>
-  <data name="Send Email Code and Continue" xml:space="preserve">
-    <value>Gửi mã qua email và tiếp tục</value>
-  </data>
-  <data name="Local customer? Register here" xml:space="preserve">
-    <value>Bạn là khách trong nước? Đăng ký tại đây</value>
-  </data>
-  <data name="Verify Registration Code" xml:space="preserve">
-    <value>Xác minh mã đăng ký</value>
-  </data>
-  <data name="Identity Verification" xml:space="preserve">
-    <value>Xác minh danh tính</value>
-  </data>
-  <data name="Enter the simulated OTP or email code" xml:space="preserve">
-    <value>Nhập mã OTP hoặc mã email mô phỏng</value>
-  </data>
-  <data name="Local: Phone OTP" xml:space="preserve">
-    <value>Trong nước: OTP điện thoại</value>
-  </data>
-  <data name="Tourist: Email Code" xml:space="preserve">
-    <value>Du khách: mã email</value>
-  </data>
-  <data name="Demo code (simulated delivery):" xml:space="preserve">
-    <value>Mã demo (gửi mô phỏng):</value>
-  </data>
-  <data name="Verification Code" xml:space="preserve">
-    <value>Mã xác minh</value>
-  </data>
-  <data name="Enter six-digit code" xml:space="preserve">
-    <value>Nhập mã gồm sáu chữ số</value>
-  </data>
-  <data name="Verify and Create Account" xml:space="preserve">
-    <value>Xác minh và tạo tài khoản</value>
-  </data>
-  <data name="Resend Code" xml:space="preserve">
-    <value>Gửi lại mã</value>
-  </data>
-  <data name="On success, the account is saved with a hashed password and its role profile." xml:space="preserve">
-    <value>Khi thành công, tài khoản được lưu với mật khẩu đã băm và hồ sơ theo vai trò.</value>
-  </data>
-  <data name="A new code has been sent." xml:space="preserve">
-    <value>Đã gửi mã mới.</value>
-  </data>
-  <data name="Account created" xml:space="preserve">
-    <value>Đã tạo tài khoản</value>
-  </data>
-  <data name="Your account is ready. You can now sign in." xml:space="preserve">
-    <value>Tài khoản của bạn đã sẵn sàng. Bạn có thể đăng nhập ngay.</value>
-  </data>
-  <data name="Go to Sign in" xml:space="preserve">
-    <value>Đến trang đăng nhập</value>
-  </data>
-  <data name="Passwords do not match." xml:space="preserve">
-    <value>Mật khẩu không khớp.</value>
-  </data>
-  <data name="Enter the six-digit verification code." xml:space="preserve">
-    <value>Vui lòng nhập mã xác minh gồm sáu chữ số.</value>
-  </data>
-  <data name="Please wait 30 seconds before requesting another code." xml:space="preserve">
-    <value>Vui lòng chờ 30 giây trước khi yêu cầu mã khác.</value>
-  </data>
-  <data name="Text is too long." xml:space="preserve">
-    <value>Nội dung quá dài.</value>
-  </data>
-  <data name="Password is too long." xml:space="preserve">
-    <value>Mật khẩu quá dài.</value>
-  </data>
-  <data name="Phone number must have 10 digits and start with 03, 05, 07, 08 or 09." xml:space="preserve">
-    <value>Số điện thoại phải có 10 chữ số và bắt đầu bằng 03, 05, 07, 08 hoặc 09.</value>
-  </data>
-  <data name="Passport number must have 6 to 9 letters or digits." xml:space="preserve">
-    <value>Số hộ chiếu phải gồm 6 đến 9 chữ cái hoặc chữ số.</value>
-  </data>
-  <data name="Nationality is required." xml:space="preserve">
-    <value>Vui lòng nhập quốc tịch.</value>
-  </data>
-  <data name="Email address is not valid." xml:space="preserve">
-    <value>Địa chỉ email không hợp lệ.</value>
-  </data>
-  <data name="Customer type must be Local or Tourist." xml:space="preserve">
-    <value>Loại khách hàng phải là Trong nước hoặc Du khách.</value>
-  </data>
-  <data name="Full name is required." xml:space="preserve">
-    <value>Vui lòng nhập họ và tên.</value>
-  </data>
-  <data name="Password must have at least 8 characters." xml:space="preserve">
-    <value>Mật khẩu phải có ít nhất 8 ký tự.</value>
-  </data>
-  <data name="This phone number is already registered." xml:space="preserve">
-    <value>Số điện thoại này đã được đăng ký.</value>
-  </data>
-  <data name="This passport number is already registered." xml:space="preserve">
-    <value>Số hộ chiếu này đã được đăng ký.</value>
-  </data>
-  <data name="The registration has expired. Please register again." xml:space="preserve">
-    <value>Phiên đăng ký đã hết hạn. Vui lòng đăng ký lại.</value>
-  </data>
-  <data name="The verification code is wrong or has expired." xml:space="preserve">
-    <value>Mã xác minh sai hoặc đã hết hạn.</value>
-  </data>
-  <data name="Sign in to SaigonBite" xml:space="preserve">
-    <value>Đăng nhập vào SaigonBite</value>
-  </data>
-  <data name="Use your phone number, passport number or staff account." xml:space="preserve">
-    <value>Dùng số điện thoại, số hộ chiếu hoặc tài khoản nhân viên.</value>
-  </data>
-  <data name="Phone, passport or staff ID" xml:space="preserve">
-    <value>Số điện thoại, hộ chiếu hoặc mã nhân viên</value>
-  </data>
-  <data name="Password" xml:space="preserve">
-    <value>Mật khẩu</value>
-  </data>
-  <data name="New to SaigonBite?" xml:space="preserve">
-    <value>Mới dùng SaigonBite?</value>
-  </data>
-  <data name="Register as Local Customer" xml:space="preserve">
-    <value>Đăng ký khách hàng trong nước</value>
-  </data>
-  <data name="Register as Foreign Tourist" xml:space="preserve">
-    <value>Đăng ký khách du lịch nước ngoài</value>
-  </data>
-  <data name="Invalid identifier or password." xml:space="preserve">
-    <value>Số điện thoại/hộ chiếu hoặc mật khẩu không đúng.</value>
-  </data>
-  <data name="Sign out" xml:space="preserve">
-    <value>Đăng xuất</value>
-  </data>
-  <data name="Access denied" xml:space="preserve">
-    <value>Truy cập bị từ chối</value>
-  </data>
-  <data name="Your account does not have permission to open this page." xml:space="preserve">
-    <value>Tài khoản của bạn không có quyền mở trang này.</value>
-  </data>
-  <data name="Back to home" xml:space="preserve">
-    <value>Về trang chủ</value>
-  </data>
-  <data name="Welcome to SaigonBite" xml:space="preserve">
-    <value>Chào mừng đến với SaigonBite</value>
-  </data>
-  <data name="Signed in as" xml:space="preserve">
-    <value>Đã đăng nhập:</value>
-  </data>
-  <data name="Manage User Accounts" xml:space="preserve">
-    <value>Quản lý tài khoản người dùng</value>
-  </data>
-  <data name="All User Accounts" xml:space="preserve">
-    <value>Tất cả tài khoản người dùng</value>
-  </data>
-  <data name="Search across identifier, email, role and account status." xml:space="preserve">
-    <value>Tìm theo mã đăng nhập, email, vai trò và trạng thái tài khoản.</value>
-  </data>
-  <data name="Search" xml:space="preserve">
-    <value>Tìm kiếm</value>
-  </data>
-  <data name="Name, phone, passport, email" xml:space="preserve">
-    <value>Tên, số điện thoại, hộ chiếu, email</value>
-  </data>
-  <data name="Role Filter" xml:space="preserve">
-    <value>Lọc theo vai trò</value>
-  </data>
-  <data name="All roles" xml:space="preserve">
-    <value>Tất cả vai trò</value>
-  </data>
-  <data name="Status" xml:space="preserve">
-    <value>Trạng thái</value>
-  </data>
-  <data name="All statuses" xml:space="preserve">
-    <value>Tất cả trạng thái</value>
-  </data>
-  <data name="Filter" xml:space="preserve">
-    <value>Lọc</value>
-  </data>
-  <data name="Clear" xml:space="preserve">
-    <value>Xóa lọc</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Tên</value>
-  </data>
-  <data name="Role" xml:space="preserve">
-    <value>Vai trò</value>
-  </data>
-  <data name="Identifier" xml:space="preserve">
-    <value>Mã định danh</value>
-  </data>
-  <data name="Actions" xml:space="preserve">
-    <value>Thao tác</value>
-  </data>
-  <data name="Active" xml:space="preserve">
-    <value>Hoạt động</value>
-  </data>
-  <data name="Inactive" xml:space="preserve">
-    <value>Ngừng hoạt động</value>
-  </data>
-  <data name="View" xml:space="preserve">
-    <value>Xem</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Sửa</value>
-  </data>
-  <data name="Deactivate" xml:space="preserve">
-    <value>Vô hiệu hóa</value>
-  </data>
-  <data name="Local Customer" xml:space="preserve">
-    <value>Khách hàng trong nước</value>
-  </data>
-  <data name="Foreign Tourist" xml:space="preserve">
-    <value>Khách du lịch nước ngoài</value>
-  </data>
-  <data name="Kitchen Staff" xml:space="preserve">
-    <value>Nhân viên bếp</value>
-  </data>
-  <data name="Shipper" xml:space="preserve">
-    <value>Người giao hàng</value>
-  </data>
-  <data name="Admin" xml:space="preserve">
-    <value>Quản trị viên</value>
-  </data>
-  <data name="No accounts match the search." xml:space="preserve">
-    <value>Không có tài khoản nào phù hợp.</value>
-  </data>
-  <data name="accounts found" xml:space="preserve">
-    <value>tài khoản được tìm thấy</value>
-  </data>
-  <data name="Pages" xml:space="preserve">
-    <value>Trang</value>
-  </data>
-  <data name="Account Details" xml:space="preserve">
-    <value>Chi tiết tài khoản</value>
-  </data>
-  <data name="Account ID" xml:space="preserve">
-    <value>Mã tài khoản</value>
-  </data>
-  <data name="Phone Number" xml:space="preserve">
-    <value>Số điện thoại</value>
-  </data>
-  <data name="Passport Number" xml:space="preserve">
-    <value>Số hộ chiếu</value>
-  </data>
-  <data name="Staff Identifier" xml:space="preserve">
-    <value>Mã nhân viên</value>
-  </data>
-  <data name="Assigned Hub" xml:space="preserve">
-    <value>Bếp được phân công</value>
-  </data>
-  <data name="Created" xml:space="preserve">
-    <value>Ngày tạo</value>
-  </data>
-  <data name="Back to list" xml:space="preserve">
-    <value>Về danh sách</value>
-  </data>
-  <data name="Edit User Account" xml:space="preserve">
-    <value>Sửa tài khoản người dùng</value>
-  </data>
-  <data name="Edit Kitchen Staff Account" xml:space="preserve">
-    <value>Sửa tài khoản nhân viên bếp</value>
-  </data>
-  <data name="Edit Staff Account" xml:space="preserve">
-    <value>Sửa tài khoản nhân viên</value>
-  </data>
-  <data name="Edit User" xml:space="preserve">
-    <value>Sửa người dùng</value>
-  </data>
-  <data name="Staff Profile" xml:space="preserve">
-    <value>Hồ sơ nhân viên</value>
-  </data>
-  <data name="Role and identifier are validated before saving." xml:space="preserve">
-    <value>Vai trò và mã định danh được kiểm tra trước khi lưu.</value>
-  </data>
-  <data name="New Password (optional)" xml:space="preserve">
-    <value>Mật khẩu mới (không bắt buộc)</value>
-  </data>
-  <data name="Leave blank to retain current password" xml:space="preserve">
-    <value>Để trống nếu giữ mật khẩu hiện tại</value>
-  </data>
-  <data name="Confirm New Password" xml:space="preserve">
-    <value>Xác nhận mật khẩu mới</value>
-  </data>
-  <data name="Only required when changing password" xml:space="preserve">
-    <value>Chỉ cần nhập khi đổi mật khẩu</value>
-  </data>
-  <data name="Account Status" xml:space="preserve">
-    <value>Trạng thái tài khoản</value>
-  </data>
-  <data name="Deactivate Account" xml:space="preserve">
-    <value>Vô hiệu hóa tài khoản</value>
-  </data>
-  <data name="Save Changes" xml:space="preserve">
-    <value>Lưu thay đổi</value>
-  </data>
-  <data name="Save Staff Profile" xml:space="preserve">
-    <value>Lưu hồ sơ nhân viên</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Hủy</value>
-  </data>
-  <data name="Select a hub" xml:space="preserve">
-    <value>Chọn bếp</value>
-  </data>
-  <data name="Account not found." xml:space="preserve">
-    <value>Không tìm thấy tài khoản.</value>
-  </data>
-  <data name="Account saved." xml:space="preserve">
-    <value>Đã lưu tài khoản.</value>
-  </data>
-  <data name="Account deactivated." xml:space="preserve">
-    <value>Đã vô hiệu hóa tài khoản.</value>
-  </data>
-  <data name="This account is already inactive." xml:space="preserve">
-    <value>Tài khoản này đã ngừng hoạt động.</value>
-  </data>
-  <data name="You cannot deactivate your own account." xml:space="preserve">
-    <value>Bạn không thể vô hiệu hóa tài khoản của chính mình.</value>
-  </data>
-  <data name="Staff ID must have 3 to 30 letters, digits or hyphens." xml:space="preserve">
-    <value>Mã nhân viên gồm 3 đến 30 chữ cái, chữ số hoặc dấu gạch ngang.</value>
-  </data>
-  <data name="Choose an assigned hub for kitchen staff." xml:space="preserve">
-    <value>Hãy chọn bếp được phân công cho nhân viên bếp.</value>
-  </data>
-  <data name="This staff ID is already in use." xml:space="preserve">
-    <value>Mã nhân viên này đã được sử dụng.</value>
-  </data>
-  <data name="Deactivate this account? The person will no longer be able to sign in." xml:space="preserve">
-    <value>Vô hiệu hóa tài khoản này? Người dùng sẽ không thể đăng nhập nữa.</value>
-  </data>
-  <data name="Manage User Accounts" xml:space="preserve">
-    <value>Quản lý tài khoản người dùng</value>
-  </data>
-  <data name="All User Accounts" xml:space="preserve">
-    <value>Tất cả tài khoản người dùng</value>
-  </data>
-  <data name="Search across identifier, email, role and account status." xml:space="preserve">
-    <value>Tìm theo mã đăng nhập, email, vai trò và trạng thái tài khoản.</value>
-  </data>
-  <data name="Search" xml:space="preserve">
-    <value>Tìm kiếm</value>
-  </data>
-  <data name="Name, phone, passport, email" xml:space="preserve">
-    <value>Tên, số điện thoại, hộ chiếu, email</value>
-  </data>
-  <data name="Role Filter" xml:space="preserve">
-    <value>Lọc theo vai trò</value>
-  </data>
-  <data name="All roles" xml:space="preserve">
-    <value>Tất cả vai trò</value>
-  </data>
-  <data name="Status" xml:space="preserve">
-    <value>Trạng thái</value>
-  </data>
-  <data name="All statuses" xml:space="preserve">
-    <value>Tất cả trạng thái</value>
-  </data>
-  <data name="Filter" xml:space="preserve">
-    <value>Lọc</value>
-  </data>
-  <data name="Clear" xml:space="preserve">
-    <value>Xóa lọc</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Tên</value>
-  </data>
-  <data name="Role" xml:space="preserve">
-    <value>Vai trò</value>
-  </data>
-  <data name="Identifier" xml:space="preserve">
-    <value>Mã định danh</value>
-  </data>
-  <data name="Actions" xml:space="preserve">
-    <value>Thao tác</value>
-  </data>
-  <data name="Active" xml:space="preserve">
-    <value>Hoạt động</value>
-  </data>
-  <data name="Inactive" xml:space="preserve">
-    <value>Ngừng hoạt động</value>
-  </data>
-  <data name="View" xml:space="preserve">
-    <value>Xem</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Sửa</value>
-  </data>
-  <data name="Deactivate" xml:space="preserve">
-    <value>Vô hiệu hóa</value>
-  </data>
-  <data name="Local Customer" xml:space="preserve">
-    <value>Khách hàng trong nước</value>
-  </data>
-  <data name="Foreign Tourist" xml:space="preserve">
-    <value>Khách du lịch nước ngoài</value>
-  </data>
-  <data name="Kitchen Staff" xml:space="preserve">
-    <value>Nhân viên bếp</value>
-  </data>
-  <data name="Shipper" xml:space="preserve">
-    <value>Người giao hàng</value>
-  </data>
-  <data name="Admin" xml:space="preserve">
-    <value>Quản trị viên</value>
-  </data>
-  <data name="No accounts match the search." xml:space="preserve">
-    <value>Không có tài khoản nào phù hợp.</value>
-  </data>
-  <data name="accounts found" xml:space="preserve">
-    <value>tài khoản được tìm thấy</value>
-  </data>
-  <data name="Pages" xml:space="preserve">
-    <value>Trang</value>
-  </data>
-  <data name="Account Details" xml:space="preserve">
-    <value>Chi tiết tài khoản</value>
-  </data>
-  <data name="Account ID" xml:space="preserve">
-    <value>Mã tài khoản</value>
-  </data>
-  <data name="Phone Number" xml:space="preserve">
-    <value>Số điện thoại</value>
-  </data>
-  <data name="Passport Number" xml:space="preserve">
-    <value>Số hộ chiếu</value>
-  </data>
-  <data name="Staff Identifier" xml:space="preserve">
-    <value>Mã nhân viên</value>
-  </data>
-  <data name="Assigned Hub" xml:space="preserve">
-    <value>Bếp được phân công</value>
-  </data>
-  <data name="Created" xml:space="preserve">
-    <value>Ngày tạo</value>
-  </data>
-  <data name="Back to list" xml:space="preserve">
-    <value>Về danh sách</value>
-  </data>
-  <data name="Edit User Account" xml:space="preserve">
-    <value>Sửa tài khoản người dùng</value>
-  </data>
-  <data name="Edit Kitchen Staff Account" xml:space="preserve">
-    <value>Sửa tài khoản nhân viên bếp</value>
-  </data>
-  <data name="Edit Staff Account" xml:space="preserve">
-    <value>Sửa tài khoản nhân viên</value>
-  </data>
-  <data name="Edit User" xml:space="preserve">
-    <value>Sửa người dùng</value>
-  </data>
-  <data name="Staff Profile" xml:space="preserve">
-    <value>Hồ sơ nhân viên</value>
-  </data>
-  <data name="Role and identifier are validated before saving." xml:space="preserve">
-    <value>Vai trò và mã định danh được kiểm tra trước khi lưu.</value>
-  </data>
-  <data name="New Password (optional)" xml:space="preserve">
-    <value>Mật khẩu mới (không bắt buộc)</value>
-  </data>
-  <data name="Leave blank to retain current password" xml:space="preserve">
-    <value>Để trống nếu giữ mật khẩu hiện tại</value>
-  </data>
-  <data name="Confirm New Password" xml:space="preserve">
-    <value>Xác nhận mật khẩu mới</value>
-  </data>
-  <data name="Only required when changing password" xml:space="preserve">
-    <value>Chỉ cần nhập khi đổi mật khẩu</value>
-  </data>
-  <data name="Account Status" xml:space="preserve">
-    <value>Trạng thái tài khoản</value>
-  </data>
-  <data name="Deactivate Account" xml:space="preserve">
-    <value>Vô hiệu hóa tài khoản</value>
-  </data>
-  <data name="Save Changes" xml:space="preserve">
-    <value>Lưu thay đổi</value>
-  </data>
-  <data name="Save Staff Profile" xml:space="preserve">
-    <value>Lưu hồ sơ nhân viên</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Hủy</value>
-  </data>
-  <data name="Select a hub" xml:space="preserve">
-    <value>Chọn bếp</value>
-  </data>
-  <data name="Account not found." xml:space="preserve">
-    <value>Không tìm thấy tài khoản.</value>
-  </data>
-  <data name="Account saved." xml:space="preserve">
-    <value>Đã lưu tài khoản.</value>
-  </data>
-  <data name="Account deactivated." xml:space="preserve">
-    <value>Đã vô hiệu hóa tài khoản.</value>
-  </data>
-  <data name="This account is already inactive." xml:space="preserve">
-    <value>Tài khoản này đã ngừng hoạt động.</value>
-  </data>
-  <data name="You cannot deactivate your own account." xml:space="preserve">
-    <value>Bạn không thể vô hiệu hóa tài khoản của chính mình.</value>
-  </data>
-  <data name="Staff ID must have 3 to 30 letters, digits or hyphens." xml:space="preserve">
-    <value>Mã nhân viên gồm 3 đến 30 chữ cái, chữ số hoặc dấu gạch ngang.</value>
-  </data>
-  <data name="Choose an assigned hub for kitchen staff." xml:space="preserve">
-    <value>Hãy chọn bếp được phân công cho nhân viên bếp.</value>
-  </data>
-  <data name="This staff ID is already in use." xml:space="preserve">
-    <value>Mã nhân viên này đã được sử dụng.</value>
-  </data>
-  <data name="Deactivate this account? The person will no longer be able to sign in." xml:space="preserve">
-    <value>Vô hiệu hóa tài khoản này? Người dùng sẽ không thể đăng nhập nữa.</value>
-  </data>
-  <data name="Reactivate" xml:space="preserve">
-    <value>Kích hoạt lại</value>
-  </data>
-  <data name="Reactivate Account" xml:space="preserve">
-    <value>Kích hoạt lại tài khoản</value>
-  </data>
-  <data name="Account reactivated." xml:space="preserve">
-    <value>Đã kích hoạt lại tài khoản.</value>
-  </data>
-  <data name="This account is already active." xml:space="preserve">
-    <value>Tài khoản này đang hoạt động.</value>
-  </data>
-  <data name="Add User" xml:space="preserve">
-    <value>Thêm người dùng</value>
-  </data>
-  <data name="Add Staff, Shipper or Admin Account" xml:space="preserve">
-    <value>Thêm tài khoản nhân viên, người giao hàng hoặc quản trị viên</value>
-  </data>
-  <data name="New Internal Account" xml:space="preserve">
-    <value>Tài khoản nội bộ mới</value>
-  </data>
-  <data name="Staff Identifier (unique)" xml:space="preserve">
-    <value>Mã nhân viên (không trùng)</value>
-  </data>
-  <data name="Assigned Hub (required for Kitchen Staff)" xml:space="preserve">
-    <value>Bếp được phân công (bắt buộc với nhân viên bếp)</value>
-  </data>
-  <data name="Temporary Password (minimum 8 characters)" xml:space="preserve">
-    <value>Mật khẩu tạm thời (tối thiểu 8 ký tự)</value>
-  </data>
-  <data name="At least 8 characters" xml:space="preserve">
-    <value>Ít nhất 8 ký tự</value>
-  </data>
-  <data name="Re-enter password" xml:space="preserve">
-    <value>Nhập lại mật khẩu</value>
-  </data>
-  <data name="Create Account" xml:space="preserve">
-    <value>Tạo tài khoản</value>
-  </data>
-  <data name="Role must be Kitchen Staff, Shipper or Admin." xml:space="preserve">
-    <value>Vai trò phải là nhân viên bếp, người giao hàng hoặc quản trị viên.</value>
-  </data>
-  <data name="Access role" xml:space="preserve">
-    <value>Vai trò truy cập</value>
-  </data>
-  <data name="Accept Job" xml:space="preserve">
-    <value>Nhận đơn giao</value>
-  </data>
-  <data name="Action" xml:space="preserve">
-    <value>Thao tác</value>
-  </data>
-  <data name="Add Available Item" xml:space="preserve">
-    <value>Thêm món còn phục vụ</value>
-  </data>
-  <data name="Add more items" xml:space="preserve">
-    <value>Thêm món khác</value>
-  </data>
-  <data name="Add to Cart" xml:space="preserve">
-    <value>Thêm vào giỏ</value>
-  </data>
-  <data name="Admin Order Oversight" xml:space="preserve">
-    <value>Giám sát đơn hàng (Quản trị)</value>
-  </data>
-  <data name="After 5 minutes" xml:space="preserve">
-    <value>Sau 5 phút</value>
-  </data>
-  <data name="All hubs" xml:space="preserve">
-    <value>Tất cả bếp</value>
-  </data>
-  <data name="Allowed action" xml:space="preserve">
-    <value>Thao tác được phép</value>
-  </data>
-  <data name="Amount" xml:space="preserve">
-    <value>Số tiền</value>
-  </data>
-  <data name="Amount paid" xml:space="preserve">
-    <value>Số tiền đã thanh toán</value>
-  </data>
-  <data name="Amount to collect" xml:space="preserve">
-    <value>Số tiền cần thu</value>
-  </data>
-  <data name="Amount to pay on delivery" xml:space="preserve">
-    <value>Số tiền thanh toán khi nhận hàng</value>
-  </data>
-  <data name="Automatic assignment" xml:space="preserve">
-    <value>Tự động phân công</value>
-  </data>
-  <data name="Available Jobs" xml:space="preserve">
-    <value>Đơn giao đang chờ</value>
-  </data>
-  <data name="Available menu items" xml:space="preserve">
-    <value>Món đang phục vụ</value>
-  </data>
-  <data name="Back" xml:space="preserve">
-    <value>Quay lại</value>
-  </data>
-  <data name="Back to Cart" xml:space="preserve">
-    <value>Quay lại giỏ hàng</value>
-  </data>
-  <data name="Back to Jobs" xml:space="preserve">
-    <value>Quay lại danh sách đơn</value>
-  </data>
-  <data name="Back to Menu" xml:space="preserve">
-    <value>Quay lại thực đơn</value>
-  </data>
-  <data name="Benefit" xml:space="preserve">
-    <value>Ưu đãi</value>
-  </data>
-  <data name="Brand" xml:space="preserve">
-    <value>Thương hiệu</value>
-  </data>
-  <data name="Browse Menu" xml:space="preserve">
-    <value>Xem thực đơn</value>
-  </data>
-  <data name="Browse Menu and Choose Hub" xml:space="preserve">
-    <value>Xem thực đơn và chọn bếp</value>
-  </data>
-  <data name="Busy" xml:space="preserve">
-    <value>Đang bận</value>
-  </data>
-  <data name="Cancel Order" xml:space="preserve">
-    <value>Hủy đơn hàng</value>
-  </data>
-  <data name="Cancel Order and Refund" xml:space="preserve">
-    <value>Hủy đơn và hoàn tiền</value>
-  </data>
-  <data name="Cancelled" xml:space="preserve">
-    <value>Đã hủy</value>
-  </data>
-  <data name="Cart Summary" xml:space="preserve">
-    <value>Tóm tắt giỏ hàng</value>
-  </data>
-  <data name="Cash Confirmed" xml:space="preserve">
-    <value>Đã xác nhận thu tiền</value>
-  </data>
-  <data name="Cash Not Confirmed" xml:space="preserve">
-    <value>Chưa xác nhận thu tiền</value>
-  </data>
-  <data name="Cash on Delivery" xml:space="preserve">
-    <value>Thanh toán khi nhận hàng (COD)</value>
-  </data>
-  <data name="Cash on Delivery is allowed when the rounded total is at most 1,000,000 VND." xml:space="preserve">
-    <value>Thanh toán khi nhận hàng chỉ áp dụng khi tổng tiền đã làm tròn không quá 1,000,000 VND.</value>
-  </data>
-  <data name="Category" xml:space="preserve">
-    <value>Danh mục</value>
-  </data>
-  <data name="Change Address" xml:space="preserve">
-    <value>Đổi địa chỉ</value>
-  </data>
-  <data name="Change Payment Method" xml:space="preserve">
-    <value>Đổi phương thức thanh toán</value>
-  </data>
-  <data name="Checkout" xml:space="preserve">
-    <value>Thanh toán</value>
-  </data>
-  <data name="Checkout - Foreign Tourist" xml:space="preserve">
-    <value>Thanh toán - Khách du lịch nước ngoài</value>
-  </data>
-  <data name="Checkout - Local Customer" xml:space="preserve">
-    <value>Thanh toán - Khách hàng trong nước</value>
-  </data>
-  <data name="Choose Another Hub" xml:space="preserve">
-    <value>Chọn bếp khác</value>
-  </data>
-  <data name="Choose a payment method." xml:space="preserve">
-    <value>Hãy chọn phương thức thanh toán.</value>
-  </data>
-  <data name="Confirm / Reject" xml:space="preserve">
-    <value>Xác nhận / Từ chối</value>
-  </data>
-  <data name="Confirm Cancellation" xml:space="preserve">
-    <value>Xác nhận hủy</value>
-  </data>
-  <data name="Confirm Cash Collected" xml:space="preserve">
-    <value>Xác nhận đã thu tiền mặt</value>
-  </data>
-  <data name="Confirm Order" xml:space="preserve">
-    <value>Xác nhận đơn</value>
-  </data>
-  <data name="Confirm Pick Up" xml:space="preserve">
-    <value>Xác nhận đã lấy hàng</value>
-  </data>
-  <data name="Confirmed" xml:space="preserve">
-    <value>Đã xác nhận</value>
-  </data>
-  <data name="Confirmed and Preparing orders count toward the hub load (BR8)." xml:space="preserve">
-    <value>Đơn Đã xác nhận và Đang chuẩn bị được tính vào tải của bếp (BR8).</value>
-  </data>
-  <data name="Continue to Checkout" xml:space="preserve">
-    <value>Tiếp tục thanh toán</value>
-  </data>
-  <data name="Current load" xml:space="preserve">
-    <value>Tải hiện tại</value>
-  </data>
-  <data name="Customer" xml:space="preserve">
-    <value>Khách hàng</value>
-  </data>
-  <data name="Customer address" xml:space="preserve">
-    <value>Địa chỉ khách hàng</value>
-  </data>
-  <data name="Customer could not be contacted" xml:space="preserve">
-    <value>Không liên lạc được với khách hàng</value>
-  </data>
-  <data name="Customer portal" xml:space="preserve">
-    <value>Cổng khách hàng</value>
-  </data>
-  <data name="Delivered" xml:space="preserve">
-    <value>Đã giao</value>
-  </data>
-  <data name="Delivery" xml:space="preserve">
-    <value>Giao hàng</value>
-  </data>
-  <data name="Delivery Assignment" xml:space="preserve">
-    <value>Phân công giao hàng</value>
-  </data>
-  <data name="Delivery Details" xml:space="preserve">
-    <value>Chi tiết giao hàng</value>
-  </data>
-  <data name="Delivery Failure Handling" xml:space="preserve">
-    <value>Xử lý giao hàng thất bại</value>
-  </data>
-  <data name="Delivery address" xml:space="preserve">
-    <value>Địa chỉ giao hàng</value>
-  </data>
-  <data name="Delivery and Payment" xml:space="preserve">
-    <value>Giao hàng và thanh toán</value>
-  </data>
-  <data name="Delivery fee (D)" xml:space="preserve">
-    <value>Phí giao hàng (D)</value>
-  </data>
-  <data name="Discard Changes" xml:space="preserve">
-    <value>Bỏ thay đổi</value>
-  </data>
-  <data name="Distance from hub (km, max 8.0)" xml:space="preserve">
-    <value>Khoảng cách từ bếp (km, tối đa 8.0)</value>
-  </data>
-  <data name="Edit Items" xml:space="preserve">
-    <value>Sửa món</value>
-  </data>
-  <data name="Edit Items for {0}" xml:space="preserve">
-    <value>Sửa món của đơn {0}</value>
-  </data>
-  <data name="Edit Order Items (Placed Only)" xml:space="preserve">
-    <value>Sửa món trong đơn (chỉ khi đơn Đã đặt)</value>
-  </data>
-  <data name="Editing is allowed because this order is still Placed." xml:space="preserve">
-    <value>Được phép sửa vì đơn hàng vẫn ở trạng thái Đã đặt.</value>
-  </data>
-  <data name="Edits keep the pricing conditions from when you ordered." xml:space="preserve">
-    <value>Khi sửa, giá vẫn tính theo điều kiện lúc bạn đặt hàng.</value>
-  </data>
-  <data name="Enter a delivery address." xml:space="preserve">
-    <value>Hãy nhập địa chỉ giao hàng.</value>
-  </data>
-  <data name="Enter the distance from the hub in km." xml:space="preserve">
-    <value>Hãy nhập khoảng cách từ bếp (km).</value>
-  </data>
-  <data name="Failed" xml:space="preserve">
-    <value>Giao thất bại</value>
-  </data>
-  <data name="Failure reason (if customer unreachable)" xml:space="preserve">
-    <value>Lý do thất bại (nếu không liên lạc được khách)</value>
-  </data>
-  <data name="Final Price Before Payment" xml:space="preserve">
-    <value>Giá cuối cùng trước khi thanh toán</value>
-  </data>
-  <data name="Final total" xml:space="preserve">
-    <value>Tổng cuối cùng</value>
-  </data>
-  <data name="Food subtotal (S)" xml:space="preserve">
-    <value>Tạm tính tiền món (S)</value>
-  </data>
-  <data name="Food total (F)" xml:space="preserve">
-    <value>Tiền món (F)</value>
-  </data>
-  <data name="From" xml:space="preserve">
-    <value>Từ ngày</value>
-  </data>
-  <data name="Full simulated refund if cancellation succeeds: {0}" xml:space="preserve">
-    <value>Hoàn tiền (mô phỏng) toàn bộ nếu hủy thành công: {0}</value>
-  </data>
-  <data name="Heavy Rain Flag" xml:space="preserve">
-    <value>Cờ mưa lớn</value>
-  </data>
-  <data name="Heavy-rain flag (a 10,000 VND surcharge on new orders)" xml:space="preserve">
-    <value>Cờ mưa lớn (phụ phí 10,000 VND cho đơn mới)</value>
-  </data>
-  <data name="Heavy-rain flag is ON." xml:space="preserve">
-    <value>Cờ mưa lớn đang BẬT.</value>
-  </data>
-  <data name="Heavy-rain surcharge" xml:space="preserve">
-    <value>Phụ phí mưa lớn</value>
-  </data>
-  <data name="Heavy-rain surcharge (R2)" xml:space="preserve">
-    <value>Phụ phí mưa lớn (R2)</value>
-  </data>
-  <data name="Hotel Delivery and Payment" xml:space="preserve">
-    <value>Giao đến khách sạn và thanh toán</value>
-  </data>
-  <data name="Hotel or delivery address" xml:space="preserve">
-    <value>Khách sạn hoặc địa chỉ giao hàng</value>
-  </data>
-  <data name="Hub" xml:space="preserve">
-    <value>Bếp</value>
-  </data>
-  <data name="Hub Is Too Busy" xml:space="preserve">
-    <value>Bếp đang quá tải</value>
-  </data>
-  <data name="Hub filter" xml:space="preserve">
-    <value>Lọc theo bếp</value>
-  </data>
-  <data name="Hub load" xml:space="preserve">
-    <value>Tải của bếp</value>
-  </data>
-  <data name="Hub: {0} - {1} load" xml:space="preserve">
-    <value>Bếp: {0} - tải {1}</value>
-  </data>
-  <data name="Item" xml:space="preserve">
-    <value>Món</value>
-  </data>
-  <data name="Item subtotal (S)" xml:space="preserve">
-    <value>Tiền món (S)</value>
-  </data>
-  <data name="Items" xml:space="preserve">
-    <value>Số dòng</value>
-  </data>
-  <data name="Keep Order" xml:space="preserve">
-    <value>Giữ đơn hàng</value>
-  </data>
-  <data name="Kitchen Order Actions" xml:space="preserve">
-    <value>Thao tác với đơn hàng</value>
-  </data>
-  <data name="Kitchen Orders at My Hub" xml:space="preserve">
-    <value>Đơn hàng tại bếp của tôi</value>
-  </data>
-  <data name="Kitchen hub" xml:space="preserve">
-    <value>Bếp</value>
-  </data>
-  <data name="Kitchen staff portal" xml:space="preserve">
-    <value>Cổng nhân viên bếp</value>
-  </data>
-  <data name="Kitchen {0} busy" xml:space="preserve">
-    <value>Bếp bận {0}</value>
-  </data>
-  <data name="Least active deliveries, longest waiting breaks a tie" xml:space="preserve">
-    <value>Ưu tiên người có ít đơn đang giao nhất; nếu bằng nhau, người chờ lâu nhất</value>
-  </data>
-  <data name="Line total" xml:space="preserve">
-    <value>Thành tiền</value>
-  </data>
-  <data name="Live Price Breakdown" xml:space="preserve">
-    <value>Chi tiết giá</value>
-  </data>
-  <data name="Mark Delivered" xml:space="preserve">
-    <value>Đánh dấu đã giao</value>
-  </data>
-  <data name="Mark Delivered is available after the cash is confirmed." xml:space="preserve">
-    <value>Chỉ đánh dấu đã giao được sau khi xác nhận đã thu tiền.</value>
-  </data>
-  <data name="Mark Ready" xml:space="preserve">
-    <value>Đánh dấu sẵn sàng</value>
-  </data>
-  <data name="Menu" xml:space="preserve">
-    <value>Menu</value>
-  </data>
-  <data name="Menu item" xml:space="preserve">
-    <value>Món ăn</value>
-  </data>
-  <data name="Minimum food order: 50,000 VND. Choose available items only." xml:space="preserve">
-    <value>Đơn tối thiểu tiền món: 50,000 VND. Chỉ chọn các món còn phục vụ.</value>
-  </data>
-  <data name="Mock payment gateway declines online payments (for the demo)" xml:space="preserve">
-    <value>Cổng thanh toán giả lập từ chối thanh toán trực tuyến (để demo)</value>
-  </data>
-  <data name="My Active Deliveries" xml:space="preserve">
-    <value>Đơn tôi đang giao</value>
-  </data>
-  <data name="My Orders" xml:space="preserve">
-    <value>Đơn hàng của tôi</value>
-  </data>
-  <data name="My active deliveries" xml:space="preserve">
-    <value>Đơn tôi đang giao</value>
-  </data>
-  <data name="No Ready orders right now." xml:space="preserve">
-    <value>Hiện chưa có đơn Sẵn sàng.</value>
-  </data>
-  <data name="No kitchen hub is open yet." xml:space="preserve">
-    <value>Chưa có bếp nào mở cửa.</value>
-  </data>
-  <data name="No orders found." xml:space="preserve">
-    <value>Không tìm thấy đơn hàng.</value>
-  </data>
-  <data name="No rain fee" xml:space="preserve">
-    <value>Không có phụ phí mưa</value>
-  </data>
-  <data name="Not accepting new orders (90%+)" xml:space="preserve">
-    <value>Không nhận đơn mới (từ 90%)</value>
-  </data>
-  <data name="Open" xml:space="preserve">
-    <value>Mở</value>
-  </data>
-  <data name="Order" xml:space="preserve">
-    <value>Đơn hàng</value>
-  </data>
-  <data name="Order Details and Tracking" xml:space="preserve">
-    <value>Chi tiết và theo dõi đơn hàng</value>
-  </data>
-  <data name="Order ID" xml:space="preserve">
-    <value>Mã đơn</value>
-  </data>
-  <data name="Order Needs Changes" xml:space="preserve">
-    <value>Đơn hàng cần chỉnh sửa</value>
-  </data>
-  <data name="Order Not Created" xml:space="preserve">
-    <value>Đơn hàng chưa được tạo</value>
-  </data>
-  <data name="Order Oversight" xml:space="preserve">
-    <value>Giám sát đơn hàng</value>
-  </data>
-  <data name="Order Placed Successfully" xml:space="preserve">
-    <value>Đặt hàng thành công</value>
-  </data>
-  <data name="Order cancelled." xml:space="preserve">
-    <value>Đã hủy đơn hàng.</value>
-  </data>
-  <data name="Order food" xml:space="preserve">
-    <value>Đặt món</value>
-  </data>
-  <data name="Order status" xml:space="preserve">
-    <value>Trạng thái đơn</value>
-  </data>
-  <data name="Order updated. The price was recalculated with the conditions from when you ordered." xml:space="preserve">
-    <value>Đã cập nhật đơn hàng. Giá được tính lại theo điều kiện lúc bạn đặt hàng.</value>
-  </data>
-  <data name="Order {0}" xml:space="preserve">
-    <value>Đơn {0}</value>
-  </data>
-  <data name="Orders at My Hub" xml:space="preserve">
-    <value>Đơn tại bếp của tôi</value>
-  </data>
-  <data name="Out for Delivery" xml:space="preserve">
-    <value>Đang giao</value>
-  </data>
-  <data name="Payment" xml:space="preserve">
-    <value>Thanh toán</value>
-  </data>
-  <data name="Payment Could Not Be Processed" xml:space="preserve">
-    <value>Không thể xử lý thanh toán</value>
-  </data>
-  <data name="Payment Failed" xml:space="preserve">
-    <value>Thanh toán thất bại</value>
-  </data>
-  <data name="Payment Not Completed" xml:space="preserve">
-    <value>Thanh toán chưa hoàn tất</value>
-  </data>
-  <data name="Payment method" xml:space="preserve">
-    <value>Phương thức thanh toán</value>
-  </data>
-  <data name="Payment method: Cash on Delivery. Nothing was paid, so nothing is refunded." xml:space="preserve">
-    <value>Phương thức thanh toán: Thanh toán khi nhận hàng. Chưa thanh toán nên không có khoản nào cần hoàn.</value>
-  </data>
-  <data name="Payment method: {0} (simulated online payment)." xml:space="preserve">
-    <value>Phương thức thanh toán: {0} (thanh toán trực tuyến mô phỏng).</value>
-  </data>
-  <data name="Pickup hub" xml:space="preserve">
-    <value>Bếp lấy hàng</value>
-  </data>
-  <data name="Place Order" xml:space="preserve">
-    <value>Đặt hàng</value>
-  </data>
-  <data name="Placed" xml:space="preserve">
-    <value>Đã đặt</value>
-  </data>
-  <data name="Placed - awaiting confirmation" xml:space="preserve">
-    <value>Đã đặt - chờ xác nhận</value>
-  </data>
-  <data name="Placed at" xml:space="preserve">
-    <value>Đặt lúc</value>
-  </data>
-  <data name="Placed at {0}" xml:space="preserve">
-    <value>Đặt lúc {0}</value>
-  </data>
-  <data name="Placed at {0} (Vietnam local time). Kitchen staff may confirm or reject it." xml:space="preserve">
-    <value>Đặt lúc {0} (giờ Việt Nam). Nhân viên bếp có thể xác nhận hoặc từ chối.</value>
-  </data>
-  <data name="Preparing" xml:space="preserve">
-    <value>Đang chuẩn bị</value>
-  </data>
-  <data name="Price" xml:space="preserve">
-    <value>Giá</value>
-  </data>
-  <data name="Price breakdown" xml:space="preserve">
-    <value>Chi tiết giá</value>
-  </data>
-  <data name="Price changes use the conditions from when you ordered." xml:space="preserve">
-    <value>Thay đổi giá dùng điều kiện lúc bạn đặt hàng.</value>
-  </data>
-  <data name="Pricing for this order" xml:space="preserve">
-    <value>Giá của đơn hàng này</value>
-  </data>
-  <data name="Qty" xml:space="preserve">
-    <value>SL</value>
-  </data>
-  <data name="Quantity" xml:space="preserve">
-    <value>Số lượng</value>
-  </data>
-  <data name="Quantity 0 removes the item." xml:space="preserve">
-    <value>Số lượng 0 sẽ xóa món.</value>
-  </data>
-  <data name="Quiet Kitchen discount (Q)" xml:space="preserve">
-    <value>Giảm giá Bếp vắng (Q)</value>
-  </data>
-  <data name="Quiet Kitchen eligible." xml:space="preserve">
-    <value>Đủ điều kiện giảm giá Bếp vắng.</value>
-  </data>
-  <data name="Quiet Kitchen, 10% off food (BR7)" xml:space="preserve">
-    <value>Bếp vắng, giảm 10% tiền món (BR7)</value>
-  </data>
-  <data name="Quiet Kitchen: 10% off the subtotal" xml:space="preserve">
-    <value>Bếp vắng: giảm 10% tiền món</value>
-  </data>
-  <data name="Rain fee ON" xml:space="preserve">
-    <value>Có phụ phí mưa</value>
-  </data>
-  <data name="Rain flag OFF" xml:space="preserve">
-    <value>Cờ mưa TẮT</value>
-  </data>
-  <data name="Rain flag ON" xml:space="preserve">
-    <value>Cờ mưa BẬT</value>
-  </data>
-  <data name="Ready" xml:space="preserve">
-    <value>Sẵn sàng</value>
-  </data>
-  <data name="Ready Delivery Jobs" xml:space="preserve">
-    <value>Đơn sẵn sàng để giao</value>
-  </data>
-  <data name="Ready orders available for pickup" xml:space="preserve">
-    <value>Đơn sẵn sàng chờ lấy</value>
-  </data>
-  <data name="Reason (required)" xml:space="preserve">
-    <value>Lý do (bắt buộc)</value>
-  </data>
-  <data name="Recalculate" xml:space="preserve">
-    <value>Tính lại</value>
-  </data>
-  <data name="Recalculated Amount" xml:space="preserve">
-    <value>Số tiền sau khi tính lại</value>
-  </data>
-  <data name="Refund Summary" xml:space="preserve">
-    <value>Tóm tắt hoàn tiền</value>
-  </data>
-  <data name="Reject Order with Reason" xml:space="preserve">
-    <value>Từ chối đơn kèm lý do</value>
-  </data>
-  <data name="Reject Reason" xml:space="preserve">
-    <value>Lý do từ chối</value>
-  </data>
-  <data name="Remove Selected Item" xml:space="preserve">
-    <value>Xóa món đã chọn</value>
-  </data>
-  <data name="Report Failed Delivery" xml:space="preserve">
-    <value>Báo giao hàng thất bại</value>
-  </data>
-  <data name="Review Order {0}" xml:space="preserve">
-    <value>Xem đơn {0}</value>
-  </data>
-  <data name="Rounded total" xml:space="preserve">
-    <value>Tổng (đã làm tròn)</value>
-  </data>
-  <data name="Rule" xml:space="preserve">
-    <value>Quy tắc</value>
-  </data>
-  <data name="Rush-hour surcharge (R)" xml:space="preserve">
-    <value>Phụ phí giờ cao điểm (R)</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Lưu</value>
-  </data>
-  <data name="Save Changes and Recalculate" xml:space="preserve">
-    <value>Lưu thay đổi và tính lại</value>
-  </data>
-  <data name="Selected hub: {0}. All items must belong to this hub." xml:space="preserve">
-    <value>Bếp đã chọn: {0}. Tất cả món phải thuộc bếp này.</value>
-  </data>
-  <data name="Selected ingredients are unavailable" xml:space="preserve">
-    <value>Nguyên liệu đã chọn không còn</value>
-  </data>
-  <data name="Settings saved." xml:space="preserve">
-    <value>Đã lưu cài đặt.</value>
-  </data>
-  <data name="Shipper portal" xml:space="preserve">
-    <value>Cổng shipper</value>
-  </data>
-  <data name="Start Preparing" xml:space="preserve">
-    <value>Bắt đầu chuẩn bị</value>
-  </data>
-  <data name="Status History and Permissions" xml:space="preserve">
-    <value>Lịch sử trạng thái</value>
-  </data>
-  <data name="Status filter" xml:space="preserve">
-    <value>Lọc theo trạng thái</value>
-  </data>
-  <data name="Switch Hub" xml:space="preserve">
-    <value>Đổi bếp</value>
-  </data>
-  <data name="The value in force when an order is placed is saved with the order. Orders already placed keep their own value." xml:space="preserve">
-    <value>Giá trị đang áp dụng lúc đặt đơn được lưu cùng đơn hàng. Đơn đã đặt vẫn giữ giá trị của chính nó.</value>
-  </data>
-  <data name="This hub is too busy right now. Please choose another hub." xml:space="preserve">
-    <value>Bếp này đang quá tải. Vui lòng chọn bếp khác.</value>
-  </data>
-  <data name="This order can no longer be cancelled (cancellation is allowed only while Placed or Confirmed)." xml:space="preserve">
-    <value>Không thể hủy đơn này nữa (chỉ được hủy khi đơn ở trạng thái Đã đặt hoặc Đã xác nhận).</value>
-  </data>
-  <data name="This order cannot be placed yet:" xml:space="preserve">
-    <value>Chưa thể đặt đơn này:</value>
-  </data>
-  <data name="To" xml:space="preserve">
-    <value>Đến ngày</value>
-  </data>
-  <data name="Total" xml:space="preserve">
-    <value>Tổng cộng</value>
-  </data>
-  <data name="Try Again" xml:space="preserve">
-    <value>Thử lại</value>
-  </data>
-  <data name="Unit price" xml:space="preserve">
-    <value>Đơn giá</value>
-  </data>
-  <data name="Update Quantities" xml:space="preserve">
-    <value>Cập nhật số lượng</value>
-  </data>
-  <data name="View Cart" xml:space="preserve">
-    <value>Xem giỏ hàng</value>
-  </data>
-  <data name="View Order Details" xml:space="preserve">
-    <value>Xem chi tiết đơn</value>
-  </data>
-  <data name="View only" xml:space="preserve">
-    <value>Chỉ xem</value>
-  </data>
-  <data name="Voucher code (optional)" xml:space="preserve">
-    <value>Mã giảm giá (không bắt buộc)</value>
-  </data>
-  <data name="Voucher discount (V)" xml:space="preserve">
-    <value>Giảm giá voucher (V)</value>
-  </data>
-  <data name="What is wrong" xml:space="preserve">
-    <value>Vấn đề</value>
-  </data>
-  <data name="What to do" xml:space="preserve">
-    <value>Cách xử lý</value>
-  </data>
-  <data name="While this is on, MoMo, VNPay, Apple Pay and PayPal fail and no order is created. Cash on Delivery is not affected." xml:space="preserve">
-    <value>Khi bật, MoMo, VNPay, Apple Pay và PayPal sẽ thất bại và không tạo đơn hàng. Thanh toán khi nhận hàng không bị ảnh hưởng.</value>
-  </data>
-  <data name="Why the Order Was Rejected" xml:space="preserve">
-    <value>Vì sao đơn hàng bị từ chối</value>
-  </data>
-  <data name="Your Cart" xml:space="preserve">
-    <value>Giỏ hàng</value>
-  </data>
-  <data name="Your cart is empty." xml:space="preserve">
-    <value>Giỏ hàng của bạn đang trống.</value>
-  </data>
-  <data name="Your cart is kept. Pick another hub below to continue; the order you are placing is not counted in the load." xml:space="preserve">
-    <value>Giỏ hàng của bạn được giữ nguyên. Hãy chọn bếp khác để tiếp tục; đơn bạn đang đặt không được tính vào tải.</value>
-  </data>
-  <data name="Your cart was cleared because you changed hub." xml:space="preserve">
-    <value>Giỏ hàng đã được xóa vì bạn đổi bếp.</value>
-  </data>
-  <data name="Your order has NOT been created." xml:space="preserve">
-    <value>Đơn hàng của bạn CHƯA được tạo.</value>
-  </data>
-  <data name="Your original pricing" xml:space="preserve">
-    <value>Giá gốc của bạn</value>
-  </data>
-  <data name="pending" xml:space="preserve">
-    <value>đang chờ</value>
-  </data>
-  <data name="refunded" xml:space="preserve">
-    <value>đã hoàn tiền</value>
-  </data>
-  <data name="unavailable" xml:space="preserve">
-    <value>không có</value>
-  </data>
-  <data name="waived (S 300,000+)" xml:space="preserve">
-    <value>miễn (S từ 300,000)</value>
-  </data>
-  <data name="{0} is at {1} load and is not accepting new orders (BR8)." xml:space="preserve">
-    <value>{0} đang ở mức tải {1} và không nhận đơn mới (BR8).</value>
-  </data>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Language" xml:space="preserve"><value>Ngôn ngữ</value></data>
+  <data name="Cloud Kitchen Delivery Platform" xml:space="preserve"><value>Nền tảng giao hàng bếp đám mây</value></data>
+  <data name="Admin portal" xml:space="preserve"><value>Cổng quản trị</value></data>
+  <data name="User Accounts" xml:space="preserve"><value>Tài khoản người dùng</value></data>
+  <data name="Revenue Report R1" xml:space="preserve"><value>Báo cáo doanh thu R1</value></data>
+  <data name="A unified platform for local diners and international guests." xml:space="preserve"><value>Nền tảng thống nhất cho thực khách trong nước và khách quốc tế.</value></data>
+  <data name="One account, many kitchen hubs." xml:space="preserve"><value>Một tài khoản, nhiều bếp.</value></data>
+  <data name="Orders are tracked from placement to delivery." xml:space="preserve"><value>Đơn hàng được theo dõi từ lúc đặt đến khi giao.</value></data>
+  <data name="Local Customer Registration" xml:space="preserve"><value>Đăng ký khách hàng trong nước</value></data>
+  <data name="Create Local Customer Account" xml:space="preserve"><value>Tạo tài khoản khách hàng trong nước</value></data>
+  <data name="Phone number, password and simulated OTP" xml:space="preserve"><value>Số điện thoại, mật khẩu và mã OTP mô phỏng</value></data>
+  <data name="Full Name" xml:space="preserve"><value>Họ và tên</value></data>
+  <data name="Vietnamese Mobile Number" xml:space="preserve"><value>Số điện thoại Việt Nam</value></data>
+  <data name="10 digits beginning with 03, 05, 07, 08 or 09. The number must be unique." xml:space="preserve"><value>10 chữ số, bắt đầu bằng 03, 05, 07, 08 hoặc 09. Số điện thoại phải chưa được đăng ký.</value></data>
+  <data name="Password (minimum 8 characters)" xml:space="preserve"><value>Mật khẩu (tối thiểu 8 ký tự)</value></data>
+  <data name="Confirm Password" xml:space="preserve"><value>Xác nhận mật khẩu</value></data>
+  <data name="Send OTP and Continue" xml:space="preserve"><value>Gửi OTP và tiếp tục</value></data>
+  <data name="Already registered?" xml:space="preserve"><value>Đã có tài khoản?</value></data>
+  <data name="Sign in" xml:space="preserve"><value>Đăng nhập</value></data>
+  <data name="Foreign tourist? Register here" xml:space="preserve"><value>Bạn là khách nước ngoài? Đăng ký tại đây</value></data>
+  <data name="Foreign Tourist Registration" xml:space="preserve"><value>Đăng ký khách du lịch nước ngoài</value></data>
+  <data name="Create Foreign Tourist Account" xml:space="preserve"><value>Tạo tài khoản khách du lịch nước ngoài</value></data>
+  <data name="Passport, nationality, email and optional hotel details" xml:space="preserve"><value>Hộ chiếu, quốc tịch, email và thông tin khách sạn (không bắt buộc)</value></data>
+  <data name="Passport (6-9 letters/digits)" xml:space="preserve"><value>Hộ chiếu (6-9 chữ cái/chữ số)</value></data>
+  <data name="Nationality" xml:space="preserve"><value>Quốc tịch</value></data>
+  <data name="Email" xml:space="preserve"><value>Email</value></data>
+  <data name="Hotel / Delivery Address" xml:space="preserve"><value>Khách sạn / địa chỉ giao hàng</value></data>
+  <data name="Hotel Room Number" xml:space="preserve"><value>Số phòng khách sạn</value></data>
+  <data name="Passport must be unique. Nationality and a valid email are required. Verification uses a simulated email code." xml:space="preserve"><value>Số hộ chiếu phải chưa được đăng ký. Cần có quốc tịch và email hợp lệ. Mã xác minh được gửi qua email mô phỏng.</value></data>
+  <data name="Send Email Code and Continue" xml:space="preserve"><value>Gửi mã qua email và tiếp tục</value></data>
+  <data name="Local customer? Register here" xml:space="preserve"><value>Bạn là khách trong nước? Đăng ký tại đây</value></data>
+  <data name="Verify Registration Code" xml:space="preserve"><value>Xác minh mã đăng ký</value></data>
+  <data name="Identity Verification" xml:space="preserve"><value>Xác minh danh tính</value></data>
+  <data name="Enter the simulated OTP or email code" xml:space="preserve"><value>Nhập mã OTP hoặc mã email mô phỏng</value></data>
+  <data name="Local: Phone OTP" xml:space="preserve"><value>Trong nước: OTP điện thoại</value></data>
+  <data name="Tourist: Email Code" xml:space="preserve"><value>Du khách: mã email</value></data>
+  <data name="Demo code (simulated delivery):" xml:space="preserve"><value>Mã demo (gửi mô phỏng):</value></data>
+  <data name="Verification Code" xml:space="preserve"><value>Mã xác minh</value></data>
+  <data name="Enter six-digit code" xml:space="preserve"><value>Nhập mã gồm sáu chữ số</value></data>
+  <data name="Verify and Create Account" xml:space="preserve"><value>Xác minh và tạo tài khoản</value></data>
+  <data name="Resend Code" xml:space="preserve"><value>Gửi lại mã</value></data>
+  <data name="On success, the account is saved with a hashed password and its role profile." xml:space="preserve"><value>Khi thành công, tài khoản được lưu với mật khẩu đã băm và hồ sơ theo vai trò.</value></data>
+  <data name="A new code has been sent." xml:space="preserve"><value>Đã gửi mã mới.</value></data>
+  <data name="Account created" xml:space="preserve"><value>Đã tạo tài khoản</value></data>
+  <data name="Your account is ready. You can now sign in." xml:space="preserve"><value>Tài khoản của bạn đã sẵn sàng. Bạn có thể đăng nhập ngay.</value></data>
+  <data name="Go to Sign in" xml:space="preserve"><value>Đến trang đăng nhập</value></data>
+  <data name="Passwords do not match." xml:space="preserve"><value>Mật khẩu không khớp.</value></data>
+  <data name="Enter the six-digit verification code." xml:space="preserve"><value>Vui lòng nhập mã xác minh gồm sáu chữ số.</value></data>
+  <data name="Please wait 30 seconds before requesting another code." xml:space="preserve"><value>Vui lòng chờ 30 giây trước khi yêu cầu mã khác.</value></data>
+  <data name="Text is too long." xml:space="preserve"><value>Nội dung quá dài.</value></data>
+  <data name="Password is too long." xml:space="preserve"><value>Mật khẩu quá dài.</value></data>
+  <data name="Phone number must have 10 digits and start with 03, 05, 07, 08 or 09." xml:space="preserve"><value>Số điện thoại phải có 10 chữ số và bắt đầu bằng 03, 05, 07, 08 hoặc 09.</value></data>
+  <data name="Passport number must have 6 to 9 letters or digits." xml:space="preserve"><value>Số hộ chiếu phải gồm 6 đến 9 chữ cái hoặc chữ số.</value></data>
+  <data name="Nationality is required." xml:space="preserve"><value>Vui lòng nhập quốc tịch.</value></data>
+  <data name="Email address is not valid." xml:space="preserve"><value>Địa chỉ email không hợp lệ.</value></data>
+  <data name="Customer type must be Local or Tourist." xml:space="preserve"><value>Loại khách hàng phải là Trong nước hoặc Du khách.</value></data>
+  <data name="Full name is required." xml:space="preserve"><value>Vui lòng nhập họ và tên.</value></data>
+  <data name="Password must have at least 8 characters." xml:space="preserve"><value>Mật khẩu phải có ít nhất 8 ký tự.</value></data>
+  <data name="This phone number is already registered." xml:space="preserve"><value>Số điện thoại này đã được đăng ký.</value></data>
+  <data name="This passport number is already registered." xml:space="preserve"><value>Số hộ chiếu này đã được đăng ký.</value></data>
+  <data name="The registration has expired. Please register again." xml:space="preserve"><value>Phiên đăng ký đã hết hạn. Vui lòng đăng ký lại.</value></data>
+  <data name="The verification code is wrong or has expired." xml:space="preserve"><value>Mã xác minh sai hoặc đã hết hạn.</value></data>
+  <data name="Sign in to SaigonBite" xml:space="preserve"><value>Đăng nhập vào SaigonBite</value></data>
+  <data name="Use your phone number, passport number or staff account." xml:space="preserve"><value>Dùng số điện thoại, số hộ chiếu hoặc tài khoản nhân viên.</value></data>
+  <data name="Phone, passport or staff ID" xml:space="preserve"><value>Số điện thoại, hộ chiếu hoặc mã nhân viên</value></data>
+  <data name="Password" xml:space="preserve"><value>Mật khẩu</value></data>
+  <data name="New to SaigonBite?" xml:space="preserve"><value>Mới dùng SaigonBite?</value></data>
+  <data name="Register as Local Customer" xml:space="preserve"><value>Đăng ký khách hàng trong nước</value></data>
+  <data name="Register as Foreign Tourist" xml:space="preserve"><value>Đăng ký khách du lịch nước ngoài</value></data>
+  <data name="Invalid identifier or password." xml:space="preserve"><value>Số điện thoại/hộ chiếu hoặc mật khẩu không đúng.</value></data>
+  <data name="Sign out" xml:space="preserve"><value>Đăng xuất</value></data>
+  <data name="Access denied" xml:space="preserve"><value>Truy cập bị từ chối</value></data>
+  <data name="Your account does not have permission to open this page." xml:space="preserve"><value>Tài khoản của bạn không có quyền mở trang này.</value></data>
+  <data name="Back to home" xml:space="preserve"><value>Về trang chủ</value></data>
+  <data name="Welcome to SaigonBite" xml:space="preserve"><value>Chào mừng đến với SaigonBite</value></data>
+  <data name="Signed in as" xml:space="preserve"><value>Đã đăng nhập:</value></data>
+	  <data name="Manage User Accounts" xml:space="preserve"><value>Quản lý tài khoản người dùng</value></data>
+  <data name="All User Accounts" xml:space="preserve"><value>Tất cả tài khoản người dùng</value></data>
+  <data name="Search across identifier, email, role and account status." xml:space="preserve"><value>Tìm theo mã đăng nhập, email, vai trò và trạng thái tài khoản.</value></data>
+  <data name="Search" xml:space="preserve"><value>Tìm kiếm</value></data>
+  <data name="Name, phone, passport, email" xml:space="preserve"><value>Tên, số điện thoại, hộ chiếu, email</value></data>
+  <data name="Role Filter" xml:space="preserve"><value>Lọc theo vai trò</value></data>
+  <data name="All roles" xml:space="preserve"><value>Tất cả vai trò</value></data>
+  <data name="Status" xml:space="preserve"><value>Trạng thái</value></data>
+  <data name="All statuses" xml:space="preserve"><value>Tất cả trạng thái</value></data>
+  <data name="Filter" xml:space="preserve"><value>Lọc</value></data>
+  <data name="Clear" xml:space="preserve"><value>Xóa lọc</value></data>
+  <data name="Name" xml:space="preserve"><value>Tên</value></data>
+  <data name="Role" xml:space="preserve"><value>Vai trò</value></data>
+  <data name="Identifier" xml:space="preserve"><value>Mã định danh</value></data>
+  <data name="Actions" xml:space="preserve"><value>Thao tác</value></data>
+  <data name="Active" xml:space="preserve"><value>Hoạt động</value></data>
+  <data name="Inactive" xml:space="preserve"><value>Ngừng hoạt động</value></data>
+  <data name="View" xml:space="preserve"><value>Xem</value></data>
+  <data name="Edit" xml:space="preserve"><value>Sửa</value></data>
+  <data name="Deactivate" xml:space="preserve"><value>Vô hiệu hóa</value></data>
+  <data name="Local Customer" xml:space="preserve"><value>Khách hàng trong nước</value></data>
+  <data name="Foreign Tourist" xml:space="preserve"><value>Khách du lịch nước ngoài</value></data>
+  <data name="Kitchen Staff" xml:space="preserve"><value>Nhân viên bếp</value></data>
+  <data name="Shipper" xml:space="preserve"><value>Người giao hàng</value></data>
+  <data name="Admin" xml:space="preserve"><value>Quản trị viên</value></data>
+  <data name="No accounts match the search." xml:space="preserve"><value>Không có tài khoản nào phù hợp.</value></data>
+  <data name="accounts found" xml:space="preserve"><value>tài khoản được tìm thấy</value></data>
+  <data name="Pages" xml:space="preserve"><value>Trang</value></data>
+  <data name="Account Details" xml:space="preserve"><value>Chi tiết tài khoản</value></data>
+  <data name="Account ID" xml:space="preserve"><value>Mã tài khoản</value></data>
+  <data name="Phone Number" xml:space="preserve"><value>Số điện thoại</value></data>
+  <data name="Passport Number" xml:space="preserve"><value>Số hộ chiếu</value></data>
+  <data name="Staff Identifier" xml:space="preserve"><value>Mã nhân viên</value></data>
+  <data name="Assigned Hub" xml:space="preserve"><value>Bếp được phân công</value></data>
+  <data name="Created" xml:space="preserve"><value>Ngày tạo</value></data>
+  <data name="Back to list" xml:space="preserve"><value>Về danh sách</value></data>
+  <data name="Edit User Account" xml:space="preserve"><value>Sửa tài khoản người dùng</value></data>
+  <data name="Edit Kitchen Staff Account" xml:space="preserve"><value>Sửa tài khoản nhân viên bếp</value></data>
+  <data name="Edit Staff Account" xml:space="preserve"><value>Sửa tài khoản nhân viên</value></data>
+  <data name="Edit User" xml:space="preserve"><value>Sửa người dùng</value></data>
+  <data name="Staff Profile" xml:space="preserve"><value>Hồ sơ nhân viên</value></data>
+  <data name="Role and identifier are validated before saving." xml:space="preserve"><value>Vai trò và mã định danh được kiểm tra trước khi lưu.</value></data>
+  <data name="New Password (optional)" xml:space="preserve"><value>Mật khẩu mới (không bắt buộc)</value></data>
+  <data name="Leave blank to retain current password" xml:space="preserve"><value>Để trống nếu giữ mật khẩu hiện tại</value></data>
+  <data name="Confirm New Password" xml:space="preserve"><value>Xác nhận mật khẩu mới</value></data>
+  <data name="Only required when changing password" xml:space="preserve"><value>Chỉ cần nhập khi đổi mật khẩu</value></data>
+  <data name="Account Status" xml:space="preserve"><value>Trạng thái tài khoản</value></data>
+  <data name="Deactivate Account" xml:space="preserve"><value>Vô hiệu hóa tài khoản</value></data>
+  <data name="Save Changes" xml:space="preserve"><value>Lưu thay đổi</value></data>
+  <data name="Save Staff Profile" xml:space="preserve"><value>Lưu hồ sơ nhân viên</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Hủy</value></data>
+  <data name="Select a hub" xml:space="preserve"><value>Chọn bếp</value></data>
+  <data name="Account not found." xml:space="preserve"><value>Không tìm thấy tài khoản.</value></data>
+  <data name="Account saved." xml:space="preserve"><value>Đã lưu tài khoản.</value></data>
+  <data name="Account deactivated." xml:space="preserve"><value>Đã vô hiệu hóa tài khoản.</value></data>
+  <data name="This account is already inactive." xml:space="preserve"><value>Tài khoản này đã ngừng hoạt động.</value></data>
+  <data name="You cannot deactivate your own account." xml:space="preserve"><value>Bạn không thể vô hiệu hóa tài khoản của chính mình.</value></data>
+  <data name="Staff ID must have 3 to 30 letters, digits or hyphens." xml:space="preserve"><value>Mã nhân viên gồm 3 đến 30 chữ cái, chữ số hoặc dấu gạch ngang.</value></data>
+  <data name="Choose an assigned hub for kitchen staff." xml:space="preserve"><value>Hãy chọn bếp được phân công cho nhân viên bếp.</value></data>
+  <data name="This staff ID is already in use." xml:space="preserve"><value>Mã nhân viên này đã được sử dụng.</value></data>
+	<data name="Deactivate this account? The person will no longer be able to sign in." xml:space="preserve"><value>Vô hiệu hóa tài khoản này? Người dùng sẽ không thể đăng nhập nữa.</value></data>
+	<data name="Reactivate" xml:space="preserve"><value>Kích hoạt lại</value></data>
+	<data name="Reactivate Account" xml:space="preserve"><value>Kích hoạt lại tài khoản</value></data>
+	<data name="Account reactivated." xml:space="preserve"><value>Đã kích hoạt lại tài khoản.</value></data>
+	<data name="This account is already active." xml:space="preserve"><value>Tài khoản này đang hoạt động.</value></data>
+	<data name="Add User" xml:space="preserve"><value>Thêm người dùng</value></data>
+	<data name="Add Staff, Shipper or Admin Account" xml:space="preserve"><value>Thêm tài khoản nhân viên, người giao hàng hoặc quản trị viên</value></data>
+	<data name="New Internal Account" xml:space="preserve"><value>Tài khoản nội bộ mới</value></data>
+	<data name="Staff Identifier (unique)" xml:space="preserve"><value>Mã nhân viên (không trùng)</value></data>
+	<data name="Assigned Hub (required for Kitchen Staff)" xml:space="preserve"><value>Bếp được phân công (bắt buộc với nhân viên bếp)</value></data>
+	<data name="Temporary Password (minimum 8 characters)" xml:space="preserve"><value>Mật khẩu tạm thời (tối thiểu 8 ký tự)</value></data>
+	<data name="At least 8 characters" xml:space="preserve"><value>Ít nhất 8 ký tự</value></data>
+	<data name="Re-enter password" xml:space="preserve"><value>Nhập lại mật khẩu</value></data>
+	<data name="Create Account" xml:space="preserve"><value>Tạo tài khoản</value></data>
+	<data name="Role must be Kitchen Staff, Shipper or Admin." xml:space="preserve"><value>Vai trò phải là nhân viên bếp, người giao hàng hoặc quản trị viên.</value></data>
+	<data name="Access role" xml:space="preserve"><value>Vai trò truy cập</value></data>
+	<data name="Revenue Report (R1)" xml:space="preserve"><value>Báo cáo doanh thu (R1)</value></data>
+	<data name="Date Range" xml:space="preserve"><value>Khoảng thời gian</value></data>
+	<data name="From" xml:space="preserve"><value>Từ ngày</value></data>
+	<data name="To" xml:space="preserve"><value>Đến ngày</value></data>
+	<data name="Generate Report" xml:space="preserve"><value>Tạo báo cáo</value></data>
+	<data name="Included revenue" xml:space="preserve"><value>Doanh thu được tính</value></data>
+	<data name="Excludes Cancelled and Failed orders" xml:space="preserve"><value>Không gồm đơn Đã hủy và Thất bại</value></data>
+	<data name="Revenue categories" xml:space="preserve"><value>Nhóm món có doanh thu</value></data>
+	<data name="Payment methods" xml:space="preserve"><value>Phương thức thanh toán</value></data>
+	<data name="Revenue by brand category" xml:space="preserve"><value>Doanh thu theo nhóm món</value></data>
+	<data name="Revenue by payment method" xml:space="preserve"><value>Doanh thu theo phương thức thanh toán</value></data>
+	<data name="By brand category" xml:space="preserve"><value>Theo nhóm món</value></data>
+	<data name="By payment method" xml:space="preserve"><value>Theo phương thức thanh toán</value></data>
+	<data name="Category" xml:space="preserve"><value>Nhóm món</value></data>
+	<data name="Method" xml:space="preserve"><value>Phương thức</value></data>
+	<data name="Revenue VND" xml:space="preserve"><value>Doanh thu (VND)</value></data>
+	<data name="No orders in this date range." xml:space="preserve"><value>Không có đơn hàng trong khoảng thời gian này.</value></data>
+	<data name="orders counted" xml:space="preserve"><value>đơn được tính</value></data>
+	<data name="The end date must not be before the start date." xml:space="preserve"><value>Ngày kết thúc không được trước ngày bắt đầu.</value></data>
+	<data name="Choose a valid start date and end date." xml:space="preserve"><value>Hãy chọn ngày bắt đầu và ngày kết thúc hợp lệ.</value></data>
 </root>

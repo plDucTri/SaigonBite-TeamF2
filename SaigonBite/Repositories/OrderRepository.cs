@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SaigonBite.Models.Entities;
 using SaigonBite.Services;
-
+using SaigonBite.Helpers;
 namespace SaigonBite.Repositories;
 
 public class OrderRepository : IOrderRepository
@@ -96,4 +96,18 @@ public class OrderRepository : IOrderRepository
             .Include(o => o.Customer)
             .Include(o => o.Payment)
             .Include(o => o.OrderLines);
+
+    public IReadOnlyList<Order> GetOrdersForRevenue(DateTime start, DateTime end)
+    {
+        // No IsActive filter here on purpose: orders of deactivated accounts must still be counted.
+        return _db.Orders
+            .AsNoTracking()
+            .Include(o => o.Payment)
+            .Include(o => o.OrderLines).ThenInclude(l => l.Item)
+            .Where(o => o.CreatedAt >= start && o.CreatedAt <= end
+                        && o.Status != OrderStatuses.Cancelled
+                        && o.Status != OrderStatuses.Failed)
+            .ToList();
+    }
+
 }

@@ -156,6 +156,9 @@ public class AccountService : IAccountService
         User? user = _users.GetById(userId);
         if (user is null)
             return ServiceResult<AccountInfo>.Fail("Account not found.");
+        // an inactive account cannot be edited
+        if (!user.IsActive)
+            return ServiceResult<AccountInfo>.Fail("This account is inactive. Reactivate it first.");
 
         // Tidy the text. The identifier is stored in upper case.
         string identifier = NormalizeIdentifier(changes.Identifier);
