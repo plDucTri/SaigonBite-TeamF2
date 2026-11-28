@@ -1,0 +1,77 @@
+@using SaigonBite.Services
+@model SaigonBite.ViewModels.BrandListViewModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = T["Manage Brands"].Value;
+    ViewData["Active"] = "Brands";
+}
+
+<h1 class="h3 mb-3">@T["Manage Brands"]</h1>
+
+<partial name="_Notice" />
+
+<div class="sb-card">
+    <h2 class="h5 mb-3">@T["Brands Management"]</h2>
+
+    @* The search is a GET form, so the address keeps it. *@
+    <form method="get" asp-action="Brands" class="row g-3 align-items-end mb-4">
+        <div class="col-12 col-md-6">
+            <label for="search" class="form-label">@T["Search Brands"]</label>
+            <input id="search" name="search" value="@Model.Search" class="form-control" placeholder="@T["Brand name"]" />
+        </div>
+        <div class="col-12 col-md-6 d-flex gap-2 justify-content-md-end">
+            <button type="submit" class="btn btn-outline-secondary">@T["Filter"]</button>
+            <a class="btn btn-sb-accent" asp-action="NewBrand">@T["Add Brand"]</a>
+        </div>
+    </form>
+
+    @if (Model.Brands.Count == 0)
+    {
+        <div class="sb-hint">@T["No brands match the search."]</div>
+    }
+    else
+    {
+        <table class="table table-striped sb-table align-middle mb-0">
+            <thead>
+                <tr>
+                    <th>@T["Brand Name"]</th>
+                    <th>@T["Menu Items"]</th>
+                    <th>@T["Operating Hubs"]</th>
+                    <th>@T["Status"]</th>
+                    <th>@T["Actions"]</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (BrandInfo b in Model.Brands)
+                {
+                    <tr>
+                        <td data-label="@T["Brand Name"]" class="fw-semibold">@b.Name</td>
+                        <td data-label="@T["Menu Items"]">@b.ItemCount @T["items"]</td>
+                        <td data-label="@T["Operating Hubs"]">@(b.HubNames.Count == 0 ? "-" : string.Join("; ", b.HubNames))</td>
+                        <td data-label="@T["Status"]">
+                            <span class="sb-chip @(b.IsActive ? "" : "sb-chip-off")">@(b.IsActive ? T["Active"] : T["Inactive"])</span>
+                        </td>
+                        <td data-label="@T["Actions"]">
+                            <div class="sb-actions">
+                                <a asp-action="BrandDetails" asp-route-id="@b.BrandId">@T["View"]</a>
+                                <a asp-action="EditBrand" asp-route-id="@b.BrandId">@T["Edit"]</a>
+                                @if (b.IsActive)
+                                {
+                                    <form asp-action="DeactivateBrand" asp-route-id="@b.BrandId" method="post">
+                                        <button type="submit" class="sb-link-btn sb-link-danger"
+                                                data-confirm="@T["Deactivate this brand? Its items can no longer be ordered, but old orders and reports keep them."]"
+                                                onclick="return confirm(this.dataset.confirm)">
+                                            @T["Deactivate"]
+                                        </button>
+                                    </form>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <p class="small text-muted mt-3 mb-0">@Model.Brands.Count @T["brands found"]</p>
+    }
+</div>
