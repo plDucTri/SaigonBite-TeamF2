@@ -1,0 +1,33 @@
+@using SaigonBite.Services
+@model MenuItemInfo
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = Model.Name;
+    ViewData["Active"] = "Menu Items";
+}
+
+<h1 class="h3 mb-3">@Model.Name</h1>
+
+<div class="sb-card">
+    <dl class="row mb-0">
+        <dt class="col-sm-3">@T["Item Name"]</dt>
+        <dd class="col-sm-9">@Model.Name</dd>
+        <dt class="col-sm-3">@T["Brand"]</dt>
+        <dd class="col-sm-9">@Model.BrandName</dd>
+        <dt class="col-sm-3">@T["Category"]</dt>
+        <dd class="col-sm-9">@T[Model.Category]</dd>
+        <dt class="col-sm-3">@T["Price VND"]</dt>
+        <dd class="col-sm-9">@Model.Price.ToString("N0", System.Globalization.CultureInfo.InvariantCulture)</dd>
+        <dt class="col-sm-3">@T["Available"]</dt>
+        <dd class="col-sm-9"><span class="sb-chip @(Model.IsAvailable ? "" : "sb-chip-off")">@(Model.IsAvailable ? T["Available"] : T["Unavailable"])</span></dd>
+        <dt class="col-sm-3">@T["Status"]</dt>
+        <dd class="col-sm-9"><span class="sb-chip @(Model.IsActive ? "" : "sb-chip-off")">@(Model.IsActive ? T["Active"] : T["Removed"])</span></dd>
+    </dl>
+    <div class="d-flex gap-2 mt-4">
+        @if (Model.IsActive)
+        {
+            <a class="btn btn-sb" asp-action="EditItem" asp-route-id="@Model.ItemId">@T["Edit"]</a>
+        }
+        <a class="btn btn-outline-secondary" asp-action="MenuItems">@T["Back to list"]</a>
+    </div>
+</div>

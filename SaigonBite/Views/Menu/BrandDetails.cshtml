@@ -1,0 +1,26 @@
+@using SaigonBite.Services
+@model BrandInfo
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = Model.Name;
+    ViewData["Active"] = "Brands";
+}
+
+<h1 class="h3 mb-3">@Model.Name</h1>
+
+<div class="sb-card">
+    <dl class="row mb-0">
+        <dt class="col-sm-3">@T["Brand Name"]</dt>
+        <dd class="col-sm-9">@Model.Name</dd>
+        <dt class="col-sm-3">@T["Status"]</dt>
+        <dd class="col-sm-9"><span class="sb-chip @(Model.IsActive ? "" : "sb-chip-off")">@(Model.IsActive ? T["Active"] : T["Inactive"])</span></dd>
+        <dt class="col-sm-3">@T["Menu Items"]</dt>
+        <dd class="col-sm-9">@Model.ItemCount @T["items"]</dd>
+        <dt class="col-sm-3">@T["Operating Hubs"]</dt>
+        <dd class="col-sm-9">@(Model.HubNames.Count == 0 ? "-" : string.Join("; ", Model.HubNames))</dd>
+    </dl>
+    <div class="d-flex gap-2 mt-4">
+        <a class="btn btn-sb" asp-action="EditBrand" asp-route-id="@Model.BrandId">@T["Edit"]</a>
+        <a class="btn btn-outline-secondary" asp-action="Brands">@T["Back to list"]</a>
+    </div>
+</div>

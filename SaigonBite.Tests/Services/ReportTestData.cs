@@ -8,7 +8,7 @@ namespace SaigonBite.Tests.Services;
 public static class ReportTestData
 {
     // Real service and real repository, on the same InMemory database as the rest of the set-up.
-    public static ReportService NewReport(RegistrationTestSetup setup) => new(new OrderRepository(setup.Db));
+    public static ReportService NewReport(RegistrationTestSetup setup) => new(new OrderRepository(setup.Db), new HubRepository(setup.Db));
 
     /// <summary>A menu item of its own brand, in the given category. active = false makes item and brand inactive.</summary>
     public static MenuItem AddItem(RegistrationTestSetup setup, string category, decimal price, bool active = true)

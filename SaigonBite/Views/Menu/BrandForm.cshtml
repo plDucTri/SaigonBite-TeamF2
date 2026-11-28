@@ -1,0 +1,43 @@
+@model SaigonBite.ViewModels.BrandFormViewModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = T["Add or Edit Brand"].Value;
+    ViewData["Active"] = "Brands";
+}
+
+<h1 class="h3 mb-3">@T["Add or Edit Brand"]</h1>
+
+<div class="sb-card">
+    <h2 class="h5 mb-3">@(Model.IsEdit ? T["Edit a Brand"] : T["Create a Brand"])</h2>
+
+    <partial name="_ErrorList" />
+
+    <form method="post" asp-action="@(Model.IsEdit ? "UpdateBrand" : "CreateBrand")" asp-route-id="@Model.Id">
+        <div class="row g-3">
+            <div class="col-12 col-md-6">
+                <label for="Name" class="form-label">@T["Brand Name"]</label>
+                <input id="Name" name="Name" value="@Model.Name" class="form-control" maxlength="100" required />
+            </div>
+            <div class="col-12 col-md-6">
+                <label class="form-label">@T["Operating Hubs (set in the Hub editor)"]</label>
+                <div class="form-control-plaintext">@(Model.HubNames.Count == 0 ? "-" : string.Join("; ", Model.HubNames))</div>
+                <a class="small" asp-controller="Hubs" asp-action="Index">@T["Change in Hubs & Capacity"]</a>
+            </div>
+            <div class="col-12">
+                <div class="form-label">@T["Active for New Orders"]</div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="IsActive" id="active" value="true" checked="@Model.IsActive" />
+                    <label class="form-check-label" for="active">@T["Active"]</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="IsActive" id="inactive" value="false" checked="@(!Model.IsActive)" />
+                    <label class="form-check-label" for="inactive">@T["Inactive"]</label>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex gap-2 mt-4">
+            <button type="submit" class="btn btn-sb">@T["Save Brand"]</button>
+            <a class="btn btn-outline-secondary" asp-action="Brands">@T["Cancel"]</a>
+        </div>
+    </form>
+</div>

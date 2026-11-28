@@ -1,0 +1,74 @@
+@using SaigonBite.Services
+@model IReadOnlyList<HubSummary>
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = T["Manage Hubs and Kitchen Capacity"].Value;
+    ViewData["Active"] = "Hubs & Capacity";
+    string Pct(decimal value) => value.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture) + "%";
+}
+
+<h1 class="h3 mb-3">@T["Manage Hubs and Kitchen Capacity"]</h1>
+
+<partial name="_Notice" />
+
+<div class="sb-card">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="h5 mb-0">@T["Hubs & Capacity"]</h2>
+        <a class="btn btn-sb-accent" asp-action="NewHub">@T["Add Hub"]</a>
+    </div>
+
+    @if (Model.Count == 0)
+    {
+        <div class="sb-hint">@T["No hubs yet."]</div>
+    }
+    else
+    {
+        <table class="table table-striped sb-table align-middle mb-0">
+            <thead>
+                <tr>
+                    <th>@T["Hub"]</th>
+                    <th class="text-end">@T["Capacity"]</th>
+                    <th class="text-end">@T["Confirmed"]</th>
+                    <th class="text-end">@T["Preparing"]</th>
+                    <th class="text-end">@T["Load"]</th>
+                    <th>@T["Action"]</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (HubSummary h in Model)
+                {
+                    <tr>
+                        <td data-label="@T["Hub"]" class="fw-semibold">
+                            @h.Name
+                            @if (!h.IsActive)
+                            {
+                                <span class="sb-chip sb-chip-off ms-1">@T["Inactive"]</span>
+                            }
+                        </td>
+                        <td data-label="@T["Capacity"]" class="text-end">@h.KitchenCapacity</td>
+                        <td data-label="@T["Confirmed"]" class="text-end">@h.Confirmed</td>
+                        <td data-label="@T["Preparing"]" class="text-end">@h.Preparing</td>
+                        <td data-label="@T["Load"]" class="text-end">@Pct(h.LoadPct)</td>
+                        <td data-label="@T["Action"]">
+                            <div class="sb-actions">
+                                <a asp-action="EditHub" asp-route-id="@h.HubId">@T["Edit"]</a>
+                                @if (h.IsActive)
+                                {
+                                    <form asp-action="DeactivateHub" asp-route-id="@h.HubId" method="post">
+                                        <button type="submit" class="sb-link-btn sb-link-danger"
+                                                data-confirm="@T["Deactivate this hub? Customers can no longer order from it, but old orders and reports keep it."]"
+                                                onclick="return confirm(this.dataset.confirm)">
+                                            @T["Deactivate"]
+                                        </button>
+                                    </form>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <p class="small text-muted mt-3 mb-0">@T["Load = (Confirmed + Preparing orders) / kitchen capacity."]</p>
+    }
+</div>
