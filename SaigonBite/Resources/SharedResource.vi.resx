@@ -190,4 +190,146 @@
 	<data name="Accept ready orders and deliver them." xml:space="preserve"><value>Nhận đơn đã sẵn sàng và giao hàng.</value></data>
 	<data name="Pick a hub and build your order." xml:space="preserve"><value>Chọn bếp và tạo đơn hàng của bạn.</value></data>
 	<data name="Track your orders and their status." xml:space="preserve"><value>Theo dõi đơn hàng và trạng thái của bạn.</value></data>
+	<data name="A brand with this name already exists." xml:space="preserve"><value>Đã có thương hiệu với tên này.</value></data>
+	<data name="A removed menu item cannot be edited." xml:space="preserve"><value>Không thể sửa món đã bị gỡ.</value></data>
+	<data name="Across all hubs" xml:space="preserve"><value>Tất cả các bếp</value></data>
+	<data name="Active for New Orders" xml:space="preserve"><value>Hoạt động cho đơn mới</value></data>
+	<data name="Add Brand" xml:space="preserve"><value>Thêm thương hiệu</value></data>
+	<data name="Add Menu Item" xml:space="preserve"><value>Thêm món</value></data>
+	<data name="Add or Edit Brand" xml:space="preserve"><value>Thêm hoặc sửa thương hiệu</value></data>
+	<data name="Add or Edit Menu Item" xml:space="preserve"><value>Thêm hoặc sửa món</value></data>
+	<data name="Add, edit and deactivate the brands of the platform." xml:space="preserve"><value>Thêm, sửa và ngừng hoạt động các thương hiệu của nền tảng.</value></data>
+	<data name="Add, edit, remove and switch the availability of menu items." xml:space="preserve"><value>Thêm, sửa, gỡ món và bật/tắt tình trạng còn hàng.</value></data>
+	<data name="All active brands" xml:space="preserve"><value>Tất cả thương hiệu đang hoạt động</value></data>
+	<data name="All categories" xml:space="preserve"><value>Tất cả danh mục</value></data>
+	<data name="All hubs" xml:space="preserve"><value>Tất cả các bếp</value></data>
+	<data name="Any" xml:space="preserve"><value>Bất kỳ</value></data>
+	<data name="Availability" xml:space="preserve"><value>Tình trạng</value></data>
+	<data name="Available" xml:space="preserve"><value>Còn hàng</value></data>
+	<data name="Available for New Orders" xml:space="preserve"><value>Còn hàng cho đơn mới</value></data>
+	<data name="Avg Prep Time" xml:space="preserve"><value>Thời gian chuẩn bị TB</value></data>
+	<data name="Avg prep" xml:space="preserve"><value>Chuẩn bị TB</value></data>
+	<data name="Brand" xml:space="preserve"><value>Thương hiệu</value></data>
+	<data name="Brand Name" xml:space="preserve"><value>Tên thương hiệu</value></data>
+	<data name="Brand deactivated." xml:space="preserve"><value>Đã ngừng hoạt động thương hiệu.</value></data>
+	<data name="Brand name" xml:space="preserve"><value>Tên thương hiệu</value></data>
+	<data name="Brand name is required." xml:space="preserve"><value>Vui lòng nhập tên thương hiệu.</value></data>
+	<data name="Brand name must be 100 characters or fewer." xml:space="preserve"><value>Tên thương hiệu tối đa 100 ký tự.</value></data>
+	<data name="Brand not found." xml:space="preserve"><value>Không tìm thấy thương hiệu.</value></data>
+	<data name="Brand saved." xml:space="preserve"><value>Đã lưu thương hiệu.</value></data>
+	<data name="Brands" xml:space="preserve"><value>Thương hiệu</value></data>
+	<data name="Brands Management" xml:space="preserve"><value>Quản lý thương hiệu</value></data>
+	<data name="Choose a brand" xml:space="preserve"><value>Chọn thương hiệu</value></data>
+	<data name="Choose a brand." xml:space="preserve"><value>Vui lòng chọn thương hiệu.</value></data>
+	<data name="Choose a category" xml:space="preserve"><value>Chọn danh mục</value></data>
+	<data name="Choose a category from the list." xml:space="preserve"><value>Vui lòng chọn danh mục trong danh sách.</value></data>
+	<data name="Choose an active brand." xml:space="preserve"><value>Vui lòng chọn thương hiệu đang hoạt động.</value></data>
+	<data name="Create a Brand" xml:space="preserve"><value>Tạo thương hiệu</value></data>
+	<data name="Create a Menu Item" xml:space="preserve"><value>Tạo món</value></data>
+	<data name="Current Load" xml:space="preserve"><value>Tải hiện tại</value></data>
+	<data name="Current load is measured now, not for the date range." xml:space="preserve"><value>Tải hiện tại được đo tại thời điểm này, không theo khoảng ngày.</value></data>
+	<data name="Deactivate this brand? Its items can no longer be ordered, but old orders and reports keep them." xml:space="preserve"><value>Ngừng hoạt động thương hiệu này? Các món của thương hiệu không thể đặt nữa, nhưng đơn cũ và báo cáo vẫn giữ lại.</value></data>
+	<data name="Desserts" xml:space="preserve"><value>Tráng miệng</value></data>
+	<data name="Drinks" xml:space="preserve"><value>Đồ uống</value></data>
+	<data name="Edit a Brand" xml:space="preserve"><value>Sửa thương hiệu</value></data>
+	<data name="Edit a Menu Item" xml:space="preserve"><value>Sửa món</value></data>
+	<data name="Filter Brand" xml:space="preserve"><value>Lọc thương hiệu</value></data>
+	<data name="Filter Hub" xml:space="preserve"><value>Lọc bếp</value></data>
+	<data name="Hub" xml:space="preserve"><value>Bếp</value></data>
+	<data name="Hub Utilization" xml:space="preserve"><value>Mức sử dụng bếp</value></data>
+	<data name="Hub Utilization R2" xml:space="preserve"><value>Báo cáo sử dụng bếp R2</value></data>
+	<data name="Hub Utilization Report (R2)" xml:space="preserve"><value>Báo cáo sử dụng bếp (R2)</value></data>
+	<data name="Hub availability" xml:space="preserve"><value>Bếp hoạt động</value></data>
+	<data name="Item Name" xml:space="preserve"><value>Tên món</value></data>
+	<data name="Item name is required." xml:space="preserve"><value>Vui lòng nhập tên món.</value></data>
+	<data name="Item name must be 100 characters or fewer." xml:space="preserve"><value>Tên món tối đa 100 ký tự.</value></data>
+	<data name="Load" xml:space="preserve"><value>Tải</value></data>
+	<data name="Load reflects Confirmed + Preparing" xml:space="preserve"><value>Tải tính theo đơn Đã xác nhận + Đang chuẩn bị</value></data>
+	<data name="Manage Brands" xml:space="preserve"><value>Quản lý thương hiệu</value></data>
+	<data name="Manage Menu Items" xml:space="preserve"><value>Quản lý món ăn</value></data>
+	<data name="Menu Item Management" xml:space="preserve"><value>Quản lý món ăn</value></data>
+	<data name="Menu Items" xml:space="preserve"><value>Món ăn</value></data>
+	<data name="Menu item not found." xml:space="preserve"><value>Không tìm thấy món.</value></data>
+	<data name="Menu item removed." xml:space="preserve"><value>Đã gỡ món.</value></data>
+	<data name="Menu item saved." xml:space="preserve"><value>Đã lưu món.</value></data>
+	<data name="No active hubs." xml:space="preserve"><value>Chưa có bếp nào hoạt động.</value></data>
+	<data name="No brands match the search." xml:space="preserve"><value>Không có thương hiệu nào khớp với tìm kiếm.</value></data>
+	<data name="No menu items match the filters." xml:space="preserve"><value>Không có món nào khớp với bộ lọc.</value></data>
+	<data name="Noodles" xml:space="preserve"><value>Món nước</value></data>
+	<data name="Operating Hubs" xml:space="preserve"><value>Bếp hoạt động</value></data>
+	<data name="Operating Hubs (set in the Hub editor)" xml:space="preserve"><value>Bếp hoạt động (đặt trong trình sửa bếp)</value></data>
+	<data name="Orders" xml:space="preserve"><value>Đơn</value></data>
+	<data name="Orders Handled" xml:space="preserve"><value>Đơn đã xử lý</value></data>
+	<data name="Orders created" xml:space="preserve"><value>Đơn tạo từ</value></data>
+	<data name="Orders handled" xml:space="preserve"><value>Đơn đã xử lý</value></data>
+	<data name="Orders handled, preparation time and load of each hub." xml:space="preserve"><value>Số đơn đã xử lý, thời gian chuẩn bị và tải của từng bếp.</value></data>
+	<data name="Price (VND)" xml:space="preserve"><value>Giá (VND)</value></data>
+	<data name="Price VND" xml:space="preserve"><value>Giá VND</value></data>
+	<data name="Price is required." xml:space="preserve"><value>Vui lòng nhập giá.</value></data>
+	<data name="Price must be a whole number of VND." xml:space="preserve"><value>Giá phải là số nguyên VND.</value></data>
+	<data name="Price must be greater than 0 VND." xml:space="preserve"><value>Giá phải lớn hơn 0 VND.</value></data>
+	<data name="Price must not be more than 99,999,999 VND." xml:space="preserve"><value>Giá không được vượt quá 99.999.999 VND.</value></data>
+	<data name="Quiet Discounts" xml:space="preserve"><value>Giảm giá Bếp vắng</value></data>
+	<data name="Quiet discounts" xml:space="preserve"><value>Giảm giá Bếp vắng</value></data>
+	<data name="Quiet discounts granted" xml:space="preserve"><value>Giảm giá Bếp vắng đã áp dụng</value></data>
+	<data name="Remove" xml:space="preserve"><value>Gỡ</value></data>
+	<data name="Remove this menu item? It can no longer be ordered, but old orders and reports keep it." xml:space="preserve"><value>Gỡ món này? Món không thể đặt nữa, nhưng đơn cũ và báo cáo vẫn giữ lại.</value></data>
+	<data name="Removed" xml:space="preserve"><value>Đã gỡ</value></data>
+	<data name="Rice" xml:space="preserve"><value>Cơm</value></data>
+	<data name="Sandwiches" xml:space="preserve"><value>Bánh mì</value></data>
+	<data name="Save Brand" xml:space="preserve"><value>Lưu thương hiệu</value></data>
+	<data name="Save Menu Item" xml:space="preserve"><value>Lưu món</value></data>
+	<data name="Search Brands" xml:space="preserve"><value>Tìm thương hiệu</value></data>
+	<data name="Selected date range" xml:space="preserve"><value>Khoảng ngày đã chọn</value></data>
+	<data name="Snacks" xml:space="preserve"><value>Ăn vặt</value></data>
+	<data name="This brand already has a menu item with this name." xml:space="preserve"><value>Thương hiệu này đã có món với tên này.</value></data>
+	<data name="This brand is already inactive." xml:space="preserve"><value>Thương hiệu này đã ngừng hoạt động.</value></data>
+	<data name="This menu item has already been removed." xml:space="preserve"><value>Món này đã bị gỡ.</value></data>
+	<data name="Unavailable" xml:space="preserve"><value>Hết hàng</value></data>
+	<data name="active" xml:space="preserve"><value>đang hoạt động</value></data>
+	<data name="brands found" xml:space="preserve"><value>thương hiệu</value></data>
+	<data name="items" xml:space="preserve"><value>món</value></data>
+	<data name="menu items found" xml:space="preserve"><value>món ăn</value></data>
+	<data name="A hub with this name already exists." xml:space="preserve"><value>Đã có bếp với tên này.</value></data>
+	<data name="Action" xml:space="preserve"><value>Thao tác</value></data>
+	<data name="Add Hub" xml:space="preserve"><value>Thêm bếp</value></data>
+	<data name="Add and edit hubs, kitchen capacity and the brands each hub operates." xml:space="preserve"><value>Thêm và sửa bếp, sức chứa bếp và các thương hiệu mà mỗi bếp phục vụ.</value></data>
+	<data name="Address is required." xml:space="preserve"><value>Vui lòng nhập địa chỉ.</value></data>
+	<data name="Address must be 200 characters or fewer." xml:space="preserve"><value>Địa chỉ tối đa 200 ký tự.</value></data>
+	<data name="Brands Operated" xml:space="preserve"><value>Thương hiệu phục vụ</value></data>
+	<data name="Capacity" xml:space="preserve"><value>Sức chứa</value></data>
+	<data name="Change in Hubs &amp; Capacity" xml:space="preserve"><value>Thay đổi trong Bếp &amp; Sức chứa</value></data>
+	<data name="Choose active brands from the list." xml:space="preserve"><value>Vui lòng chọn thương hiệu đang hoạt động trong danh sách.</value></data>
+	<data name="Confirmed" xml:space="preserve"><value>Đã xác nhận</value></data>
+	<data name="Deactivate this hub? Customers can no longer order from it, but old orders and reports keep it." xml:space="preserve"><value>Ngừng hoạt động bếp này? Khách không thể đặt từ bếp nữa, nhưng đơn cũ và báo cáo vẫn giữ lại.</value></data>
+	<data name="Edit Hub" xml:space="preserve"><value>Sửa bếp</value></data>
+	<data name="Edit Hub and Capacity" xml:space="preserve"><value>Sửa bếp và sức chứa</value></data>
+	<data name="Hub Name" xml:space="preserve"><value>Tên bếp</value></data>
+	<data name="Hub Status" xml:space="preserve"><value>Trạng thái bếp</value></data>
+	<data name="Hub deactivated." xml:space="preserve"><value>Đã ngừng hoạt động bếp.</value></data>
+	<data name="Hub name is required." xml:space="preserve"><value>Vui lòng nhập tên bếp.</value></data>
+	<data name="Hub name must be 100 characters or fewer." xml:space="preserve"><value>Tên bếp tối đa 100 ký tự.</value></data>
+	<data name="Hub not found." xml:space="preserve"><value>Không tìm thấy bếp.</value></data>
+	<data name="Hub saved." xml:space="preserve"><value>Đã lưu bếp.</value></data>
+	<data name="Hubs &amp; Capacity" xml:space="preserve"><value>Bếp &amp; Sức chứa</value></data>
+	<data name="Kitchen Capacity (concurrent orders)" xml:space="preserve"><value>Sức chứa bếp (số đơn cùng lúc)</value></data>
+	<data name="Kitchen Staff Assigned" xml:space="preserve"><value>Nhân viên bếp được phân công</value></data>
+	<data name="Kitchen capacity is required." xml:space="preserve"><value>Vui lòng nhập sức chứa bếp.</value></data>
+	<data name="Kitchen capacity must be at least 1 order." xml:space="preserve"><value>Sức chứa bếp tối thiểu là 1 đơn.</value></data>
+	<data name="Kitchen capacity must not be more than 1,000 orders." xml:space="preserve"><value>Sức chứa bếp không được vượt quá 1.000 đơn.</value></data>
+	<data name="Load = (Confirmed + Preparing orders) / kitchen capacity." xml:space="preserve"><value>Tải = (đơn Đã xác nhận + Đang chuẩn bị) / sức chứa bếp.</value></data>
+	<data name="Location / Address" xml:space="preserve"><value>Vị trí / Địa chỉ</value></data>
+	<data name="Manage Hubs and Kitchen Capacity" xml:space="preserve"><value>Quản lý bếp và sức chứa bếp</value></data>
+	<data name="No" xml:space="preserve"><value>Không</value></data>
+	<data name="No hubs yet." xml:space="preserve"><value>Chưa có bếp nào.</value></data>
+	<data name="Preparing" xml:space="preserve"><value>Đang chuẩn bị</value></data>
+	<data name="Quiet Discount Eligible" xml:space="preserve"><value>Đủ điều kiện giảm giá Bếp vắng</value></data>
+	<data name="Save Hub" xml:space="preserve"><value>Lưu bếp</value></data>
+	<data name="Staff are assigned to a hub on the User Accounts pages." xml:space="preserve"><value>Nhân viên được phân công vào bếp ở trang Tài khoản người dùng.</value></data>
+	<data name="This hub is already inactive." xml:space="preserve"><value>Bếp này đã ngừng hoạt động.</value></data>
+	<data name="This hub still has orders in progress, so it cannot be deactivated." xml:space="preserve"><value>Bếp này vẫn còn đơn đang xử lý nên không thể ngừng hoạt động.</value></data>
+	<data name="Yes" xml:space="preserve"><value>Có</value></data>
+	<data name="capacity" xml:space="preserve"><value>sức chứa</value></data>
+	<data name="load below 30%" xml:space="preserve"><value>tải dưới 30%</value></data>
+	<data name="orders" xml:space="preserve"><value>đơn</value></data>
 </root>
