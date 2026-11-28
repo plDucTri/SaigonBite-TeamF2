@@ -13,11 +13,21 @@ public class ReportService : IReportService
     private const string NoCategory = "Uncategorised"; // an order whose lines have no usable category
     private const string UnknownMethod = "Unknown";    // an order without a payment row (should not happen)
 
-    private readonly IOrderRepository _orders;
+    // Order statuses that count as "handled" by a kitchen in R2: the kitchen took the order on.
+    // Placed (not accepted yet) and Cancelled are left out.
+    private static readonly HashSet<string> HandledStatuses = new()
+    {
+        OrderStatuses.Confirmed, OrderStatuses.Preparing, OrderStatuses.Ready,
+        OrderStatuses.OutForDelivery, OrderStatuses.Delivered, OrderStatuses.Failed
+    };
 
-    public ReportService(IOrderRepository orders)
+    private readonly IOrderRepository _orders;
+    private readonly IHubRepository _hubs;
+
+    public ReportService(IOrderRepository orders, IHubRepository hubs)
     {
         _orders = orders;
+        _hubs = hubs;
     }
 
     public ServiceResult<RevenueReportData> RevenueReport(DateOnly fromDate, DateOnly toDate)
@@ -71,6 +81,62 @@ public class ReportService : IReportService
             OrderCount = orders.Count,
             ByCategory = categoryRows,
             ByPaymentMethod = methodRows
+        });
+    }
+
+    public ServiceResult<HubUtilizationData> HubUtilizationReport(DateOnly fromDate, DateOnly toDate)
+    {
+        // E6: invalid date range
+        if (toDate < fromDate)
+            return ServiceResult<HubUtilizationData>.Fail("The end date must not be before the start date.");
+
+        DateTime start = fromDate.ToDateTime(TimeOnly.MinValue);
+        DateTime end = toDate.ToDateTime(TimeOnly.MaxValue);
+
+        List<Hub> hubs = _hubs.GetActiveHubs();
+        Dictionary<int, int> activeLoad = _hubs.CountActiveLoad();
+        ILookup<int, HubOrderFact> handled = _hubs.GetOrderFacts(start, end)
+            .Where(f => HandledStatuses.Contains(f.Status))
+            .ToLookup(f => f.HubId);
+
+        var rows = new List<HubUtilizationRow>();
+        foreach (Hub hub in hubs)
+        {
+            List<HubOrderFact> facts = handled[hub.HubId].ToList();
+
+            // Only orders that have both a Confirmed and a Ready time (and in that order) give a preparation time.
+            List<double> minutes = facts
+                .Where(f => f.ConfirmedAt.HasValue && f.ReadyAt.HasValue && f.ReadyAt >= f.ConfirmedAt)
+                .Select(f => (f.ReadyAt!.Value - f.ConfirmedAt!.Value).TotalMinutes)
+                .ToList();
+
+            decimal load = hub.KitchenCapacity > 0
+                ? Math.Round(activeLoad.GetValueOrDefault(hub.HubId) * 100m / hub.KitchenCapacity, 1)
+                : 0m;
+
+            rows.Add(new HubUtilizationRow
+            {
+                HubId = hub.HubId,
+                HubName = hub.Name,
+                OrdersHandled = facts.Count,
+                AvgPrepMinutes = minutes.Count == 0 ? 0m : Math.Round((decimal)minutes.Average(), 1),
+                CurrentLoadPct = load,
+                QuietDiscounts = facts.Count(f => f.QuietDiscount > 0)
+            });
+        }
+
+        rows = rows.OrderByDescending(r => r.OrdersHandled)
+            .ThenBy(r => r.HubName, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+
+        return ServiceResult<HubUtilizationData>.Success(new HubUtilizationData
+        {
+            FromDate = fromDate,
+            ToDate = toDate,
+            TotalOrdersHandled = rows.Sum(r => r.OrdersHandled),
+            TotalQuietDiscounts = rows.Sum(r => r.QuietDiscounts),
+            ActiveHubCount = rows.Count,
+            Hubs = rows
         });
     }
 

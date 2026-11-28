@@ -1,0 +1,126 @@
+@using System.Globalization
+@using SaigonBite.Services
+@model SaigonBite.ViewModels.HubUtilizationViewModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = T["Hub Utilization Report (R2)"].Value;
+    ViewData["Active"] = "Hub Utilization R2";
+
+    HubUtilizationData? report = Model.Report;
+
+    string DateText(DateOnly date) => date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+    string Minutes(decimal value) => value.ToString("0.0", CultureInfo.InvariantCulture) + " min";
+    string Pct(decimal value) => value.ToString("0.##", CultureInfo.InvariantCulture) + "%";
+    // The bar must not run out of its box when a hub is over capacity.
+    string BarWidth(decimal value) => Math.Min(100m, Math.Max(0m, value)).ToString("0.##", CultureInfo.InvariantCulture) + "%";
+}
+
+<h1 class="h3 mb-3">@T["Hub Utilization Report (R2)"]</h1>
+
+<partial name="_ErrorList" />
+
+@* The dates are a GET form, so the address keeps them and the report can be reloaded. *@
+<form method="get" asp-action="HubUtilization" class="mb-4">
+    <div class="form-label mb-1">@T["Date Range"]</div>
+    <div class="row g-2 align-items-end">
+        <div class="col-6 col-md-3">
+            <label for="fromDate" class="form-label small text-muted mb-1">@T["From"]</label>
+            <input type="date" id="fromDate" name="fromDate" class="form-control" value="@DateText(Model.FromDate)" required />
+        </div>
+        <div class="col-6 col-md-3">
+            <label for="toDate" class="form-label small text-muted mb-1">@T["To"]</label>
+            <input type="date" id="toDate" name="toDate" class="form-control" value="@DateText(Model.ToDate)" required />
+        </div>
+        <div class="col-12 col-md-auto">
+            <button type="submit" class="btn btn-sb-accent w-100">@T["Generate Report"]</button>
+        </div>
+    </div>
+</form>
+
+@if (report != null)
+{
+    @* Summary cards. On a phone only the hub cards are shown (Figma M05). *@
+    <div class="row g-3 mb-3 d-none d-md-flex">
+        <div class="col-md-4">
+            <div class="sb-card sb-stat h-100">
+                <div class="sb-stat-label">@T["Orders handled"]</div>
+                <div class="sb-stat-value">@report.TotalOrdersHandled.ToString("N0", CultureInfo.InvariantCulture)</div>
+                <div class="sb-stat-note">@T["Selected date range"]</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="sb-card sb-stat h-100">
+                <div class="sb-stat-label">@T["Quiet discounts granted"]</div>
+                <div class="sb-stat-value">@report.TotalQuietDiscounts.ToString("N0", CultureInfo.InvariantCulture)</div>
+                <div class="sb-stat-note">@T["Across all hubs"]</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="sb-card sb-stat h-100">
+                <div class="sb-stat-label">@T["Hub availability"]</div>
+                <div class="sb-stat-value">@report.ActiveHubCount @T["active"]</div>
+                <div class="sb-stat-note">@T["Load reflects Confirmed + Preparing"]</div>
+            </div>
+        </div>
+    </div>
+
+    @if (report.Hubs.Count == 0)
+    {
+        <div class="sb-hint">@T["No active hubs."]</div>
+    }
+    else
+    {
+        @* Tablet and desktop: a table (Figma A07, T04) *@
+        <div class="sb-card d-none d-md-block">
+            <h2 class="h5 mb-3">@T["Hub Utilization"]</h2>
+            <table class="table sb-report-table mb-0">
+                <thead>
+                    <tr>
+                        <th>@T["Hub"]</th>
+                        <th class="text-end">@T["Orders Handled"]</th>
+                        <th class="text-end">@T["Avg Prep Time"]</th>
+                        <th class="text-end">@T["Current Load"]</th>
+                        <th class="text-end">@T["Quiet Discounts"]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (HubUtilizationRow row in report.Hubs)
+                    {
+                        <tr>
+                            <td>@row.HubName</td>
+                            <td class="text-end">@row.OrdersHandled</td>
+                            <td class="text-end">@Minutes(row.AvgPrepMinutes)</td>
+                            <td class="text-end">@Pct(row.CurrentLoadPct)</td>
+                            <td class="text-end">@row.QuietDiscounts</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        @* Phone: one card per hub with a load bar (Figma M05) *@
+        <div class="d-md-none">
+            @foreach (HubUtilizationRow row in report.Hubs)
+            {
+                <div class="sb-card mb-3">
+                    <div class="d-flex justify-content-between align-items-baseline mb-2">
+                        <strong>@row.HubName</strong>
+                        <span class="fw-semibold">@T["Load"] @Pct(row.CurrentLoadPct)</span>
+                    </div>
+                    <div class="row text-center g-2 mb-2">
+                        <div class="col-4"><div class="small text-muted">@T["Orders"]</div><div class="fw-bold">@row.OrdersHandled</div></div>
+                        <div class="col-4"><div class="small text-muted">@T["Avg prep"]</div><div class="fw-bold">@Minutes(row.AvgPrepMinutes)</div></div>
+                        <div class="col-4"><div class="small text-muted">@T["Quiet discounts"]</div><div class="fw-bold">@row.QuietDiscounts</div></div>
+                    </div>
+                    <div class="progress" role="progressbar" aria-label="@T["Current Load"]" aria-valuenow="@row.CurrentLoadPct.ToString("0.##", CultureInfo.InvariantCulture)" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-success" style="width: @BarWidth(row.CurrentLoadPct)"></div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
+    <p class="small text-muted mt-3 mb-0">
+        @T["Orders created"]: @DateText(report.FromDate) - @DateText(report.ToDate). @T["Current load is measured now, not for the date range."]
+    </p>
+}

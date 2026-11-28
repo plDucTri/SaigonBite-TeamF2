@@ -1,0 +1,113 @@
+@using SaigonBite.Helpers
+@using SaigonBite.Services
+@model SaigonBite.ViewModels.MenuItemListViewModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = T["Manage Menu Items"].Value;
+    ViewData["Active"] = "Menu Items";
+    string Vnd(decimal amount) => amount.ToString("N0", System.Globalization.CultureInfo.InvariantCulture);
+}
+
+<h1 class="h3 mb-3">@T["Manage Menu Items"]</h1>
+
+<partial name="_Notice" />
+
+<div class="sb-card">
+    <h2 class="h5 mb-3">@T["Menu Item Management"]</h2>
+
+    @* The four filters are a GET form, so the address keeps them. *@
+    <form method="get" asp-action="MenuItems" class="row g-3 align-items-end mb-4">
+        <div class="col-6 col-lg-2">
+            <label for="hubId" class="form-label">@T["Filter Hub"]</label>
+            <select id="hubId" name="hubId" class="form-select">
+                <option value="">@T["All hubs"]</option>
+                @foreach (HubOption h in Model.Hubs)
+                {
+                    <option value="@h.HubId" selected="@(Model.HubId == h.HubId)">@h.Name</option>
+                }
+            </select>
+        </div>
+        <div class="col-6 col-lg-3">
+            <label for="brandId" class="form-label">@T["Filter Brand"]</label>
+            <select id="brandId" name="brandId" class="form-select">
+                <option value="">@T["All active brands"]</option>
+                @foreach (BrandInfo b in Model.Brands)
+                {
+                    <option value="@b.BrandId" selected="@(Model.BrandId == b.BrandId)">@b.Name</option>
+                }
+            </select>
+        </div>
+        <div class="col-6 col-lg-2">
+            <label for="category" class="form-label">@T["Category"]</label>
+            <select id="category" name="category" class="form-select">
+                <option value="">@T["All categories"]</option>
+                @foreach (string c in MenuCategories.All)
+                {
+                    <option value="@c" selected="@(Model.Category == c)">@T[c]</option>
+                }
+            </select>
+        </div>
+        <div class="col-6 col-lg-2">
+            <label for="availability" class="form-label">@T["Availability"]</label>
+            <select id="availability" name="availability" class="form-select">
+                <option value="">@T["Any"]</option>
+                <option value="@AvailabilityFilter.Available" selected="@(Model.Availability == AvailabilityFilter.Available)">@T["Available"]</option>
+                <option value="@AvailabilityFilter.Unavailable" selected="@(Model.Availability == AvailabilityFilter.Unavailable)">@T["Unavailable"]</option>
+            </select>
+        </div>
+        <div class="col-12 col-lg-3 d-flex gap-2 justify-content-lg-end">
+            <button type="submit" class="btn btn-outline-secondary">@T["Filter"]</button>
+            <a class="btn btn-outline-secondary" asp-action="MenuItems">@T["Clear"]</a>
+            <a class="btn btn-sb-accent" asp-action="NewItem">@T["Add Menu Item"]</a>
+        </div>
+    </form>
+
+    @if (Model.Items.Count == 0)
+    {
+        <div class="sb-hint">@T["No menu items match the filters."]</div>
+    }
+    else
+    {
+        <table class="table table-striped sb-table align-middle mb-0">
+            <thead>
+                <tr>
+                    <th>@T["Name"]</th>
+                    <th>@T["Brand"]</th>
+                    <th>@T["Category"]</th>
+                    <th class="text-end">@T["Price VND"]</th>
+                    <th>@T["Available"]</th>
+                    <th>@T["Actions"]</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (MenuItemInfo m in Model.Items)
+                {
+                    <tr>
+                        <td data-label="@T["Name"]" class="fw-semibold">@m.Name</td>
+                        <td data-label="@T["Brand"]">@(m.BrandName + (m.BrandIsActive ? "" : " (" + T["Inactive"].Value + ")"))</td>
+                        <td data-label="@T["Category"]">@T[m.Category]</td>
+                        <td data-label="@T["Price VND"]" class="text-end">@Vnd(m.Price)</td>
+                        <td data-label="@T["Available"]">
+                            <span class="sb-chip @(m.IsAvailable ? "" : "sb-chip-off")">@(m.IsAvailable ? T["Available"] : T["Unavailable"])</span>
+                        </td>
+                        <td data-label="@T["Actions"]">
+                            <div class="sb-actions">
+                                <a asp-action="ItemDetails" asp-route-id="@m.ItemId">@T["View"]</a>
+                                <a asp-action="EditItem" asp-route-id="@m.ItemId">@T["Edit"]</a>
+                                <form asp-action="RemoveItem" asp-route-id="@m.ItemId" method="post">
+                                    <button type="submit" class="sb-link-btn sb-link-danger"
+                                            data-confirm="@T["Remove this menu item? It can no longer be ordered, but old orders and reports keep it."]"
+                                            onclick="return confirm(this.dataset.confirm)">
+                                        @T["Remove"]
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <p class="small text-muted mt-3 mb-0">@Model.Items.Count @T["menu items found"]</p>
+    }
+</div>

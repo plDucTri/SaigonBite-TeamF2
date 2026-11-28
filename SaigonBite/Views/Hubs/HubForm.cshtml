@@ -1,0 +1,97 @@
+@using SaigonBite.Services
+@model SaigonBite.ViewModels.HubFormViewModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = T["Edit Hub and Capacity"].Value;
+    ViewData["Active"] = "Hubs & Capacity";
+    string Pct(decimal value) => value.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture) + "%";
+}
+
+<h1 class="h3 mb-3">@T["Edit Hub and Capacity"]</h1>
+
+<div class="sb-card">
+    <h2 class="h5 mb-3">@(Model.IsEdit ? T["Edit Hub"].Value + ": " + Model.Name : T["Add Hub"].Value)</h2>
+
+    <partial name="_ErrorList" />
+
+    <form method="post" asp-action="@(Model.IsEdit ? "UpdateHub" : "CreateHub")" asp-route-id="@Model.Id">
+        <div class="row g-3">
+            <div class="col-12 col-md-6">
+                <label for="Name" class="form-label">@T["Hub Name"]</label>
+                <input id="Name" name="Name" value="@Model.Name" class="form-control" maxlength="100" required />
+            </div>
+            <div class="col-12 col-md-6">
+                <label for="KitchenCapacity" class="form-label">@T["Kitchen Capacity (concurrent orders)"]</label>
+                <input id="KitchenCapacity" name="KitchenCapacity" type="number" step="1" min="1" max="1000"
+                       value="@(Model.KitchenCapacity?.ToString(System.Globalization.CultureInfo.InvariantCulture))" class="form-control" required />
+            </div>
+            <div class="col-12">
+                <label for="Address" class="form-label">@T["Location / Address"]</label>
+                <input id="Address" name="Address" value="@Model.Address" class="form-control" maxlength="200" required />
+            </div>
+
+            <div class="col-12 col-md-6">
+                <div class="form-label">@T["Brands Operated"]</div>
+                @if (Model.BrandOptions.Count == 0)
+                {
+                    <div class="form-control-plaintext">-</div>
+                }
+                @foreach (BrandOption b in Model.BrandOptions)
+                {
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="BrandIds" id="brand-@b.BrandId" value="@b.BrandId"
+                               checked="@Model.BrandIds.Contains(b.BrandId)" />
+                        <label class="form-check-label" for="brand-@b.BrandId">@(b.Name + (b.IsActive ? "" : " (" + T["Inactive"].Value + ")"))</label>
+                    </div>
+                }
+            </div>
+
+            <div class="col-12 col-md-6">
+                @if (Model.IsEdit)
+                {
+                    <div class="form-label">@T["Kitchen Staff Assigned"]</div>
+                    @if (Model.Staff.Count == 0)
+                    {
+                        <div class="form-control-plaintext">-</div>
+                    }
+                    else
+                    {
+                        <ul class="list-unstyled mb-1">
+                            @foreach (HubStaffInfo s in Model.Staff)
+                            {
+                                <li>@s.FullName (@s.Identifier)</li>
+                            }
+                        </ul>
+                    }
+                    <div class="small text-muted mb-3">@T["Staff are assigned to a hub on the User Accounts pages."]</div>
+                }
+
+                <div class="form-label">@T["Hub Status"]</div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="IsActive" id="active" value="true" checked="@Model.IsActive" />
+                    <label class="form-check-label" for="active">@T["Active"]</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="IsActive" id="inactive" value="false" checked="@(!Model.IsActive)" />
+                    <label class="form-check-label" for="inactive">@T["Inactive"]</label>
+                </div>
+            </div>
+
+            @if (Model.IsEdit)
+            {
+                <div class="col-12">
+                    <div class="sb-hint">
+                        @T["Current Load"]: @(Model.Confirmed + Model.Preparing) @T["orders"] / @Model.KitchenCapacity @T["capacity"] = @Pct(Model.LoadPct)
+                        <br />
+                        @T["Quiet Discount Eligible"]: @(Model.QuietDiscountEligible ? T["Yes"] : T["No"])
+                        <span class="text-muted">(@T["load below 30%"])</span>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="d-flex gap-2 mt-4">
+            <button type="submit" class="btn btn-sb">@T["Save Hub"]</button>
+            <a class="btn btn-outline-secondary" asp-action="Index">@T["Cancel"]</a>
+        </div>
+    </form>
+</div>

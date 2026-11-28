@@ -49,6 +49,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         };
     });
 builder.Services.AddScoped<IReportService, ReportService>();
+builder.Services.AddMenuModule();   // UC3 Manage Menu & Brands, Hub Utilization R2: validator, repositories, service
 
 var app = builder.Build();
 
